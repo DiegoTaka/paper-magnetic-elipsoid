@@ -12,7 +12,6 @@ import scipy.interpolate
 
 
 class GeometricElement(object):
-
     """
     Base class for all geometric elements.
     """
