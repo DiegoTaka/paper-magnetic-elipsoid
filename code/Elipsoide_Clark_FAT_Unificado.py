@@ -314,10 +314,14 @@ class Ellipsoid (GeometricElement):
         k.fill(k1)
         teta_linha = np.arcsin(((self.axis[0]**2-self.axis[2]**2)/(self.axis[0]**2+self.lamb))**0.5)
         teta_linha2 = np.arccos(self.axis[2]/self.axis[0])
-        F = scipy.special.ellipkinc(teta_linha, k)
-        E = scipy.special.ellipeinc(teta_linha, k)
-        F2 = scipy.special.ellipkinc(teta_linha2, k1)
-        E2 = scipy.special.ellipeinc(teta_linha2, k1)
+        #F = scipy.special.ellipkinc(teta_linha, k)
+        F = scipy.special.ellipkinc(teta_linha, k**2)
+        #E = scipy.special.ellipeinc(teta_linha, k)
+        E = scipy.special.ellipeinc(teta_linha, k**2)
+        #F2 = scipy.special.ellipkinc(teta_linha2, k1)
+        F2 = scipy.special.ellipkinc(teta_linha2, k1**2)
+        #E2 = scipy.special.ellipeinc(teta_linha2, k1)
+        E2 = scipy.special.ellipeinc(teta_linha2, k1**2)
         return F,E,F2,E2,k,teta_linha
 
     def dlambx_T (self):
