@@ -55,16 +55,18 @@ class Ellipsoid (GeometricElement):
         
         if self.axis[0] > self.axis[1] and self.axis[1] > self.axis[2]:
             self.angles = np.array([azimuth+np.pi,delta,gamma])
-            self.mcon,self.mconT = self.m_convT()
+            self.mcon,self.mconT = self.m_convTP()
             self.conf.append('Triaxial')
-        if self.axis[1] == self.axis[2] and self.axis[0] > self.axis[1]:
-            self.angles = np.array([azimuth+np.pi,delta,gamma])
-            self.mcon,self.mconT = self.m_convP()
+        elif self.axis[1] == self.axis[2] and self.axis[0] > self.axis[1]:
+            self.angles = np.array([azimuth+np.pi,delta,(np.pi/2)])
+            self.mcon,self.mconT = self.m_convTP()
             self.conf.append('Prolate')
-        if self.axis[1] == self.axis[2] and self.axis[0] < self.axis[1]:
-            self.angles = np.array([azimuth,delta,gamma])
+        elif self.axis[1] == self.axis[2] and self.axis[0] < self.axis[1]:
+            self.angles = np.array([azimuth,delta,(np.pi/2)])
             self.mcon,self.mconT = self.m_convO()
             self.conf.append('Oblate')
+        else:
+            raise ValueError("Input axis must have an ellipsoid shape!")
             
         self.ln = np.cos(self.props['remanence'][2])*np.cos(self.props['remanence'][1])
         self.mn = np.sin(self.props['remanence'][2])*np.cos(self.props['remanence'][1])
@@ -79,7 +81,7 @@ class Ellipsoid (GeometricElement):
             self.conf.append('Isotropic magnetization')
         else:
             self.km = self.k_matrix2()
-            self.conf.append('Anysotropic magnetization')
+            self.conf.append('Anisotropic magnetization')
                 
         self.x1,self.x2,self.x3 = self.x_e()
             
@@ -115,7 +117,7 @@ class Ellipsoid (GeometricElement):
         names.extend((p, self.props[p]) for p in sorted(self.props))
         return ' | '.join('%s:%g' % (n, v) for n, v in names)
         
-    def m_convT (self):
+    def m_convTP (self):
 
         '''
         Orientacao do elipsoide com respeito ao eixo x.
@@ -137,31 +139,6 @@ class Ellipsoid (GeometricElement):
         mcon[0][2] = (-np.sin(self.angles[1]))
         mcon[1][2] = (-np.cos(self.angles[2])*np.cos(self.angles[1]))
         mcon[2][2] = (np.sin(self.angles[2])*np.cos(self.angles[1]))
-        mconT = (mcon).T
-        return mcon, mconT
-        
-    def m_convP (self):
-
-        '''
-        Orientacao do elipsoide com respeito ao eixo x.
-        
-        input:
-        alfa - Azimute com relacao ao eixo-maior. (0<=alfa<=360)
-        delta - Inclinacao com relacao ao eixo-maior. (0<=delta<=90)
-        
-        output:
-        Direcao em radianos.
-        '''
-        mcon = np.zeros((3,3))
-        mcon[0][0] = (-np.cos(self.angles[0])*np.cos(self.angles[1]))
-        mcon[1][0] = (np.cos(self.angles[0])*np.sin(self.angles[1]))
-        mcon[2][0] = (np.sin(self.angles[0]))
-        mcon[0][1] = (-np.sin(self.angles[0])*np.cos(self.angles[1]))
-        mcon[1][1] = (np.sin(self.angles[0])*np.cos(self.angles[1]))
-        mcon[2][1] = (-np.cos(self.angles[0]))
-        mcon[0][2] = (-np.sin(self.angles[1]))
-        mcon[1][2] = (-np.cos(self.angles[2]))
-        mcon[2][2] = (0)
         mconT = (mcon).T
         return mcon, mconT
 
@@ -200,9 +177,9 @@ class Ellipsoid (GeometricElement):
         output:
         x1 - Coordenada x do elipsoide.
         '''
-        x1 = (self.xp-self.center[0])*self.mcon[0,0]+(self.yp-self.center[1])*self.mcon[0,1]+(self.zp-self.center[2])*self.mcon[0,2]
-        x2 = (self.xp-self.center[0])*self.mcon[1,0]+(self.yp-self.center[1])*self.mcon[1,1]+(self.zp-self.center[2])*self.mcon[1,2]
-        x3 = (self.xp-self.center[0])*self.mcon[2,0]+(self.yp-self.center[1])*self.mcon[2,1]+(self.zp-self.center[2])*self.mcon[2,2]
+        x1 = (self.xp-self.center[0])*self.mcon[0,0]+(self.yp-self.center[1])*self.mcon[0,1]-(self.zp+self.center[2])*self.mcon[0,2]
+        x2 = (self.xp-self.center[0])*self.mcon[1,0]+(self.yp-self.center[1])*self.mcon[1,1]-(self.zp+self.center[2])*self.mcon[1,2]
+        x3 = (self.xp-self.center[0])*self.mcon[2,0]+(self.yp-self.center[1])*self.mcon[2,1]-(self.zp+self.center[2])*self.mcon[2,2]
         return x1, x2, x3
         
     def JN_e (self):
@@ -270,7 +247,7 @@ class Ellipsoid (GeometricElement):
 
     def lamb_T (self):
         '''
-        Maior raiz real da equacao cubica: s^3 + p2*s^2 + p0 = 0
+        Maior raiz real da equacao cubica: s^3 + p2*s^2 + p1*s + p0 = 0
         input:
         p,p2 - constantes da equacao cubica
         teta - constante angular (radianos)
@@ -296,7 +273,7 @@ class Ellipsoid (GeometricElement):
         output:
         x3 - Coordenada z do elipsoide.
         '''
-        r = ((self.x1)**2+(self.x2)**2+(self.x3)**2)**0.5
+        r = (self.x1)**2+(self.x2)**2+(self.x3)**2
         return r
         
     def delta_e (self):
@@ -310,7 +287,7 @@ class Ellipsoid (GeometricElement):
         x3 - Coordenada z do elipsoide.
         '''
 
-        delta = (self.r**4 + (self.axis[0]**2-self.axis[1]**2)**2 - 2*(self.axis[0]**2-self.axis[1]**2) * (self.x1**2 - self.x2**2 - self.x3**2))**0.5
+        delta = (self.r**2 + (self.axis[0]**2-self.axis[1]**2)**2 - 2*(self.axis[0]**2-self.axis[1]**2) * (self.x1**2 - self.x2**2 - self.x3**2))**0.5
         return delta    
         
     def lamb_PO (self):
@@ -322,7 +299,7 @@ class Ellipsoid (GeometricElement):
         output:
         lamb - Maior raiz real.
         '''
-        lamb = (self.r**2 - self.axis[0]**2 - self.axis[1]**2 + self.delta)/2.
+        lamb = (self.r - self.axis[0]**2 - self.axis[1]**2 + self.delta)/2.
         return lamb
         
     def parametros_integrais(self):
@@ -368,9 +345,9 @@ class Ellipsoid (GeometricElement):
         output:
         dlambx3 - escalar
         '''
-        dlambx1 = self.x1*(1+(self.r**2-self.axis[0]**2+self.axis[1]**2)/self.delta)
-        dlambx2 = self.x2*(1+(self.r**2+self.axis[0]**2-self.axis[1]**2)/self.delta)
-        dlambx3 = self.x3*(1+(self.r**2+self.axis[0]**2-self.axis[1]**2)/self.delta)
+        dlambx1 = self.x1*(1+(self.r-self.axis[0]**2+self.axis[1]**2)/self.delta)
+        dlambx2 = self.x2*(1+(self.r+self.axis[0]**2-self.axis[1]**2)/self.delta)
+        dlambx3 = self.x3*(1+(self.r+self.axis[0]**2-self.axis[1]**2)/self.delta)
         return dlambx1, dlambx2, dlambx3
 
     def integrais_elipticas(self):
@@ -434,7 +411,6 @@ def elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids):
     JRD = JRD_e (ellipsoids.km,ellipsoids.N1,ellipsoids.N2,ellipsoids.N3,JR)
     JRD_carte = (ellipsoids.mconT).dot(JRD)
     JRD_ang = utils.vec2ang(JRD_carte)
-    #print JRD_ang
    
     # Problema Direto (Calcular o campo externo nas coordenadas do elipsoide)
     if ellipsoids.axis[0] > ellipsoids.axis[1] and ellipsoids.axis[1] > ellipsoids.axis[2]:
@@ -449,14 +425,16 @@ def elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids):
         B1 = B1_P (ellipsoids.dlambx1,JRD,f1,f2,log,ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
         B2 = B2_PO (ellipsoids.dlambx2,JRD,f1,f2)
         B3 = B3_PO (ellipsoids.dlambx3,JRD,f1,f2)
+        #print f1
         
     if ellipsoids.axis[1] == ellipsoids.axis[2] and ellipsoids.axis[0] < ellipsoids.axis[1]:
         f1 = f1_PO (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.x1,ellipsoids.x2,ellipsoids.x3,ellipsoids.lamb,JRD)
-        tang = tang_O (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
-        f2 = f2_O (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb,tang)    
-        B1 = B1_O (ellipsoids.dlambx1,JRD,f1,f2,tang,ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
+        arctang = arctang_O (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
+        f2 = f2_O (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb,arctang)    
+        B1 = B1_O (ellipsoids.dlambx1,JRD,f1,f2,arctang,ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
         B2 = B2_PO (ellipsoids.dlambx2,JRD,f1,f2)
-        B3 = B3_PO (ellipsoids.dlambx3,JRD,f1,f2)        
+        B3 = B3_PO (ellipsoids.dlambx3,JRD,f1,f2)  
+        #print np.max(np.abs([np.max(B3), np.min(B3)]))
     
     # Problema Direto (Calcular o campo externo nas coordenadas geograficas)
     Bx = Bx_c (B1,B2,B3,ellipsoids.mcon[0,0],ellipsoids.mcon[1,0],ellipsoids.mcon[2,0])
@@ -482,59 +460,6 @@ def jrd_cartesiano (inten,inc,dec,ellipsoids):
         JRD_carte.append((ellipsoids[i].mconT).dot(JRD[i]))
         JRD_ang.append(utils.vec2ang(JRD_carte[i]))
     return JRD_ang
-
-def bx_c(xp,yp,zp,inten,inc,dec,ellipsoids):
-    if xp.shape != yp.shape != zp.shape:
-        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
-    size = len(xp)
-    res = np.zeros(size, dtype=np.float)
-    ctemag = 1
-    
-    for i in range(len(ellipsoids)):
-        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
-        res += bx
-    res = res*ctemag
-    return res
-    
-def by_c(xp,yp,zp,inten,inc,dec,ellipsoids):
-    if xp.shape != yp.shape != zp.shape:
-        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
-    size = len(xp)
-    res = np.zeros(size, dtype=np.float)
-    ctemag = 1
-    
-    for i in range(len(ellipsoids)):
-        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
-        res += by
-    res = res*ctemag
-    return res
-
-def bz_c(xp,yp,zp,inten,inc,dec,ellipsoids):
-    if xp.shape != yp.shape != zp.shape:
-        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
-    size = len(xp)
-    res = np.zeros(size, dtype=np.float)
-    ctemag = 1
-    
-    for i in range(len(ellipsoids)):
-        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
-        res += bz
-    res = res*ctemag
-    return res
-    
-def tf_c(xp,yp,zp,inten,inc,dec,ellipsoids):
-    if xp.shape != yp.shape != zp.shape:
-        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
-    size = len(xp)
-    res = np.zeros(size, dtype=np.float)
-    ctemag = 1
-    
-    for i in range(len(ellipsoids)):
-        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
-        tf = bx*np.cos(inc)*np.cos(dec) + by*np.cos(inc)*np.sin(dec) + bz*np.sin(inc)
-        res += tf
-    res = res*ctemag
-    return res
     
 def ln_v (declinacao, inclinacao):
 
@@ -700,7 +625,7 @@ def f2_P (a,b,lamb,log):
     f2 = ((2*np.pi*a*(b**2))/((a**2-b**2)**1.5))*(log-((((a**2-b**2)*(a**2+lamb))**0.5)/(b**2+lamb)))
     return f2
     
-def tang_O (a,b,lamb):
+def arctang_O (a,b,lamb):
     '''
     Calculo auxiliar do campo magnetico (fi) com relacao aos eixos do elipsoide 
     input:
@@ -712,7 +637,7 @@ def tang_O (a,b,lamb):
     tang = np.arctan(((b**2-a**2)/(a**2+lamb))**0.5)
     return tang
     
-def f2_O (a,b,tang,lamb):
+def f2_O (a,b,arctang,lamb):
     '''
     Calculo auxiliar do campo magnetico (fi) com relacao aos eixos do elipsoide 
     input:
@@ -722,7 +647,7 @@ def f2_O (a,b,tang,lamb):
     output:
     v - matriz
     '''
-    f2 = ((2*np.pi*a*(b**2))/((b**2-a**2)**1.5))*(((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)) - tang)
+    f2 = ((2*np.pi*a*(b**2))/((b**2-a**2)**1.5))*(((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)) - arctang)
     return f2
 
 def B1_P (dlambx1,JRD,f1,f2,log,a,b,lamb):
@@ -742,7 +667,7 @@ def B1_P (dlambx1,JRD,f1,f2,log,a,b,lamb):
     B1 = (dlambx1*f1) + ((4*np.pi*a*b**2)/((a**2-b**2)**1.5)) * JRD[0] * ((((a**2-b**2)/(a**2+lamb))**0.5) - log)
     return B1
     
-def B1_O (dlambx1,JRD,f1,f2,tang,a,b,lamb):
+def B1_O (dlambx1,JRD,f1,f2,arctang,a,b,lamb):
     '''
     Calculo do campo magnetico (Bi) com relacao aos eixos do elipsoide 
     input:
@@ -756,7 +681,7 @@ def B1_O (dlambx1,JRD,f1,f2,tang,a,b,lamb):
     output:
     B1 - matriz
     '''
-    B1 = (dlambx1*f1) + ((4*np.pi*a*b**2)/((b**2-a**2)**1.5)) * JRD[0] * (tang - ((b**2-a**2)/(a**2+lamb))**0.5)
+    B1 = (dlambx1*f1) + ((4*np.pi*a*b**2)/((b**2-a**2)**1.5)) * JRD[0] * (arctang - ((b**2-a**2)/(a**2+lamb))**0.5)
     return B1
     
 def B2_PO (dlambx2,JRD,f1,f2):
@@ -791,7 +716,8 @@ def B3_PO (dlambx3,JRD,f1,f2):
     B3 - matriz
     '''
     B3 = (dlambx3*f1) + (JRD[2]*f2)
-    return B3    
+    return B3
+    
 def Bx_c (B1,B2,B3,l1,l2,l3):
     '''
     Calculo do campo magnetico (Bi) com relacao aos eixos geograficos
@@ -827,3 +753,56 @@ def Bz_c (B1,B2,B3,n1,n2,n3):
     '''
     Bz = B1*n1+B2*n2+B3*n3
     return Bz
+    
+def bx_c(xp,yp,zp,inten,inc,dec,ellipsoids):
+    if xp.shape != yp.shape != zp.shape:
+        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
+    size = len(xp)
+    res = np.zeros(size, dtype=np.float)
+    ctemag = 1
+    
+    for i in range(len(ellipsoids)):
+        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
+        res += bx
+    res = res*ctemag
+    return res
+    
+def by_c(xp,yp,zp,inten,inc,dec,ellipsoids):
+    if xp.shape != yp.shape != zp.shape:
+        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
+    size = len(xp)
+    res = np.zeros(size, dtype=np.float)
+    ctemag = 1
+    
+    for i in range(len(ellipsoids)):
+        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
+        res += by
+    res = res*ctemag
+    return res
+
+def bz_c(xp,yp,zp,inten,inc,dec,ellipsoids):
+    if xp.shape != yp.shape != zp.shape:
+        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
+    size = len(xp)
+    res = np.zeros(size, dtype=np.float)
+    ctemag = 1
+    
+    for i in range(len(ellipsoids)):
+        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
+        res += bz
+    res = res*ctemag
+    return res
+    
+def tf_c(xp,yp,zp,inten,inc,dec,ellipsoids):
+    if xp.shape != yp.shape != zp.shape:
+        raise ValueError("Input arrays xp, yp, and zp must have same shape!")
+    size = len(xp)
+    res = np.zeros(size, dtype=np.float)
+    ctemag = 1
+    
+    for i in range(len(ellipsoids)):
+        bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
+        tf = bx*np.cos(inc)*np.cos(dec) + by*np.cos(inc)*np.sin(dec) + bz*np.sin(inc)
+        res += tf
+    res = res*ctemag
+    return res
