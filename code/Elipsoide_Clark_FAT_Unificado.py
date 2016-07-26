@@ -1,11 +1,8 @@
 from __future__ import division
 import numpy as np
 from scipy import linalg
-from matplotlib import pyplot as plt
 
-from fatiando.gravmag import sphere
 from fatiando import mesher, gridder, utils
-from fatiando.vis import mpl
 
 import scipy.special
 import scipy.interpolate
@@ -53,28 +50,41 @@ class Ellipsoid (GeometricElement):
         self.zp = (zp)
         self.conf = []
         
+        self.azimuth = np.deg2rad(azimuth)
+        self.delta = np.deg2rad(delta)
+        self.gamma = np.deg2rad(gamma)
+        
         if self.axis[0] > self.axis[1] and self.axis[1] > self.axis[2]:
-            self.angles = np.array([azimuth+np.pi,delta,gamma])
+            self.angles = np.array([self.azimuth+np.pi,self.delta,self.gamma])
             self.mcon,self.mconT = self.m_convTP()
             self.conf.append('Triaxial')
         elif self.axis[1] == self.axis[2] and self.axis[0] > self.axis[1]:
-            self.angles = np.array([azimuth+np.pi,delta,(np.pi/2)])
+            self.angles = np.array([self.azimuth+np.pi,self.delta,(np.pi/2)])
             self.mcon,self.mconT = self.m_convTP()
             self.conf.append('Prolate')
         elif self.axis[1] == self.axis[2] and self.axis[0] < self.axis[1]:
-            self.angles = np.array([azimuth,delta,(np.pi/2)])
+            self.angles = np.array([self.azimuth,self.delta,(np.pi/2)])
             self.mcon,self.mconT = self.m_convO()
             self.conf.append('Oblate')
         else:
             raise ValueError("Input axis must have an ellipsoid shape!")
-            
-        self.ln = np.cos(self.props['remanence'][2])*np.cos(self.props['remanence'][1])
-        self.mn = np.sin(self.props['remanence'][2])*np.cos(self.props['remanence'][1])
-        self.nn = np.sin(self.props['remanence'][1])
+        
+        #self.mcon = np.array([[0.46,0.54,-0.71],[0.22,-0.85,-0.50],[-0.88,0.07,-0.50]])
+        self.inclirem = np.deg2rad(props['remanence'][1])
+        self.declirem = np.deg2rad(props['remanence'][2])  
+        self.ln = np.cos(self.declirem)*np.cos(self.inclirem)
+        self.mn = np.sin(self.declirem)*np.cos(self.inclirem)
+        self.nn = np.sin(self.inclirem)
 
-        self.k_dec = np.array([[props['k1'][2]],[props['k2'][2]],[props['k3'][2]]])
+        self.inck1 = np.deg2rad(props['k1'][1])
+        self.inck2 = np.deg2rad(props['k2'][1])
+        self.inck3 = np.deg2rad(props['k3'][1])
+        self.deck1 = np.deg2rad(props['k1'][2])
+        self.deck2 = np.deg2rad(props['k2'][2])
+        self.deck3 = np.deg2rad(props['k3'][2])
         self.k_int = np.array([[props['k1'][0]],[props['k2'][0]],[props['k3'][0]]])
-        self.k_inc = np.array([[props['k1'][1]],[props['k2'][1]],[props['k3'][1]]])
+        self.k_inc = np.array([self.inck1,self.inck2,self.inck3])
+        self.k_dec = np.array([self.deck1,self.deck2,self.deck3])
             
         if self.k_int[0] == (self.k_int[1] and self.k_int[2]):
             self.km = self.k_matrix()
@@ -259,7 +269,11 @@ class Ellipsoid (GeometricElement):
         p2 = self.axis[0]**2+self.axis[1]**2+self.axis[2]**2-self.x1**2-self.x2**2-self.x3**2
         p = p1-(p2**2)/3.
         q = p0-((p1*p2)/3.)+2*(p2/3.)**3
-        teta = np.arccos(-q/(2*np.sqrt((-p/3.)**3)))
+        p3 = (-q/(2*np.sqrt((-p/3.)**3)))
+        for i in range (len(p3)):
+            if p3[i] > 1.:
+                p3[i] = 1.
+        teta = np.arccos(p3)
         lamb = 2.*((-p/3.)**0.5)*np.cos(teta/3.)-(p2/3.)
         return lamb, teta, q, p, p2, p1, p0
     
@@ -314,10 +328,10 @@ class Ellipsoid (GeometricElement):
         k.fill(k1)
         teta_linha = np.arcsin(((self.axis[0]**2-self.axis[2]**2)/(self.axis[0]**2+self.lamb))**0.5)
         teta_linha2 = np.arccos(self.axis[2]/self.axis[0])
-        F = scipy.special.ellipkinc(teta_linha, k)
-        E = scipy.special.ellipeinc(teta_linha, k)
-        F2 = scipy.special.ellipkinc(teta_linha2, k1)
-        E2 = scipy.special.ellipeinc(teta_linha2, k1)
+        F = scipy.special.ellipkinc(teta_linha, k**2)
+        E = scipy.special.ellipeinc(teta_linha, k**2)
+        F2 = scipy.special.ellipkinc(teta_linha2, k1**2)
+        E2 = scipy.special.ellipeinc(teta_linha2, k1**2)
         return F,E,F2,E2,k,teta_linha
 
     def dlambx_T (self):
@@ -403,9 +417,7 @@ def elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids):
     '''
     
     # Calculo do vetor de magnetizacao resultante
-    lt = ln_v (dec, inc)
-    mt = mn_v (dec, inc)
-    nt = nn_v (inc)
+    lt,mt,nt = lmnn_v (dec, inc)
     Ft = F_e (inten,lt,mt,nt,ellipsoids.mcon[0,0],ellipsoids.mcon[1,0],ellipsoids.mcon[2,0],ellipsoids.mcon[0,1],ellipsoids.mcon[1,1],ellipsoids.mcon[2,1],ellipsoids.mcon[0,2],ellipsoids.mcon[1,2],ellipsoids.mcon[2,2])
     JR = JR_e (ellipsoids.km,ellipsoids.JN,Ft)
     JRD = JRD_e (ellipsoids.km,ellipsoids.N1,ellipsoids.N2,ellipsoids.N3,JR)
@@ -445,9 +457,9 @@ def elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids):
     
 # Problema Direto (Calcular o campo externo e anomalia nas coordenadas geograficas no SI)
 def jrd_cartesiano (inten,inc,dec,ellipsoids):
-    lt = ln_v (dec, inc)
-    mt = mn_v (dec, inc)
-    nt = nn_v (inc)
+    inc = np.deg2rad(inc)
+    dec = np.deg2rad(dec)
+    lt,mt,nt = lmnn_v (dec, inc)
     Ft = []
     JR = []
     JRD = []
@@ -461,7 +473,7 @@ def jrd_cartesiano (inten,inc,dec,ellipsoids):
         JRD_ang.append(utils.vec2ang(JRD_carte[i]))
     return JRD_ang
     
-def ln_v (declinacao, inclinacao):
+def lmnn_v (declinacao, inclinacao):
 
     '''
     Orientacao do elipsoide com respeito ao eixo x.
@@ -473,41 +485,10 @@ def ln_v (declinacao, inclinacao):
     output:
     Direcao em radianos.
     '''
-    
-    ln = (np.cos(declinacao)*np.cos(inclinacao))
-    return ln
-    
-def mn_v (declinacao, inclinacao):
-
-    '''
-    Orientacao do elipsoide com respeito ao eixo x.
-    
-    input:
-    alfa - Azimute com relacao ao eixo-maior. (0<=alfa<=360)
-    delta - Inclinacao com relacao ao eixo-maior. (0<=delta<=90)
-    
-    output:
-    Direcao em radianos.
-    '''
-    
-    mn = (np.sin(declinacao)*np.cos(inclinacao))
-    return mn
-    
-def nn_v (inclinacao):
-
-    '''
-    Orientacao do elipsoide com respeito ao eixo x.
-    
-    input:
-    alfa - Azimute com relacao ao eixo-maior. (0<=alfa<=360)
-    delta - Inclinacao com relacao ao eixo-maior. (0<=delta<=90)
-    
-    output:
-    Direcao em radianos.
-    '''
-    
+    ln = np.cos(declinacao)*np.cos(inclinacao)
+    mn = np.sin(declinacao)*np.cos(inclinacao)
     nn = np.sin(inclinacao)
-    return nn
+    return ln,mn,nn
     
 def F_e (intensidadeT,lt,mt,nt,l1,l2,l3,m1,m2,m3,n1,n2,n3):
     '''
@@ -759,7 +740,9 @@ def bx_c(xp,yp,zp,inten,inc,dec,ellipsoids):
         raise ValueError("Input arrays xp, yp, and zp must have same shape!")
     size = len(xp)
     res = np.zeros(size, dtype=np.float)
-    ctemag = 1
+    ctemag = 1.
+    inc = np.deg2rad(inc)
+    dec = np.deg2rad(dec)
     
     for i in range(len(ellipsoids)):
         bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
@@ -772,7 +755,9 @@ def by_c(xp,yp,zp,inten,inc,dec,ellipsoids):
         raise ValueError("Input arrays xp, yp, and zp must have same shape!")
     size = len(xp)
     res = np.zeros(size, dtype=np.float)
-    ctemag = 1
+    ctemag = 1.
+    inc = np.deg2rad(inc)
+    dec = np.deg2rad(dec)
     
     for i in range(len(ellipsoids)):
         bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
@@ -785,7 +770,9 @@ def bz_c(xp,yp,zp,inten,inc,dec,ellipsoids):
         raise ValueError("Input arrays xp, yp, and zp must have same shape!")
     size = len(xp)
     res = np.zeros(size, dtype=np.float)
-    ctemag = 1
+    ctemag = 1.
+    inc = np.deg2rad(inc)
+    dec = np.deg2rad(dec)
     
     for i in range(len(ellipsoids)):
         bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
@@ -798,7 +785,9 @@ def tf_c(xp,yp,zp,inten,inc,dec,ellipsoids):
         raise ValueError("Input arrays xp, yp, and zp must have same shape!")
     size = len(xp)
     res = np.zeros(size, dtype=np.float)
-    ctemag = 1
+    ctemag = 1.
+    inc = np.deg2rad(inc)
+    dec = np.deg2rad(dec)
     
     for i in range(len(ellipsoids)):
         bx,by,bz = elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids[i])
