@@ -1,0 +1,494 @@
+%% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
+%% ---------------------------------
+%% This template should be used for copernicus.cls
+%% The class file and some style files are bundled in the Copernicus Latex Package which can be downloaded from the different journal webpages.
+%% For further assistance please contact the Copernicus Publications at: publications@copernicus.org
+%% http://publications.copernicus.org
+
+
+%% Please use the following documentclass and Journal Abbreviations for Discussion Papers and Final Revised Papers.
+
+
+%% 2-Column Papers and Discussion Papers
+\documentclass[journal abbreviation, manuscript]{copernicus}
+
+
+
+%% Journal Abbreviations (Please use the same for Discussion Papers and Final Revised Papers)
+
+% Archives Animal Breeding (aab)
+% Atmospheric Chemistry and Physics (acp)
+% Advances in Geosciences (adgeo)
+% Advances in Statistical Climatology, Meteorology and Oceanography (ascmo)
+% Annales Geophysicae (angeo)
+% ASTRA Proceedings (ap)
+% Atmospheric Measurement Techniques (amt)
+% Advances in Radio Science (ars)
+% Advances in Science and Research (asr)
+% Biogeosciences (bg)
+% Climate of the Past (cp)
+% Drinking Water Engineering and Science (dwes)
+% Earth System Dynamics (esd)
+% Earth Surface Dynamics (esurf)
+% Earth System Science Data (essd)
+% Fossil Record (fr)
+% Geographica Helvetica (gh)
+% Geoscientific Instrumentation, Methods and Data Systems (gi)
+% Geoscientific Model Development (gmd)
+% Geothermal Energy Science (gtes)
+% Hydrology and Earth System Sciences (hess)
+% History of Geo- and Space Sciences (hgss)
+% Journal of Sensors and Sensor Systems (jsss)
+% Mechanical Sciences (ms)
+% Natural Hazards and Earth System Sciences (nhess)
+% Nonlinear Processes in Geophysics (npg)
+% Ocean Science (os)
+% Proceedings of the International Association of Hydrological Sciences (piahs)
+% Primate Biology (pb)
+% Scientific Drilling (sd)
+% SOIL (soil)
+% Solid Earth (se)
+% The Cryosphere (tc)
+% Web Ecology (we)
+% Wind Energy Science (wes)
+
+
+%% \usepackage commands included in the copernicus.cls:
+%\usepackage[german, english]{babel}
+%\usepackage{tabularx}
+%\usepackage{cancel}
+%\usepackage{multirow}
+%\usepackage{supertabular}
+%\usepackage{algorithmic}
+%\usepackage{algorithm}
+%\usepackage{amsthm}
+%\usepackage{float}
+%\usepackage{subfig}
+%\usepackage{rotating}
+
+
+\begin{document}
+
+\title{3D MAGNETIC MODELLING FOR ELLIPSOIDS}
+
+
+% \Author[affil]{given_name}{surname}
+
+\Author[1]{Diego}{Takahashi Tomazella}
+\Author[1]{Vanderlei}{Coelho Oliveira Junior}
+
+\affil[1]{Department of Geophysics, Observatorio Nacional, Rio de Janeiro, Brazil}
+%\affil[]{}
+
+%% The [] brackets identify the author with the corresponding affiliation. 1, 2, 3, etc. should be inserted.
+
+
+
+\runningtitle{TEXT}
+
+\runningauthor{TEXT}
+
+\correspondence{DIEGO TAKAHASHI TOMAZELLA (diego.takahashi@gmail.com)}
+
+
+
+\received{}
+\pubdiscuss{} %% only important for two-stage journals
+\revised{}
+\accepted{}
+\published{}
+
+%% These dates will be inserted by Copernicus Publications during the typesetting process.
+
+
+\firstpage{1}
+
+\maketitle
+
+
+
+\begin{abstract}
+In this work we will present results from a numerical modeling of the magnetic field and total field anomaly, represented by prolate and triaxial ellipsoids sources. Such approach provide analytical results for anisotropy of magnetic susceptibility as well as for self-demagnetization effects, which can be easily adapted for distinctive geologic structures - hence being an useful tool for educational (e.g., potential methods and rock magnetism) and applied geophysics (e.g., characterization of high magnetic susceptibility, mineralized bodies) purposes. Numerical tests by means of a Python code (currently under development) allowed us to compared the effects of different geometries (ellipsoidal sources, spheres, dipole lines and elliptic cylinders), which were used to validate our computational implementation. This code will be freely available to the scientific community by the end of the year.
+\end{abstract}
+
+
+
+\introduction  %% \introduction[modified heading if necessary]
+TEXT
+
+
+
+\section{Methodology}
+TEXT
+
+\subsection{Triaxial Ellipsoid}
+The implementation of the forward problem of a triaxial ellipsoid's magnetic field (three semi-axis $a > b > c$) is done in a new coordinate system, where its center is the center of this ellipsoidal body.
+
+We will define this new coordinate system ($x_1,x_2,x_3$) by the unit vectors $\hat{v}_h (h=1,2,3)$ with the respect to the geographic axis $x$, $y$ e $z$:
+\loadeq{043}
+\loadeq{044}\
+\loadeq{045} 
+\\
+
+The angles refering to the unit vectors are determined by the orientations of the ellipsoid's semi-axis. The angle $\alpha$ is the azimuth of semi-major axe ($a$) plus 180º. Meanwhile $\delta$ is the inclination of semi-major axe ($a$) in relation to the geographic plane. Lastly, $\gamma$ is the angle between the semi-mid axe ($b$) and the vertical projection of the ellipsoid's center with the geographic plane.
+
+Thus, the coordinates of the body's semi-axis are given by:
+\loadeq{046}
+
+Where $x_c$, $y_c$ e $z_c$ are the coordinates of the ellipsoid's center in the geographic system $x$, $y$ e $z$.
+
+For an ellipsoid of semi-axis $a > b > c$, the equation that defines yours surface is:
+\loadeq{030}
+
+The parameter $s$ controls the ellipsoid form. When $s$ gets close to $\infty$ the equation \eqref{eq:elipsoide} tends to the sphere equation of radius $r=\sqrt{\lambda}$. When $s = -c^2$, the last term of the ellipsoid's equation is less than zero and she becomes the equation of a circle.
+
+There is, however, a set of values for $s (\lambda,\mu,\nu)$, which are roots of the cubic equation:
+\loadeq{031}
+
+This set of roots, called ellipsoidal coordinates, correspond to parameters of a point ($x_1,x_2,x_3$) which are under the intersection of three ortogonal surfaces related to the body coordinates. Their expressions are:
+\loadeq{038}\
+\loadeq{039}\
+\loadeq{040}
+
+Where:
+\loadeq{032}\
+\loadeq{033}\
+\loadeq{034}\
+\loadeq{035}\
+\loadeq{036}\
+\loadeq{037}\
+
+The calculation of the largest root $\lambda$ of the equation \eqref{eq:cubica} is essential, since the magnetic field depends on the spatial derivatives of the equation \ref{eq:elipsoide}, where $s$ admits the value of $\lambda$.
+\loadeq{010}
+
+\begin{equation}
+\dfrac{\partial \lambda}{\partial x_2} = \dfrac{2x_2/(b^2+\lambda)}{\left(\dfrac{x_1}{a^2+\lambda}\right)^2 + \left(\dfrac{x_2}{b^2+\lambda}\right)^2 + \left(\dfrac{x_3}{c^2+\lambda}\right)^2}
+\end{equation}
+
+\begin{equation}
+\dfrac{\partial \lambda}{\partial x_3} = \dfrac{2x_3/(c^2+\lambda)}{\left(\dfrac{x_1}{a^2+\lambda}\right)^2 + \left(\dfrac{x_2}{b^2+\lambda}\right)^2 + \left(\dfrac{x_3}{c^2+\lambda}\right)^2}
+\end{equation}\\
+
+The desmagnetization factors are given by:
+\loadeq{047}
+\loadeq{048}
+\loadeq{049}
+
+Where $F(\theta,k)$ e $E(\theta,k)$ are first and second Legendre's normal elliptical integrals, respectively. To calculate $k$ and $\theta$ we have the following expressions:
+\begin{equation}
+k = \sqrt{\left(\dfrac{a^2-b^2}{a^2-c^2} \right)}
+\end{equation}
+
+\begin{equation}
+\theta = \cos^{-1}(c/a) \quad (0 \le \theta \le \pi/2)
+\end{equation}
+
+The susceptibility tensor matrix is:
+\loadeq{050}
+
+The Earth's field vector, $F$, and the remanent magnetization ,$d$, also must be converted to the body's coordinates:
+\loadeq{051}
+\loadeq{052}
+
+Note that $L_r, M_r, N_r$ ($r = 1,2,3$), $l,m,n$ e $l_N, m_N, n_N$ depends on their respective vector's inclinations and declinations:
+\begin{equation}
+L_R,l,l_N = \cos(dec) \, \cos(inc)
+\end{equation}
+
+\begin{equation}
+M_R,m,m_N = \sin(dec) \, \cos(inc)
+\end{equation}
+
+\begin{equation}
+N_R,n,n_N = \sin(inc)
+\end{equation}
+
+In the case that the body has a very low susceptibility ($\chi < 0.1$ SI) the self-demagnatization is negligible and the resultant magnetic vector is given by:
+\loadeq{053}
+
+For values bigger than 0.1 SI the resultant magnetic vector is:
+\loadeq{055}
+
+Where:
+\loadeq{054}
+
+This way, the components of the magnetic field produced by a triaxial ellipsoid in the body's coordinates outside of it is:
+
+\loadeq{056}
+\loadeq{057}
+\loadeq{058}
+
+where:
+\loadeq{059}\\
+\loadeq{060}\\
+\loadeq{061}\\
+\loadeq{062}\\
+
+And:
+\loadeq{063}\\
+
+Both $F(\theta^{'}, k)$ as $E(\theta^{'}, k)$ are again the first and second  noraml Legendre's elliptical integrals. While $A(\lambda), B(\lambda), C(\lambda)$ are analytic solutions of the integrals of the potential equation of an ellpsoid. This problem was solved by Dirichlet in 1839 \citep{clark1986magnetic} for the gravitational potential given by:
+\begin{equation}
+U_i(x_1,x_2,x_3) = \pi abc G \rho \int_{0}^{\infty} \left[1 - \dfrac{x_1^2}{a^2+u} - \dfrac{x_2^2}{b^2+u} - \dfrac{x_3^2}{c^2+u}\right] \dfrac{du}{R(u)}
+\end{equation}
+
+That can be rewritten as:
+\begin{equation}
+U_i(x_1,x_2,x_3) = \pi abc G \rho \int_{0}^{\infty} [D(\lambda) - A(\lambda) - B(\lambda) - C(\lambda)] \dfrac{du}{R(u)}
+\end{equation}
+
+Where $G$ is the gravitational constant and $\rho$ the body's density.
+
+Using the equations from \eqref{eq:campo_e} to \eqref{eq:integralC}, we can rearrange them in a matrix format that will be more computationally efficient and will help us better see the inverse problem ahead. Thus, the magnetic field generated by the ellipsoid is:
+\loadeq{007}
+
+With:
+\loadeq{009}\\
+\loadeq{011}\\
+
+For $j = 1,...,L$, the number of ellipsoids been modeled and $i = 1,...,N$  for the $i$th element of the calculated field. The total magnetic field then is:
+\loadeq{006}
+
+
+We must remember that every calculation so far was done using the body's coordinates, however the notation in equation \eqref{eq:campoGeo} the magnetic field is already in geographics coordinates. To calculate each component of the magnetic field's vector back:
+\loadeq{064}
+\loadeq{065}
+\loadeq{066}
+
+Been $\Delta T^0$, $i = 1,...,N$, the total field anomaly observed in positions (xi, yi, zi), mathematically it can be rewritten as:
+\loadeq{001}
+
+The total field vector $T_i$ can be represented by:
+\loadeq{002}
+
+Where $F_i$ is the magnetic field's vector and $B_i$ the magnetic induction's vector generated by the magnetic sources.
+Considering $F_i$ a constant vector $F_0$ for local ou regional scale, and that $||F_0|| \gg ||B_0||$, since, $B_i$ is a small pertubation of the magnetic field $F_i$, we can approximate the euclidian norm of the vector $T_i$ by a Taylor's expansion of first order:
+\loadeq{003}
+
+where $T$ indicates transposition and
+\loadeq{004}
+
+is a unit vector that represents the gradient of the function $||T_i||$ in relation to the vector's components $T_i$. This way, we can approximate the equation \eqref{eq:anomalia} of total-field anomaly to:
+\loadeq{005}
+
+Substituting the magnetic induction' equation \eqref{eq:campoGeo} in the total magnetic induction \eqref{eq:campoGeoNL} and using the total-field anomaly approximation \eqref{Anomaliaaproximada} we obtain the predict anomaly for the total field produced by the $L$ ellipsoids:
+\loadeq{018}
+
+The equation \eqref{eq:anomaliaCompleta} can be rewritten as:
+\loadeq{019}
+
+Where:
+\loadeq{020}
+
+And:
+\loadeq{021}
+
+The equation \eqref{eq:anomaliaJ} shows the dependence for the predicted total-field anomaly related to the vector $h$. We can rewrite it in matrix notation:
+\loadeq{022}
+
+Been $A$ the matrix:
+\loadeq{023}
+
+With $a_i$, $i= 1,...,N$ the vector of dimension $3L$ defined in equation \eqref{eq:matrizsensibilidade}.
+
+\subsubsection{HEADING}
+TEXT
+
+
+
+
+\conclusions  %% \conclusions[modified heading if necessary]
+TEXT
+
+
+
+
+\appendix
+\section{}    %% Appendix A
+
+\subsection{}                               %% Appendix A1, A2, etc.
+
+
+\authorcontribution{TEXT}
+
+\begin{acknowledgements}
+TEXT
+\end{acknowledgements}
+
+
+%% REFERENCES
+
+%% The reference list is compiled as follows:
+
+\begin{thebibliography}{}
+
+\bibitem[AUTHOR(YEAR)]{LABEL}
+REFERENCE 1
+
+\bibitem[AUTHOR(YEAR)]{LABEL}
+REFERENCE 2
+
+\end{thebibliography}
+
+%% Since the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
+%% authors experienced with BibTeX only have to include the following two lines:
+%%
+%% \bibliographystyle{copernicus}
+%% \bibliography{example.bib}
+%%
+%% URLs and DOIs can be entered in your BibTeX file as:
+%%
+%% URL = {http://www.xyz.org/~jones/idx_g.htm}
+%% DOI = {10.5194/xyz}
+
+
+%% LITERATURE CITATIONS
+%%
+%% command                        & example result
+%% \citet{jones90}|               & Jones et al. (1990)
+%% \citep{jones90}|               & (Jones et al., 1990)
+%% \citep{jones90,jones93}|       & (Jones et al., 1990, 1993)
+%% \citep[p.~32]{jones90}|        & (Jones et al., 1990, p.~32)
+%% \citep[e.g.,][]{jones90}|      & (e.g., Jones et al., 1990)
+%% \citep[e.g.,][p.~32]{jones90}| & (e.g., Jones et al., 1990, p.~32)
+%% \citeauthor{jones90}|          & Jones et al.
+%% \citeyear{jones90}|            & 1990
+
+
+
+%% FIGURES
+
+%% ONE-COLUMN FIGURES
+
+%%f
+%\begin{figure}[t]
+%\includegraphics[width=8.3cm]{FILE NAME}
+%\caption{TEXT}
+%\end{figure}
+%
+%%% TWO-COLUMN FIGURES
+%
+%%f
+%\begin{figure*}[t]
+%\includegraphics[width=12cm]{FILE NAME}
+%\caption{TEXT}
+%\end{figure*}
+%
+%
+%%% TABLES
+%%%
+%%% The different columns must be seperated with a & command and should
+%%% end with \\ to identify the column brake.
+%
+%%% ONE-COLUMN TABLE
+%
+%%t
+%\begin{table}[t]
+%\caption{TEXT}
+%\begin{tabular}{column = lcr}
+%\tophline
+%
+%\middlehline
+%
+%\bottomhline
+%\end{tabular}
+%\belowtable{} % Table Footnotes
+%\end{table}
+%
+%%% TWO-COLUMN TABLE
+%
+%%t
+%\begin{table*}[t]
+%\caption{TEXT}
+%\begin{tabular}{column = lcr}
+%\tophline
+%
+%\middlehline
+%
+%\bottomhline
+%\end{tabular}
+%\belowtable{} % Table Footnotes
+%\end{table*}
+%
+%
+%%% NUMBERING OF FIGURES AND TABLES
+%%%
+%%% If figures and tables must be numbered 1a, 1b, etc. the following command
+%%% should be inserted before the begin{} command.
+%
+%\addtocounter{figure}{-1}\renewcommand{\thefigure}{\arabic{figure}a}
+%
+%
+%%% MATHEMATICAL EXPRESSIONS
+%
+%%% All papers typeset by Copernicus Publications follow the math typesetting regulations
+%%% given by the IUPAC Green Book (IUPAC: Quantities, Units and Symbols in Physical Chemistry,
+%%% 2nd Edn., Blackwell Science, available at: http://old.iupac.org/publications/books/gbook/green_book_2ed.pdf, 1993).
+%%%
+%%% Physical quantities/variables are typeset in italic font (t for time, T for Temperature)
+%%% Indices which are not defined are typeset in italic font (x, y, z, a, b, c)
+%%% Items/objects which are defined are typeset in roman font (Car A, Car B)
+%%% Descriptions/specifications which are defined by itself are typeset in roman font (abs, rel, ref, tot, net, ice)
+%%% Abbreviations from 2 letters are typeset in roman font (RH, LAI)
+%%% Vectors are identified in bold italic font using \vec{x}
+%%% Matrices are identified in bold roman font
+%%% Multiplication signs are typeset using the LaTeX commands \times (for vector products, grids, and exponential notations) or \cdot
+%%% The character * should not be applied as mutliplication sign
+%
+%
+%%% EQUATIONS
+%
+%%% Single-row equation
+%
+%\begin{equation}
+%
+%\end{equation}
+%
+%%% Multiline equation
+%
+%\begin{align}
+%& 3 + 5 = 8\\
+%& 3 + 5 = 8\\
+%& 3 + 5 = 8
+%\end{align}
+%
+%
+%%% MATRICES
+%
+%\begin{matrix}
+%x & y & z\\
+%x & y & z\\
+%x & y & z\\
+%\end{matrix}
+%
+%
+%%% ALGORITHM
+%
+%\begin{algorithm}
+%\caption{…}
+%\label{a1}
+%\begin{algorithmic}
+%…
+%\end{algorithmic}
+%\end{algorithm}
+%
+%
+%%% CHEMICAL FORMULAS AND REACTIONS
+%
+%%% For formulas embedded in the text, please use \chem{}
+%
+%%% The reaction environment creates labels including the letter R, i.e. (R1), (R2), etc.
+%
+%\begin{reaction}
+%%% \rightarrow should be used for normal (one-way) chemical reactions
+%%% \rightleftharpoons should be used for equilibria
+%%% \leftrightarrow should be used for resonance structures
+%\end{reaction}
+%
+%
+%%% PHYSICAL UNITS
+%%%
+%%% Please use \unit{} and apply the exponential notation
+
+
+\end{document}
