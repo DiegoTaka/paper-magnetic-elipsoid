@@ -43,8 +43,8 @@ class Ellipsoid (GeometricElement):
     def __init__(self, xp, yp, zp, xc, yc, zc, a, b, c, azimuth, delta, gamma, props):
         GeometricElement.__init__(self, props)
         
-        self.center = np.array([xc,yc,zc])        
-        self.axis = np.array([a,b,c])        
+        self.center = np.array([xc,yc,zc])
+        self.axis = np.array([a,b,c])
         self.xp = (xp)
         self.yp = (yp)
         self.zp = (zp)
@@ -173,7 +173,7 @@ class Ellipsoid (GeometricElement):
         mcon[2][1] = (np.cos(self.angles[0]))
         mcon[0][2] = (-np.cos(self.angles[1]))
         mcon[1][2] = (-np.sin(self.angles[1]))
-        mcon[2][2] = (0)
+        mcon[2][2] = (0.)
         mconT = (mcon).T
         return mcon, mconT
         
@@ -228,7 +228,7 @@ class Ellipsoid (GeometricElement):
 
     def k_matrix (self):
         '''
-        Matriz de tensores de susceptibilidade.
+        Matriz de tensores de susceptibilidade parao o caso isotropico.
         '''
         km = np.zeros([3,3])
         for i in range (3):
@@ -239,7 +239,7 @@ class Ellipsoid (GeometricElement):
 
     def k_matrix2 (self):
         '''
-        Matriz de tensores de susceptibilidade.
+        Matriz de tensores de susceptibilidade parao o caso anisotropico.
         '''
         Lr = np.zeros(3)
         Mr = np.zeros(3)
@@ -442,7 +442,7 @@ def elipsoide (xp,yp,zp,inten,inc,dec,ellipsoids):
     if ellipsoids.axis[1] == ellipsoids.axis[2] and ellipsoids.axis[0] < ellipsoids.axis[1]:
         f1 = f1_PO (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.x1,ellipsoids.x2,ellipsoids.x3,ellipsoids.lamb,JRD)
         arctang = arctang_O (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
-        f2 = f2_O (ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb,arctang)    
+        f2 = f2_O (ellipsoids.axis[0],ellipsoids.axis[1],arctang,ellipsoids.lamb)   
         B1 = B1_O (ellipsoids.dlambx1,JRD,f1,f2,arctang,ellipsoids.axis[0],ellipsoids.axis[1],ellipsoids.lamb)
         B2 = B2_PO (ellipsoids.dlambx2,JRD,f1,f2)
         B3 = B3_PO (ellipsoids.dlambx3,JRD,f1,f2)  
@@ -615,8 +615,8 @@ def arctang_O (a,b,lamb):
     output:
     cte - constante escalar.
     '''
-    tang = np.arctan(((b**2-a**2)/(a**2+lamb))**0.5)
-    return tang
+    arctang = np.arctan(((b**2-a**2)/(a**2+lamb))**0.5)
+    return arctang
     
 def f2_O (a,b,arctang,lamb):
     '''
@@ -628,7 +628,7 @@ def f2_O (a,b,arctang,lamb):
     output:
     v - matriz
     '''
-    f2 = ((2*np.pi*a*(b**2))/((b**2-a**2)**1.5))*(((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)) - arctang)
+    f2 = ((2*np.pi*a*b*b)/((b*b-a*a)**1.5))*(((((b*b-a*a)*(a*a+lamb))**0.5)/(b*b+lamb)) - arctang)
     return f2
 
 def B1_P (dlambx1,JRD,f1,f2,log,a,b,lamb):
