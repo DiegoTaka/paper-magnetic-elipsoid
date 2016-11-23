@@ -1,9 +1,12 @@
+from __future__ import division
 import numpy as np
 from scipy import linalg
 
 from fatiando import mesher, gridder, utils
 
 import scipy.special
+import scipy.interpolate
+
 
 class GeometricElement(object):
     """

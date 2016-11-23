@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import linalg
+from matplotlib import pyplot as plt
 
 from fatiando import mesher, gridder, utils
 
@@ -56,13 +57,13 @@ def ellipsoid (xp,yp,zp,xc,yc,zc,a,b,c,azimuth,delta,gamma,declirem,inclirem,int
     else:
         km = k_matrix2(k_int,mcon)
     
-    # Elipsoid cartesian body coordinates
+    # Ellipsoid cartesian body coordinates
     x1,x2,x3 = x_e (xp,yp,zp,center,mcon)
     
     # Largest real root of the cubic equation (Lambda)
     lamb,teta,q,p,p2,p1,p0 = lamb_T(axis,x1,x2,x3)
     
-    # Spatial derivatives of Lambda
+    # Derivatves of lambda
     dlambx1,dlambx2,dlambx3 = dlambx_T(axis,x1,x2,x3,lamb)
     
     # Calculate the eliptical integral parameters
@@ -80,15 +81,15 @@ def ellipsoid (xp,yp,zp,xc,yc,zc,a,b,c,azimuth,delta,gamma,declirem,inclirem,int
     JRD_carte = (mconT).dot(JRD)
     JRD_ang = utils.vec2ang(JRD_carte)
     
-    # Geometry for inducted magnetic field
+    # Geometry for the magnetic field
     m11,m12,m13,m21,m22,m23,m31,m32,m33, cte, V1, V2, V3 = mx(axis,x1,x2,x3,dlambx1,dlambx2,dlambx3,A,B,C,lamb)
     
-    # Inducted magnetic field in body coordinates
+    # Components of the magnetic field in the body coordinates
     B1 = B1_e (m11,m12,m13,JRD,axis)
     B2 = B2_e (m21,m22,m23,JRD,axis)
     B3 = B3_e (m31,m32,m33,JRD,axis)
     
-    # Inducted magnetic field in cartesians coordinates
+    # Components of the magnetic field in the cartesian coordinates
     Bx = Bx_c (B1,B2,B3,mcon[0,0],mcon[1,0],mcon[2,0])
     By = By_c (B1,B2,B3,mcon[0,1],mcon[1,1],mcon[2,1])
     Bz = Bz_c (B1,B2,B3,mcon[0,2],mcon[1,2],mcon[2,2])

@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import linalg
+from matplotlib import pyplot as plt
 
 from fatiando import mesher, gridder, utils
 
@@ -54,7 +55,7 @@ def elliptic (xp,yp,zp,xc,yc,zc,b,c,delta,declirem,inclirem,intensity,decT,incT,
     else:
         km = k_matrix2(k_int,mcon)
 
-    # Magnetizacoes nas coordenadas do elliptic cylindere
+    # Earth's field and total body magnetization (including demagnetization) in the body's coordinate
     F = F_e (intT,lt,mt,nt,mcon)
     JN = JN_e (intensity,ln,mn,nn,mcon)
     N2,N3 = N_desmag (axis)
@@ -63,27 +64,27 @@ def elliptic (xp,yp,zp,xc,yc,zc,b,c,delta,declirem,inclirem,intensity,decT,incT,
     JRD_carte = (mconT).dot(JRD)
     JRD_ang = utils.vec2ang(JRD_carte)
     
-    # Coordenadas Cartesianas elliptic cylindere
+    # Cartesian coordinates for the elliptic cylinder body
     x2,x3 = x_e (xp,yp,zp,center,mcon)
 
-    # Calculos auxiliares
+    # Auxiliar calculations
     r = r_e (x2,x3)
     delta = delta_e (axis,r,x2,x3)
 
-    # Raizes da equacao cubica
+    # Largest real root of the cubic equation (Lambda)
     lamb = lamb_e (axis,r,delta)
 
-    # Derivadas de lambda em relacao as posicoes
+    # Derivatives of lambda
     dlambx2, dlambx3 = dlambx_e (axis,r,x2,x3,lamb,delta)
     
-    # Calculos auxiliares do campo
+    # Auxiliar calculations of the magnetic field
     f1 = f1_e (axis,x2,x3,lamb,JRD)
     
-    # Problema Direto (Calcular o campo externo nas coordenadas do elliptic cylindere)
+    # Components of the magnetic field in the body coordinates
     B2 = B2_e (dlambx2,lamb,JRD,f1,axis)
     B3 = B3_e (dlambx3,lamb,JRD,f1,axis)
     
-    # Problema Direto (Calcular o campo externo nas coordenadas geograficas)
+    # Components of the magnetic field in the cartesian coordinates
     Bx = Bx_c (B2,B3,mcon[1,0],mcon[2,0])
     Bz = Bz_c (B2,B3,mcon[1,2],mcon[2,2])
     

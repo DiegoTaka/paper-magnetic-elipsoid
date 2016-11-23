@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import linalg
+from matplotlib import pyplot as plt
 
 from fatiando import mesher, gridder, utils
 
@@ -56,7 +57,7 @@ def ellipsoid (xp,yp,zp,xc,yc,zc,a,b,azimuth,delta,declirem,inclirem,intensity,d
     else:
         km = k_matrix2(k_int,mcon)
 
-    # Magnetizacoes nas coordenadas do ellipsoide
+    # Earth's field and total body magnetization (including demagnetization) in the body's coordinate
     F = F_e (intT,lt,mt,nt,mcon)
     JN = JN_e (intensity,ln,mn,nn,mcon)
     N1,N2 = N_desmag (axis[0],axis[1])
@@ -65,31 +66,30 @@ def ellipsoid (xp,yp,zp,xc,yc,zc,a,b,azimuth,delta,declirem,inclirem,intensity,d
     JRD_carte = (mconT).dot(JRD)
     JRD_ang = utils.vec2ang(JRD_carte)
     
-    # Coordenadas Cartesianas ellipsoide
+    # Ellipsoid cartesian body coordinates
     x1,x2,x3 = x_e (xp,yp,zp,center,mcon)
 
-
-    # Calculos auxiliares
+    # Auxiliar calculations
     r = r_e (x1,x2,x3)
     delta = delta_e (r,axis[0],axis[1],x1,x2,x3)
 
-    # Raizes da equacao cubica
+    # Largest real root of the cubic equation (Lambda)
     lamb = lamb_e (r,axis[0],axis[1],delta)
 
-    # Derivadas de lambda em relacao as posicoes
+    # Derivatives of lambda
     dlambx1,dlambx2,dlambx3 = dlambx_e (axis[0],axis[1],x1,x2,x3,lamb,r,delta)
     
-    # Calculos auxiliares do campo
+    # Auxiliar calculations of the magnetic field
     f1 = f1_e (axis[0],axis[1],x1,x2,x3,lamb,JRD)
     log = log_m (axis[0],axis[1],lamb)
     f2 = f2_e (axis[0],axis[1],lamb,log)
     
-    # Problema Direto (Calcular o campo externo nas coordenadas do ellipsoide)
+    # Components of the magnetic field in the body coordinates
     B1 = B1_e (dlambx1,JRD,f1,f2,log,axis[0],axis[1],lamb)
     B2 = B2_e (dlambx2,JRD,f1,f2)
     B3 = B3_e (dlambx3,JRD,f1,f2)
     
-    # Problema Direto (Calcular o campo externo nas coordenadas geograficas)
+    # Components of the magnetic field in the cartesian coordinates
     Bx = Bx_c (B1,B2,B3,mcon[0,0],mcon[1,0],mcon[2,0])
     By = By_c (B1,B2,B3,mcon[0,1],mcon[1,1],mcon[2,1])
     Bz = Bz_c (B1,B2,B3,mcon[0,2],mcon[1,2],mcon[2,2])
