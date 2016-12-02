@@ -168,6 +168,24 @@ The same way the matrix of conversion can be used to change the magnetic field c
 \bar{B}_i = \bar{\bar{V}} \tilde{B}_i
 \end{equation}
 
+The equation of the surface of an ellipsoid can be written in a matrix form as:
+\begin{equation}
+(\bar{\textbf{r}} - \bar{\textbf{r}}_c)^T \bar{\bar{A}} (\bar{\textbf{r}} - \bar{\textbf{r}}_c) = 1,
+\end{equation}
+
+and $\bar{\bar{A}}$ is a 3X3 matrix formed by:
+\begin{equation}
+\bar{\bar{A}} = \bar{\bar{V}} 
+\left[\begin{matrix} 
+\dfrac{1}{a^2+s} & 0 & 0 \\
+0 & \dfrac{1}{b^2+s} & 0 \\
+0 & 0 & \dfrac{1}{c^2+s}
+\end{matrix}\right]
+\bar{\bar{V}}^T,
+\end{equation}
+
+where the columns of $\bar{\bar{V}}$ are the eigenvectors that represents the principal axes of the ellipsoid and the diagonal of the middle matrix the eigenvalues that represents the reciprocals of the square of the semi-axes $a^{-2}$, $b^{-2}$ and $c^{-2}$.
+
 \subsection{The Forward model of a sphere}
 
 \subsection{The Forward model of a triaxial elipsoid}
