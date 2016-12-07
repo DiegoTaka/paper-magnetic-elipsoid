@@ -415,7 +415,7 @@ def matrix_d (a,b,lamb,log):
     '''
     '''
     
-    A = (2./(a*a - b*b)**(1.5)) * (((a*a - b*b)/(a*a + lamb))**0.5 - log)
+    A = (2./(a*a - b*b)**(1.5)) * (log - (((a*a - b*b)/(a*a + lamb))**0.5))
     B = (1./(a*a - b*b)**(1.5)) * (((((a**2-b**2)*(a**2+lamb))**0.5)/(b**2+lamb)) - log)
     C = (1./(a*a - b*b)**(1.5)) * (((((a**2-b**2)*(a**2+lamb))**0.5)/(b**2+lamb)) - log)
     return A, B, C

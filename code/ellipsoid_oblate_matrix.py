@@ -410,9 +410,9 @@ def matrix_d (a,b,lamb,arctang):
     '''
     '''
     
-    A = (2./(b*b - a*a)**(1.5)) * (arctang - ((b*b - a*a)/(a*a + lamb))**0.5)
-    B = (1./(b*b - a*a)**(1.5)) * (arctang - ((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)))
-    C = (1./(b*b - a*a)**(1.5)) * (arctang - ((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)))
+    A = (2./(b**2 - a**2)**(1.5)) * ((((b**2-a**2)/(a**2+lamb))**0.5) - arctang)
+    B = (1./(b**2 - a**2)**(1.5)) * (arctang - ((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)))
+    C = (1./(b**2 - a**2)**(1.5)) * (arctang - ((((b**2-a**2)*(a**2+lamb))**0.5)/(b**2+lamb)))
     return A, B, C
     
 def mx(a,b,x1,x2,x3,dlambx1,dlambx2,dlambx3,A,B,C,lamb):
@@ -429,9 +429,9 @@ def mx(a,b,x1,x2,x3,dlambx1,dlambx2,dlambx3,A,B,C,lamb):
     m11, m12, m13, m21, m22, m23, m31, m32, m33, cte, V1, V2, V3 - calculus for the ellipsoid magnetic field.        
     '''
         
-    V1 = x1/((a**2+lamb)**(1.5)*(b**2+lamb))
-    V2 = x2/((a**2+lamb)**(0.5)*(b**2+lamb)**2)
-    V3 = x3/((a**2+lamb)**(0.5)*(b**2+lamb)**2)
+    V1 = x1/(((a**2+lamb)**(1.5))*(b**2+lamb))
+    V2 = x2/(((a**2+lamb)**(0.5))*(b**2+lamb)**2)
+    V3 = x3/(((a**2+lamb)**(0.5))*(b**2+lamb)**2)
     m11 = (dlambx1*V1) - A
     m12 = dlambx1*V2
     m13 = dlambx1*V3
@@ -458,6 +458,7 @@ def B1_e2 (m11,m12,m13,J,axis):
     '''
     
     B1 = 2*np.pi*axis[0]*axis[1]*axis[1]*(m11*J[0]+m12*J[1]+m13*J[2])
+    
     return B1
 
 def B2_e2 (m21,m22,m23,J,axis):
