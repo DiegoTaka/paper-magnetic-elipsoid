@@ -1,75 +1,407 @@
-\documentclass[twocolumn]{article}
+%% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
+%% ---------------------------------
+%% This template should be used for copernicus.cls
+%% The class file and some style files are bundled in the Copernicus Latex Package which can be downloaded from the different journal webpages.
+%% For further assistance please contact the Copernicus Publications at: publications@copernicus.org
+%% http://publications.copernicus.org
 
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{url}
-\usepackage[round]{natbib}
-\usepackage[utf8]{inputenc}
-% To make two column figures appear in the correct order
-\usepackage{fixltx2e}
-% To make annotations on the sides
-\usepackage{todonotes}
-% To generate dummy text
-\usepackage{lipsum}
-% Metadata for the generated PDF
-\usepackage[pdftex,colorlinks=true]{hyperref}
-\hypersetup{
-    allcolors=blue,
-}
+
+%% Please use the following documentclass and Journal Abbreviations for Discussion Papers and Final Revised Papers.
+
+
+%% 2-Column Papers and Discussion Papers
+\documentclass[gmd, manuscript]{copernicus}
+
+
+
+%% Journal Abbreviations (Please use the same for Discussion Papers and Final Revised Papers)
+
+% Archives Animal Breeding (aab)
+% Atmospheric Chemistry and Physics (acp)
+% Advances in Geosciences (adgeo)
+% Advances in Statistical Climatology, Meteorology and Oceanography (ascmo)
+% Annales Geophysicae (angeo)
+% ASTRA Proceedings (ap)
+% Atmospheric Measurement Techniques (amt)
+% Advances in Radio Science (ars)
+% Advances in Science and Research (asr)
+% Biogeosciences (bg)
+% Climate of the Past (cp)
+% Drinking Water Engineering and Science (dwes)
+% Earth System Dynamics (esd)
+% Earth Surface Dynamics (esurf)
+% Earth System Science Data (essd)
+% Fossil Record (fr)
+% Geographica Helvetica (gh)
+% Geoscientific Instrumentation, Methods and Data Systems (gi)
+% Geoscientific Model Development (gmd)
+% Geothermal Energy Science (gtes)
+% Hydrology and Earth System Sciences (hess)
+% History of Geo- and Space Sciences (hgss)
+% Journal of Sensors and Sensor Systems (jsss)
+% Mechanical Sciences (ms)
+% Natural Hazards and Earth System Sciences (nhess)
+% Nonlinear Processes in Geophysics (npg)
+% Ocean Science (os)
+% Proceedings of the International Association of Hydrological Sciences (piahs)
+% Primate Biology (pb)
+% Scientific Drilling (sd)
+% SOIL (soil)
+% Solid Earth (se)
+% The Cryosphere (tc)
+% Web Ecology (we)
+% Wind Energy Science (wes)
+
+
+%% \usepackage commands included in the copernicus.cls:
+%\usepackage[german, english]{babel}
+%\usepackage{tabularx}
+%\usepackage{cancel}
+%\usepackage{multirow}
+%\usepackage{supertabular}
+%\usepackage{algorithmic}
+%\usepackage{algorithm}
+%\usepackage{amsthm}
+%\usepackage{float}
+%\usepackage{subfig}
+%\usepackage{rotating}
 
 
 \begin{document}
 
-\title{
-    My very cool new paper
-}
-\author{
-    Leonardo Uieda$^{1,2}$,
-    ValÃ©ria C. F. Barbosa$^{2}$
-    \\\\
-    {\small
-        $^1$Universidade do Estado do Rio de Janeiro, Rio de Janeiro, Brazil.
-        e-mail: leouieda@gmail.com
-    }
-    \\
-    {\small
-        $^2$ObservatÃ³rio Nacional, Rio de Janeiro, Brazil.
-    }
-}
+\title{3D MAGNETIC MODELLING FOR ELLIPSOIDS}
 
+
+% \Author[affil]{given_name}{surname}
+
+\Author[1]{Diego}{Takahashi Tomazella}
+\Author[1]{Vanderlei}{C. Oliveira Jr}
+
+\affil[1]{Department of Geophysics, Observatorio Nacional, Rio de Janeiro, Brazil}
+%\affil[]{}
+
+%% The [] brackets identify the author with the corresponding affiliation. 1, 2, 3, etc. should be inserted.
+
+
+
+\runningtitle{TEXT}
+
+\runningauthor{TEXT}
+
+\correspondence{DIEGO TAKAHASHI TOMAZELLA (diego.takahashi@gmail.com)}
+
+
+
+\received{}
+\pubdiscuss{} %% only important for two-stage journals
+\revised{}
+\accepted{}
+\published{}
+
+%% These dates will be inserted by Copernicus Publications during the typesetting process.
+
+
+\firstpage{1}
 
 \maketitle
 
 
+
 \begin{abstract}
-    \lipsum[1]
+
+TEXT
+
 \end{abstract}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
 
-Cite things using \citet{tikhonov1977} or \citep{tikhonov1977}.
+\introduction  %% \introduction[modified heading if necessary]
 
-\begin{figure}
-    \centering
-    \includegraphics[]{figures/example}
-    \caption{
-        Example image.
-    }
-    \label{fig:meh}
-\end{figure}
+TEXT
+
+\section{Methodology}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Acknowledgments}
+\subsection{Geometrical aspects}
 
-We are indebted to the developers and maintainers of the open-source
-software without which this work would not have been possible.
+Let $(x, y, z)$ be a point referred to a Cartesian coordinate system with axes
+$x$, $y$ and $z$ pointing to, respectively, North, East and down.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Consider an ellipsoidal body with centre at the point $(x_{c}, y_{c}, z_{c})$,
+semi-axes defined by positive constants $a$, $b$, $c$, and orientation defined by
+three angles $\alpha$, $\beta$, and $\gamma$.
 
-\bibliographystyle{plainnat}
+The points $(x, y, z)$ located on the surface of this ellipsoidal body
+satisfy the following equation:
+\begin{equation}
+(\mathbf{r} - \mathbf{r}_c)^T \mathbf{A} (\mathbf{r} - \mathbf{r}_c) = 1 \: ,
+\label{eq:ellipsoid_surface}
+\end{equation}
+where $\mathbf{r} = [\begin{array}{ccc} x & y & z \end{array} ]^{\top}$,
+$\mathbf{r}_{c} = [\begin{array}{ccc} x_{c} & y_{c} & z_{c} \end{array} ]^{\top}$,
+$\mathbf{A}$ is a positive definite matrix given by
+\begin{equation}
+\mathbf{A} = \mathbf{V}
+\left[ \begin{array}{ccc}
+a^{-2} & 0 & 0 \\
+0 & b^{-2} & 0 \\
+0 & 0 & c^{-2} 
+\end{array} \right] \mathbf{V}^{\top} \: ,
+\label{eq:A}
+\end{equation}
+and $\mathbf{V}$ is an orthogonal matrix whose columns are defined
+by unit vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$.
+
+The vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$ 
+have the same direction as the semi-axes $a$, $b$, $c$ of the 
+ellipsoid, depend on the orientation angles 
+$\alpha$, $\beta$, $\gamma$ and are defined 
+according to the ellipsoid type.
+
+For triaxial ellipsoids (i.e., $a > b > c$), the vectors 
+$\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$ are given
+by \citep{clark1986magnetic}:
+\begin{equation}
+\mathbf{v}_{1} = \left[\begin{array}{c} 
+                  -\cos\alpha \; \cos\delta \\
+                  -\sin\alpha \; \cos\delta \\
+                  -\sin\delta
+                  \end{array} \right] \: ,
+\label{eq:v1_triaxial_prolate}
+\end{equation}
+\begin{equation}
+\mathbf{v}_{2} = \left[\begin{array}{c} 
+                  \cos\alpha \; \cos\gamma \; \sin\delta + \sin\alpha \; \sin\gamma \\                   
+                  \sin\alpha \; \cos\gamma \; \sin\delta - \cos\alpha \; \sin\gamma \\ 
+                  -\cos\gamma \; \cos\delta
+                  \end{array} \right] \: ,
+\label{eq:v2_triaxial_prolate}
+\end{equation}                   
+\begin{equation}                    
+\mathbf{v}_{3} = \left[\begin{array}{c} 
+                  \sin\alpha \; \cos\gamma - \cos\alpha \; \sin\gamma \; \sin\delta \\                    
+                  -\cos\alpha \; \cos\gamma - \sin\alpha \; \sin\gamma \; \sin\delta \\
+                  \sin\gamma \; \cos\delta
+                  \end{array} \right] \: .
+\label{eq:v3_triaxial_prolate}
+\end{equation}
+
+Similarly, the vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$
+defining the semi-axes of prolate ellipsoids (i.e., $a > b = c$) are 
+calculated by using equations \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, 
+and \ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$ \citep{emerson1985magnetic}.
+
+Finally, the vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$
+defining the semi-axes of oblate ellipsoids (i.e., $a < b = c$) are
+
+PAREI AQUI
+
+
+
+%whose eigenvectors define the 
+%axes of the ellipsoid and the eigenvalues of A are the reciprocals of the squares of the semi-axes
+
+
+\subsection{TEXT}
+
+\subsubsection{TEXT}
+TEXT
+
+\conclusions  %% \conclusions[modified heading if necessary]
+TEXT
+
+
+
+
+\appendix
+\section{}    %% Appendix A
+
+\subsection{}                               %% Appendix A1, A2, etc.
+
+
+\authorcontribution{TEXT}
+
+\begin{acknowledgements}
+TEXT
+\end{acknowledgements}
+
+
+%% REFERENCES
+
+%% The reference list is compiled as follows:
+
+%%\begin{thebibliography}{}
+
+%%\bibitem[AUTHOR(YEAR)]{LABEL}
+%%REFERENCE 1
+
+%%\bibitem[AUTHOR(YEAR)]{LABEL}
+%%REFERENCE 2
+
+%%\end{thebibliography}
+
+\bibliographystyle{copernicus}
 \bibliography{references}
+
+%% Since the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
+%% authors experienced with BibTeX only have to include the following two lines:
+%%
+\bibliographystyle{copernicus}
+\bibliography{references.bib}
+%%
+%% URLs and DOIs can be entered in your BibTeX file as:
+%%
+%% URL = {http://www.xyz.org/~jones/idx_g.htm}
+%% DOI = {10.5194/xyz}
+
+
+%% LITERATURE CITATIONS
+%%
+%% command                        & example result
+%% \citet{jones90}|               & Jones et al. (1990)
+%% \citep{jones90}|               & (Jones et al., 1990)
+%% \citep{jones90,jones93}|       & (Jones et al., 1990, 1993)
+%% \citep[p.~32]{jones90}|        & (Jones et al., 1990, p.~32)
+%% \citep[e.g.,][]{jones90}|      & (e.g., Jones et al., 1990)
+%% \citep[e.g.,][p.~32]{jones90}| & (e.g., Jones et al., 1990, p.~32)
+%% \citeauthor{jones90}|          & Jones et al.
+%% \citeyear{jones90}|            & 1990
+
+
+
+%% FIGURES
+
+%% ONE-COLUMN FIGURES
+
+%%f
+%\begin{figure}[t]
+%\includegraphics[width=8.3cm]{FILE NAME}
+%\caption{TEXT}
+%\end{figure}
+%
+%%% TWO-COLUMN FIGURES
+%
+%%f
+%\begin{figure*}[t]
+%\includegraphics[width=12cm]{FILE NAME}
+%\caption{TEXT}
+%\end{figure*}
+%
+%
+%%% TABLES
+%%%
+%%% The different columns must be seperated with a & command and should
+%%% end with \\ to identify the column brake.
+%
+%%% ONE-COLUMN TABLE
+%
+%%t
+%\begin{table}[t]
+%\caption{TEXT}
+%\begin{tabular}{column = lcr}
+%\tophline
+%
+%\middlehline
+%
+%\bottomhline
+%\end{tabular}
+%\belowtable{} % Table Footnotes
+%\end{table}
+%
+%%% TWO-COLUMN TABLE
+%
+%%t
+%\begin{table*}[t]
+%\caption{TEXT}
+%\begin{tabular}{column = lcr}
+%\tophline
+%
+%\middlehline
+%
+%\bottomhline
+%\end{tabular}
+%\belowtable{} % Table Footnotes
+%\end{table*}
+%
+%
+%%% NUMBERING OF FIGURES AND TABLES
+%%%
+%%% If figures and tables must be numbered 1a, 1b, etc. the following command
+%%% should be inserted before the begin{} command.
+%
+%\addtocounter{figure}{-1}\renewcommand{\thefigure}{\arabic{figure}a}
+%
+%
+%%% MATHEMATICAL EXPRESSIONS
+%
+%%% All papers typeset by Copernicus Publications follow the math typesetting regulations
+%%% given by the IUPAC Green Book (IUPAC: Quantities, Units and Symbols in Physical Chemistry,
+%%% 2nd Edn., Blackwell Science, available at: http://old.iupac.org/publications/books/gbook/green_book_2ed.pdf, 1993).
+%%%
+%%% Physical quantities/variables are typeset in italic font (t for time, T for Temperature)
+%%% Indices which are not defined are typeset in italic font (x, y, z, a, b, c)
+%%% Items/objects which are defined are typeset in roman font (Car A, Car B)
+%%% Descriptions/specifications which are defined by itself are typeset in roman font (abs, rel, ref, tot, net, ice)
+%%% Abbreviations from 2 letters are typeset in roman font (RH, LAI)
+%%% Vectors are identified in bold italic font using \vec{x}
+%%% Matrices are identified in bold roman font
+%%% Multiplication signs are typeset using the LaTeX commands \times (for vector products, grids, and exponential notations) or \cdot
+%%% The character * should not be applied as mutliplication sign
+%
+%
+%%% EQUATIONS
+%
+%%% Single-row equation
+%
+%\begin{equation}
+%
+%\end{equation}
+%
+%%% Multiline equation
+%
+%\begin{align}
+%& 3 + 5 = 8\\
+%& 3 + 5 = 8\\
+%& 3 + 5 = 8
+%\end{align}
+%
+%
+%%% MATRICES
+%
+%\begin{matrix}
+%x & y & z\\
+%x & y & z\\
+%x & y & z\\
+%\end{matrix}
+%
+%
+%%% ALGORITHM
+%
+%\begin{algorithm}
+%\caption{…}
+%\label{a1}
+%\begin{algorithmic}
+%…
+%\end{algorithmic}
+%\end{algorithm}
+%
+%
+%%% CHEMICAL FORMULAS AND REACTIONS
+%
+%%% For formulas embedded in the text, please use \chem{}
+%
+%%% The reaction environment creates labels including the letter R, i.e. (R1), (R2), etc.
+%
+%\begin{reaction}
+%%% \rightarrow should be used for normal (one-way) chemical reactions
+%%% \rightleftharpoons should be used for equilibria
+%%% \leftrightarrow should be used for resonance structures
+%\end{reaction}
+%
+%
+%%% PHYSICAL UNITS
+%%%
+%%% Please use \unit{} and apply the exponential notation
+
 
 \end{document}
