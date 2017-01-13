@@ -69,7 +69,7 @@
 
 \begin{document}
 
-\title{3D MAGNETIC MODELLING FOR ELLIPSOIDS}
+\title{3D Magnetic modelling of ellipsoidal bodies}
 
 
 % \Author[affil]{given_name}{surname}
@@ -77,7 +77,7 @@
 \Author[1]{Diego}{Takahashi Tomazella}
 \Author[1]{Vanderlei}{C. Oliveira Jr}
 
-\affil[1]{Department of Geophysics, Observatorio Nacional, Rio de Janeiro, Brazil}
+\affil[1]{Department of Geophysics, Observat\'{o}rio Nacional, Rio de Janeiro, Brazil}
 %\affil[]{}
 
 %% The [] brackets identify the author with the corresponding affiliation. 1, 2, 3, etc. should be inserted.
@@ -88,7 +88,7 @@
 
 \runningauthor{TEXT}
 
-\correspondence{DIEGO TAKAHASHI TOMAZELLA (diego.takahashi@gmail.com)}
+\correspondence{Diego Takahashi Tomazella (diego.takahashi@gmail.com)}
 
 
 
@@ -122,15 +122,16 @@ TEXT
 \section{Methodology}
 
 
-\subsection{Geometrical aspects}
+\subsection{Geometrical parameters defining ellipsoids}
 
 Let $(x, y, z)$ be a point referred to a Cartesian coordinate system with axes
 $x$, $y$ and $z$ pointing to, respectively, North, East and down.
-
-Consider an ellipsoidal body with centre at the point $(x_{c}, y_{c}, z_{c})$,
-semi-axes defined by positive constants $a$, $b$, $c$, and orientation defined by
+For convenience, we denominate this coordinate system as 
+\textit{main coordinate system}.
+Let us consider an ellipsoidal body with centre at the point $(x_{c}, y_{c}, z_{c})$,
+semi-axes defined by positive constants $a$, $b$, $c$, 
+where $a > b > c$, and orientation defined by
 three angles $\alpha$, $\beta$, and $\gamma$.
-
 The points $(x, y, z)$ located on the surface of this ellipsoidal body
 satisfy the following equation:
 \begin{equation}
@@ -153,14 +154,9 @@ and $\mathbf{V}$ is an orthogonal matrix whose columns are defined
 by unit vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$.
 
 The vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$ 
-have the same direction as the semi-axes $a$, $b$, $c$ of the 
-ellipsoid, depend on the orientation angles 
+depend on the orientation angles 
 $\alpha$, $\beta$, $\gamma$ and are defined 
-according to the ellipsoid type.
-
-For triaxial ellipsoids (i.e., $a > b > c$), the vectors 
-$\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$ are given
-by \citep{clark1986magnetic}:
+as follows \citep{clark1986magnetic}:
 \begin{equation}
 \mathbf{v}_{1} = \left[\begin{array}{c} 
                   -\cos\alpha \; \cos\delta \\
@@ -185,21 +181,90 @@ by \citep{clark1986magnetic}:
                   \end{array} \right] \: .
 \label{eq:v3_triaxial_prolate}
 \end{equation}
+For triaxial ellipsoids (i.e., $a > b > c$), the orthogonal matrix
+$\mathbf{V}$ (equation \ref{eq:A}) is calculated by using equations
+\ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
+\ref{eq:v3_triaxial_prolate} as follows:
+\begin{equation}
+\mathbf{V} = \left[ \begin{array}{ccc}
+\mathbf{v}_{1} & \mathbf{v}_{2} & \mathbf{v}_{3}
+\end{array} \right] \: .
+\label{eq:V_triaxial_prolate}
+\end{equation}
+Similarly, the matrix $\mathbf{V}$ (equation \ref{eq:A}) for
+prolate ellipsoids (i.e., $a > b = c$) is calculated according
+to equation \ref{eq:V_triaxial_prolate} by using equations
+\ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
+\ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$ 
+\citep{emerson1985magnetic}.
+Finally, the matrix $\mathbf{V}$ (equation \ref{eq:A}) for
+oblate ellipsoids (i.e., $a < b = c$) is calculated by 
+using equations \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
+\ref{eq:v3_triaxial_prolate}, with $\gamma = 0^{\circ}$, as follows
+\citep{emerson1985magnetic}:
+\begin{equation}
+\mathbf{V} = \left[ \begin{array}{ccc}
+\mathbf{v}_{2} & \mathbf{v}_{1} & -\mathbf{v}_{3}
+\end{array} \right] \: .
+\label{eq:V_oblate}
+\end{equation}
+The orientation of the semi-axes $a$, $b$, and $c$ are defined 
+by the first, second, and third columns of the matrix 
+$\mathbf{V}$ given by equation \ref{eq:V_triaxial_prolate},
+in the case of a triaxial or prolate ellipsoid, or the
+matrix $\mathbf{V}$ given by equation \ref{eq:V_oblate},
+in the case of an oblate ellipsoid.
 
-Similarly, the vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$
-defining the semi-axes of prolate ellipsoids (i.e., $a > b = c$) are 
-calculated by using equations \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, 
-and \ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$ \citep{emerson1985magnetic}.
+The magnetic modelling of an ellipsoidal body is commonly performed
+in a particular Cartesian coordinate system that is aligned 
+with the body semi-axes
+and has the origin coincident with the body centre.
+For convenience, we denominate this particular coordinate 
+system as \textit{local coordinate system}.
+The relationship between the Cartesian coordinates 
+$(\tilde{x}, \tilde{y}, \tilde{z})$ of a point in 
+a local coordinate system and the Cartesian 
+coordinates $(x, y, z)$ of the same point in the main
+system is given by:
+\begin{equation}
+\tilde{\mathbf{r}} = \mathbf{V}^{\top} \left( \mathbf{r} - \mathbf{r}_{c} \right) \: ,
+\label{eq:coord_transformation}
+\end{equation}
+where 
+$\tilde{\mathbf{r}} = [\begin{array}{ccc} \tilde{x} & 
+                                          \tilde{y} & 
+                                          \tilde{z} \end{array} ]^{\top}$,
+$\mathbf{r}$ and $\mathbf{r}_{c}$
+are defined in equation \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
+is defined according to equations \ref{eq:V_triaxial_prolate} or
+\ref{eq:V_oblate}, depending on the ellipsoid type.
 
-Finally, the vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$
-defining the semi-axes of oblate ellipsoids (i.e., $a < b = c$) are
+A last but not least set of parameters defining the geometry of
+an ellipsoid are their focal points.
+The focal points are defined on the axes of the local coordinate 
+system as follows:
+\begin{equation}
+\left(\tilde{x}, \tilde{y}, \tilde{z} \right) = 
+\begin{cases}
+\left( \pm \sqrt{a^{2} - b^{2}}, 0, 0 \right) \\
+\left( \pm \sqrt{a^{2} - c^{2}}, 0, 0 \right) \\
+\left( 0, \pm \sqrt{b^{2} - c^{2}}, 0 \right)
+\end{cases} \: .
+\label{eq:focal-points}
+\end{equation}
+All ellipsoids sharing a common set of focal points form a family of confocal ellipsoids.
 
-PAREI AQUI
+\subsection{Auxiliary variable $\lambda$}
+
+The methods commonly applied in the magnetic modelling of
+ellipsoidal bodies make use of an auxiliary variable $\lambda$,
+which is a real number.
 
 
 
-%whose eigenvectors define the 
-%axes of the ellipsoid and the eigenvalues of A are the reciprocals of the squares of the semi-axes
+\subsection{Magnetic induction}
+
+
 
 
 \subsection{TEXT}
