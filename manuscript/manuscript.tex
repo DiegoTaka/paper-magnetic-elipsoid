@@ -117,7 +117,19 @@ TEXT
 
 \introduction  %% \introduction[modified heading if necessary]
 
-TEXT
+\citep{dubois1896}: The magnetisation induced in a uniform field is not necessarily 
+also uniform.
+A vector is said to be distributed uniformly when at
+every point throughout the region considered it has the same
+direction and the same value.
+It maybe mathematically proved that such
+uniformity only holds for bodies of an ellipsoidal shape.
+If one axis coincides with the direction of the field, 
+the magnetisation is in the same direction as that axis.
+The demagnetising intensity for unit magnetisation we 
+shall again speak of as the demagnetising
+factor for the axial direction in question.
+
 
 \section{Methodology}
 
@@ -239,22 +251,22 @@ are defined in equation \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
 is defined according to equations \ref{eq:V_triaxial_prolate} or
 \ref{eq:V_oblate}, depending on the ellipsoid type.
 
-A last but not least set of parameters defining the geometry of
-an ellipsoid are their focal points.
-The focal points are defined on the axes of the local coordinate 
-system as follows:
-\begin{equation}
-\left(\tilde{x}, \tilde{y}, \tilde{z} \right) = 
-\begin{cases}
-\left( \pm \sqrt{a^{2} - b^{2}}, 0, 0 \right) \\
-\left( \pm \sqrt{a^{2} - c^{2}}, 0, 0 \right) \\
-\left( 0, \pm \sqrt{b^{2} - c^{2}}, 0 \right)
-\end{cases} \: .
-\label{eq:focal-points}
-\end{equation}
-All ellipsoids sharing a common set of focal points form a family of confocal ellipsoids.
+%A last but not least set of parameters defining the geometry of
+%an ellipsoid are their focal points.
+%The focal points are defined on the axes of the local coordinate 
+%system as follows:
+%\begin{equation}
+%\left(\tilde{x}, \tilde{y}, \tilde{z} \right) = 
+%\begin{cases}
+%\left( \pm \sqrt{a^{2} - b^{2}}, 0, 0 \right) \\
+%\left( \pm \sqrt{a^{2} - c^{2}}, 0, 0 \right) \\
+%\left( 0, \pm \sqrt{b^{2} - c^{2}}, 0 \right)
+%\end{cases} \: .
+%\label{eq:focal-points}
+%\end{equation}
+%All ellipsoids sharing a common set of focal points form a family of confocal ellipsoids.
 
-\subsection{Auxiliary variable $\lambda$}
+\subsection{Magnetic scalar potential }
 
 The methods commonly applied in the magnetic modelling of
 ellipsoidal bodies make use of an auxiliary variable $\lambda$,
@@ -305,14 +317,11 @@ TEXT
 
 %%\end{thebibliography}
 
-\bibliographystyle{copernicus}
-\bibliography{references}
-
 %% Since the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
 %% authors experienced with BibTeX only have to include the following two lines:
 %%
 \bibliographystyle{copernicus}
-\bibliography{references.bib}
+\bibliography{references}
 %%
 %% URLs and DOIs can be entered in your BibTeX file as:
 %%
