@@ -117,24 +117,12 @@ TEXT
 
 \introduction  %% \introduction[modified heading if necessary]
 
-\citep{dubois1896}: The magnetisation induced in a uniform field is not necessarily 
-also uniform.
-A vector is said to be distributed uniformly when at
-every point throughout the region considered it has the same
-direction and the same value.
-It maybe mathematically proved that such
-uniformity only holds for bodies of an ellipsoidal shape.
-If one axis coincides with the direction of the field, 
-the magnetisation is in the same direction as that axis.
-The demagnetising intensity for unit magnetisation we 
-shall again speak of as the demagnetising
-factor for the axial direction in question.
-
+TEXT
 
 \section{Methodology}
 
 
-\subsection{Geometrical parameters defining ellipsoids}
+\subsection{Geometrical parameters and coordinate systems}
 
 Let $(x, y, z)$ be a point referred to a Cartesian coordinate system with axes
 $x$, $y$ and $z$ pointing to, respectively, North, East and down.
@@ -250,6 +238,8 @@ $\mathbf{r}$ and $\mathbf{r}_{c}$
 are defined in equation \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
 is defined according to equations \ref{eq:V_triaxial_prolate} or
 \ref{eq:V_oblate}, depending on the ellipsoid type.
+Afterwards, we use the superscript "$\sim$" to implicitly
+define quantities referred to a local coordinate system.
 
 %A last but not least set of parameters defining the geometry of
 %an ellipsoid are their focal points.
@@ -266,12 +256,58 @@ is defined according to equations \ref{eq:V_triaxial_prolate} or
 %\end{equation}
 %All ellipsoids sharing a common set of focal points form a family of confocal ellipsoids.
 
-\subsection{Magnetic scalar potential }
+\subsection{Demagnetizing field within ellipsoids}
 
-The methods commonly applied in the magnetic modelling of
-ellipsoidal bodies make use of an auxiliary variable $\lambda$,
-which is a real number.
+Consider a magnetized ellipsoid immersed in
+a uniform magnetic field $\mathbf{H}_{0}$ (in $\unit{Am^{-1}}$).
+The total magnetic intensity field $\mathbf{H}(\mathbf{r})$
+at the position $\mathbf{r}$ (equations \ref{eq:A} and \ref{eq:coord_transformation}) 
+of a point referred to the main coordinate system is defined
+as follows
+\begin{equation}
+\mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} - \nabla \phi(\mathbf{r}) \: ,
+\label{eq:total-H-field}
+\end{equation}
+where the second term, representing the induced magnetic field,
+is the negative gradient of the magnetic scalar potential 
+$\phi(\mathbf{r})$ given by
+\begin{equation}
+\phi(\mathbf{r}) = \frac{1}{4\pi} \iiint_{V} 
+\mathbf{J}(\mathbf{r}^{\prime})^{\top} \left(
+\frac{\mathbf{r} - \mathbf{r}^{\prime}}{\| \mathbf{r} - \mathbf{r}^{\prime} \|^{3}}
+\right) \, dx^{\prime}dy^{\prime}dz^{\prime} \: .
+\label{eq:phi-potential}
+\end{equation}
+In this equation, $\mathbf{r}^{\prime} = [\begin{array}{ccc} 
+x^{\prime} & y^{\prime} & z^{\prime} \end{array} ]^{\top}$
+is the position vector of a point located within the volume $V$, 
+the integral is conducted over the variables 
+$x^{\prime}$, $y^{\prime}$ and, $z^{\prime}$ representing
+the coordinates of a point located within the volume $V$
+of the ellipsoid, $\| \cdot \|$ denotes the Euclidean norm and 
+$\mathbf{J}(\mathbf{r}^{\prime})$ is the magnetization vector
+(in $\unit{Am^{-1}}$).
+Equation \ref{eq:total-H-field} is valid anywhere, 
+independently if the position vector $\mathbf{r}$ represents
+a point located inside or outside the magnetized body.
 
+According to \citet{maxwell1873}, the only finite bodies that 
+can be uniformly magnetized in the presence of a uniform and static 
+magnetic field are the ones bounded by surfaces of second degree, which
+are ellipsoids.
+
+This property comes from the fact that the gravitational potential
+within an ellipsoid with uniform density is a quadratic function
+of the spatial coordinates.
+
+
+Based on this, the magnetization vector 
+$\mathbf{J}(\mathbf{r}^{\prime})$ (equation \ref{eq:phi-potential})
+can be moved outside the integral, resulting that
+%\begin{equation}
+%
+%\label{eq:total-H-field-matrix}
+%\end{equation}
 
 
 \subsection{Magnetic induction}
