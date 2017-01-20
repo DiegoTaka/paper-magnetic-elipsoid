@@ -156,7 +156,7 @@ by unit vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$.
 The vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$ 
 depend on the orientation angles 
 $\alpha$, $\beta$, $\gamma$ and are defined 
-as follows \citep{clark1986magnetic}:
+as follows \citep{clark1986}:
 \begin{equation}
 \mathbf{v}_{1} = \left[\begin{array}{c} 
                   -\cos\alpha \; \cos\delta \\
@@ -196,12 +196,12 @@ prolate ellipsoids (i.e., $a > b = c$) is calculated according
 to equation \ref{eq:V_triaxial_prolate} by using equations
 \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
 \ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$ 
-\citep{emerson1985magnetic}.
+\citep{emerson1985}.
 Finally, the matrix $\mathbf{V}$ (equation \ref{eq:A}) for
 oblate ellipsoids (i.e., $a < b = c$) is calculated by 
 using equations \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
 \ref{eq:v3_triaxial_prolate}, with $\gamma = 0^{\circ}$, as follows
-\citep{emerson1985magnetic}:
+\citep{emerson1985}:
 \begin{equation}
 \mathbf{V} = \left[ \begin{array}{ccc}
 \mathbf{v}_{2} & \mathbf{v}_{1} & -\mathbf{v}_{3}
@@ -283,7 +283,7 @@ of determining the magnetic scalar potential produced
 by any body uniformly magnetized in a given direction.
 By presuming that this uniform magnetization is due to
 induction, he postulated that the resulting magnetic
-field intensity at all points within the body must
+field (intensity) at all points within the body must
 also be uniform and parallel the magnetization, which
 results that the gravitational potential $V$ at points
 within the body must be a quadratic function of the
@@ -295,23 +295,24 @@ can be uniformly magnetized in the presence of a uniform and
 static magnetic field are the ones bounded by surfaces 
 of second degree, which are ellipsoids.
 
-Let us start our description of the magnetic field produced
-by ellipsoids by considering a magnetized ellipsoid immersed in
+Consider a magnetized ellipsoid immersed in
 a uniform magnetic field $\mathbf{H}_{0}$ (in $\unit{Am^{-1}}$).
-The total magnetic intensity field $\mathbf{H}(\mathbf{r})$
+In the absence of conduction currents, 
+the total magnetic field $\mathbf{H}(\mathbf{r})$
 at the position $\mathbf{r}$ (equations \ref{eq:A} and 
 \ref{eq:coord_transformation}) of a point referred to the main 
-coordinate system is defined as follows
+coordinate system is defined as follows \citep{sttraton2007}:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} - \nabla \phi(\mathbf{r}) \: ,
 \label{eq:total-H-field}
 \end{equation}
 where the second term is the negative gradient of 
-the magnetic scalar potential $\phi(\mathbf{r})$ given by
+the magnetic scalar potential $\phi(\mathbf{r})$ given by:
 \begin{equation}
-\phi(\mathbf{r}) = \frac{1}{4\pi} \iiint_{V} 
-\mathbf{M}(\mathbf{r}^{\prime})^{\top} \left(
-\frac{\mathbf{r} - \mathbf{r}^{\prime}}{\| \mathbf{r} - \mathbf{r}^{\prime} \|^{3}}
+\phi(\mathbf{r}) = -\frac{1}{4\pi} \iiint_{V} 
+\mathbf{M}(\mathbf{r}^{\prime})^{\top} 
+\nabla \left(
+\frac{1}{\| \mathbf{r} - \mathbf{r}^{\prime} \|}
 \right) \, dx^{\prime}dy^{\prime}dz^{\prime} \: .
 \label{eq:phi-potential}
 \end{equation}
@@ -324,9 +325,10 @@ the coordinates of a point located within the volume $V$
 of the ellipsoid, $\| \cdot \|$ denotes the Euclidean norm and 
 $\mathbf{M}(\mathbf{r}^{\prime})$ is the magnetization vector
 (in $\unit{Am^{-1}}$).
-Equation \ref{eq:total-H-field} is valid anywhere, 
+Equation \ref{eq:phi-potential} is valid anywhere, 
 independently if the position vector $\mathbf{r}$ represents
-a point located inside or outside the magnetized body.
+a point located inside or outside the magnetized body
+\citep{dubois1896}.
 
 Based on \citeauthor{maxwell1873}'s postulate, let us
 assume that the body has a uniform magnetization given by
@@ -335,7 +337,7 @@ assume that the body has a uniform magnetization given by
 \label{eq:M-KH}
 \end{equation}
 where $\mathbf{H}_{i}$ is the resultant uniform magnetic field 
-intensity at any point within the body and $\mathbf{K}$ is a 
+at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
 magnetic susceptibility of the body. In this case, equation 
 \ref{eq:total-H-field} can be rewritten as follows:
@@ -355,19 +357,17 @@ n_{\alpha \beta}(\mathbf{r}) = -
 \quad \beta = x, y, z \: .
 \label{eq:n-alpha-beta}
 \end{equation}
+It can be shown that the elements $n_{\alpha \beta}(\mathbf{r})$ are
+finite whether $\mathbf{r}$ is a point within or without
+the volume $V$ \citep{peirce1902, webster1904}.
+The matrix $\mathbf{N}(\mathbf{r})$ (equation \ref{eq:total-H-field-M-uniform})
+is called \textit{depolarization tensor} \citep{soliverez1981, soliverez2008}.
 
-%
-%This property comes from the fact that the gravitational potential
-%within an ellipsoid with uniform density is a quadratic function
-%of the spatial coordinates.
-%
-%Based on this, the magnetization vector 
-
-
-
-\subsection{Magnetic induction}
+\subsubsection{Internal magnetic field and magnetization}
 
 
+
+\subsubsection{External magnetic induction}
 
 
 \subsection{TEXT}
