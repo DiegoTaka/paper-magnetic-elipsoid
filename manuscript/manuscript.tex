@@ -638,19 +638,18 @@ as follows:
 \label{eq:F-tilde-VT-F-V}
 \end{equation}
 Finally, by multiplying both sides of equation \ref{eq:F-tilde-VT-F-V}
-by $-\frac{1}{4 \pi}$ and using equations \ref{eq:N-F}
-and \ref{eq:total-H-field-local-system}, we conclude that 
+by $-\frac{1}{4 \pi}$ and using equation \ref{eq:N-F},
+we conclude that 
 \begin{equation}
 \tilde{\mathbf{N}}(\tilde{\mathbf{r}}) = 
-- \frac{1}{4 \pi} 
-\tilde{\mathbf{F}}(\tilde{\mathbf{r}}) \: .
-\label{eq:N-tilde-F-tilde}
+\mathbf{V}^{\top} \, \mathbf{N}(\mathbf{r}) \, \mathbf{V} \: .
+\label{eq:N-tilde-VT-N-V}
 \end{equation}
 
 \section{Parameter $\lambda$ and its spatial derivatives}    %% Appendix B
 
 Here, we follow the reasoning presented by \citet{webster1904}
-for analysing the parameter $\lambda$ describing triaxial, prolate
+for analysing the parameter $\lambda$ which defines triaxial, prolate
 and oblate ellipsoids.
 
 \subsection{Parameter $\lambda$ defining triaxial ellipsoids} %% Appendix A1, A2, etc.
@@ -663,14 +662,15 @@ This ellipsoid is defined by the following equation:
 \frac{\tilde{x}^{2}}{a^{2}} + \frac{\tilde{y}^{2}}{b^{2}} + \frac{\tilde{z}^{2}}{c^{2}} = 1 \: .
 \label{eq:reference-triaxial-ell}
 \end{equation}
-A quadric surface which is confocal with the ellipsoid defined in 
-equation \ref{eq:reference-triaxial-ell} can be described as 
-follows:
+A quadric surface (e.g., ellipsoid, hyperboloid of one sheet or
+hyperboloid of two sheets) which is confocal with the ellipsoid 
+defined in equation \ref{eq:reference-triaxial-ell} can be 
+described as follows:
 \begin{equation}
 \frac{\tilde{x}^{2}}{a^{2} + u} + \frac{\tilde{y}^{2}}{b^{2} + u} + \frac{\tilde{z}^{2}}{c^{2} + u} = 1 \: ,
 \label{eq:quadric-confocal-triaxial-ell}
 \end{equation}
-where $u$ is a real number. We know that \ref{eq:quadric-confocal-triaxial-ell} 
+where $u$ is a real number. Equation \ref{eq:quadric-confocal-triaxial-ell} 
 represents an ellipsoid for $u$ satisfying the condition
 \begin{equation}
 u + c^{2} > 0 \: .
@@ -686,7 +686,8 @@ with that one defined in \ref{eq:reference-triaxial-ell} and pass through
 a particular point $(\tilde{x}, \tilde{y}, \tilde{z})$. 
 This problem consists in determining the real number $u$ that, 
 given $a$, $b$, $c$, $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, 
-satisfies the condition expressed by equation \ref{eq:condition-triaxial-ell}.
+satisfies equation \ref{eq:quadric-confocal-triaxial-ell} and
+the condition expressed by equation \ref{eq:condition-triaxial-ell}.
 By rearranging equation \ref{eq:quadric-confocal-triaxial-ell}, 
 we obtain the following cubic equation for $u$:
 \begin{equation}
@@ -694,7 +695,7 @@ p(u) = (a^{2} + u)(b^{2} + u)(c^{2} + u) - (b^{2} + u)(c^{2} + u) \, \tilde{x}^{
 - (a^{2} + u)(c^{2} + u) \, \tilde{y}^{2} - (a^{2} + u)(b^{2} + u) \, \tilde{z}^{2} \: .
 \label{eq:cubic-equation-triaxial-ell}
 \end{equation}
-By analysing the signals of this cubic equation we conclude that:
+This cubic equation shows that:
 \begin{equation}
 u = \begin{cases}
 d \to \infty \: &, \quad p(u) > 0 \\
@@ -728,7 +729,7 @@ p_{2} = a^{2} + b^{2} + c^{2} - \tilde{x}^{2} - \tilde{y}^{2} - \tilde{z}^{2} \:
 \label{eq:p2-triaxial-ell}
 \end{equation}
 \begin{equation}
-p_{1} = p_{1} =  ^{2} \, c^{2} + a^{2} \, c^{2} + a^{2} \, b^{2} 
+p_{1} = b^{2} \, c^{2} + a^{2} \, c^{2} + a^{2} \, b^{2} 
 - (b^{2} + c^{2}) \, \tilde{x}^{2}
 - (a^{2} + c^{2}) \, \tilde{y}^{2} 
 - (a^{2} + b^{2}) \, \tilde{z}^{2}
@@ -744,7 +745,7 @@ b^{2} \, \tilde{z}^{2} \: .
 Finally, from equations \ref{eq:p2-triaxial-ell}, 
 \ref{eq:p1-triaxial-ell} and \ref{eq:p0-triaxial-ell},
 the largest root $\lambda$ of $p(u)$ 
-(equation \ref{eq:cubic-equation-triaxial-ell}) can be 
+(equation \ref{eq:cubic-equation-triaxial-ell-simpler}) can be 
 calculated as follows \citep{weisstein2017}:
 \begin{equation}
 \lambda = 2 \, \sqrt{-Q} \, \cos \left( \frac{\theta}{3}\right) - \frac{p_{2}}{3} \: ,
@@ -771,8 +772,121 @@ Let us now consider a prolate ellipsoid with semi-axes $a$, $b$,
 $c$ oriented along the $\tilde{x}$-, $\tilde{y}$-, and 
 $\tilde{z}$-axis, respectively, of its local coordinate system, 
 where $a > b = c > 0$. 
+In this case, the equation defining the surface of the ellipsoid
+is obtained by substituting $c = b$ in equation \ref{eq:reference-triaxial-ell}.
+Consequently, the equation defining the respective confocal quadric
+surface is given by
+\begin{equation}
+\frac{\tilde{x}^{2}}{a^{2} + u} + \frac{\tilde{y}^{2} + \tilde{z}^{2}}{b^{2} + u} = 1
+\label{eq:quadric-confocal-prolate-ell}
+\end{equation}
+and the new condition that must be fulfilled by the variable
+$u$ so that equation \ref{eq:quadric-confocal-prolate-ell}
+represent an ellipsoid is
+\begin{equation}
+u + b^{2} > 0 \: .
+\label{eq:condition-prolate-ell}
+\end{equation}
 
-In this case, 
+Similarly to the case of a triaxial ellipsoid presented
+in the previous subsection, we are interested in
+determining the real number $u$ that, 
+given $a$, $b$, $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, 
+satisfies equation \ref{eq:quadric-confocal-prolate-ell} and
+the condition expressed by equation \ref{eq:condition-prolate-ell}.
+From equation \ref{eq:quadric-confocal-prolate-ell}, 
+we obtain the following quadratic equation for $u$:
+\begin{equation}
+p(u) = (a^{2} + u)(b^{2} + u) - (b^{2} + u) \, \tilde{x}^{2}
+- (a^{2} + u) \, (\tilde{y}^{2} + \tilde{z}^{2}) \: .
+\label{eq:quadratic-equation-prolate-ell}
+\end{equation}
+This equation shows that
+\begin{equation}
+u = \begin{cases}
+d \to \infty \: &, \quad f(\rho) > 0 \\
+-b^{2} \: &, \quad f(\rho) < 0 \\
+-a^{2} \: &, \quad f(\rho) > 0
+\end{cases}
+\label{eq:quadratic-equation-signals-prolate-ell}
+\end{equation}
+and, consequently, that its two roots lie in the intervals
+$[ -a^{2} \, , -b^{2} ]$ and $[ -b^{2} \, , \infty [$.
+Therefore, according to the condition established by
+equation \ref{eq:condition-prolate-ell} and the signal analysis 
+shown in equation \ref{eq:quadratic-equation-signals-prolate-ell}, 
+we are interested in the largest root $\lambda$ of the quadratic 
+equation $p(u)$ (equation \ref{eq:quadratic-equation-prolate-ell}).
+
+By properly manipulating equation \ref{eq:quadratic-equation-prolate-ell},
+we obtain a simpler one given by
+\begin{equation}
+p(u) =  u^{2} + p_{1} \, u + p_{0} \: ,
+\label{eq:quadratic-equation-prolate-ell-simpler}
+\end{equation}
+where
+\begin{equation}
+p_{1} = a^{2} + b^{2} - \tilde{x}^{2} - \tilde{y}^{2} - \tilde{z}^{2}
+\label{eq:p1-prolate-ell}
+\end{equation}
+and
+\begin{equation}
+p_{0} =  a^{2} \, b^{2} 
+- b^{2} \, \tilde{x}^{2} 
+- a^{2} \left( \tilde{y}^{2} + \tilde{z}^{2} \right) \: .
+\label{eq:p0-prolate-ell}
+\end{equation}
+Finally, by using equations \ref{eq:p1-prolate-ell} and
+\ref{eq:p0-prolate-ell}, the largest root $\lambda$ of $p(u)$ 
+(equation \ref{eq:quadratic-equation-prolate-ell-simpler}) can be 
+easily calculated as follows:
+\begin{equation}
+\lambda = \frac{-p_{1} + \sqrt{p_{1}^{2} - 4 \, p_{0}}}{2} \: .
+\label{eq:lambda-prolate-ell}
+\end{equation}
+
+In the case of oblate ellipsoids, the procedure for determining
+the parameter $\lambda$ is very similar to that one for prolate
+ellipsoids.
+The semi-axes $a$, $b$, $c$ of oblate 
+ellipsoids are defined so that $b = c > a > 0$
+and the condition that must be fulfilled by 
+the variable $u$ is $u + a^{2} > 0$.
+In this case, the two roots of the resulting quadratic equation 
+lie in the intervals $[ -b^{2} \, , -a^{2} ]$ and $[ -a^{2} \, , \infty [$.
+Consequently, we are still interested in the largest root of
+the quadratic equation for the variable $u$, which is also 
+calculated by using equation \ref{eq:lambda-prolate-ell}.
+
+\subsection{Spatial derivative of the parameter $\lambda$}
+
+The magnetic modelling of triaxial, prolate or oblate ellipsoids 
+requires not only the parameter lambda defined by equations
+\ref{eq:lambda-triaxial-ell} and \ref{eq:lambda-prolate-ell},
+but also its derivatives with respect to the spatial coordinates
+$\tilde{x}$, $\tilde{y}$, and $\tilde{z}$.
+Fortunately, the spatial derivatives of the parameter $\lambda$ 
+can be calculated in a very similar way for all ellipsoid types.
+
+Let us first consider a triaxial ellipsoid. In this case,
+the spatial derivatives of $\lambda$ are given by
+\begin{equation}
+\frac{\partial \lambda}{\partial \tilde{r}_{j}} =
+\frac{\frac{2 \, \tilde{r}_{j}}{\left( e_{j}^{2} + \lambda \right)}}{
+\left( \frac{\tilde{x}}{a^{2} + \lambda}\right)^{2} +
+\left( \frac{\tilde{y}}{b^{2} + \lambda}\right)^{2} + 
+\left( \frac{\tilde{z}}{c^{2} + \lambda}\right)^{2}} \: , \quad j = 1, 2, 3 \: ,
+\label{eq:dlambda}
+\end{equation}
+where 
+$\tilde{r}_{1} = \tilde{x}$, $\tilde{r}_{2} = \tilde{y}$, $\tilde{r}_{3} = \tilde{z}$,
+$e_{1} = a$, $e_{2} = b$, and $e_{3} = c$.
+This equation can be determined directly from equation
+\ref{eq:quadric-confocal-triaxial-ell}. 
+The spatial derivatives of $\lambda$ in the case of
+prolate or oblate ellipsoids can also be calculated by using
+equation \ref{eq:dlambda}, but with semi-axes $a > b = c$
+or $b = c > a$, respectively.
 
 
 \authorcontribution{TEXT}
