@@ -253,7 +253,7 @@ is defined according to equations \ref{eq:V_triaxial_prolate} or
 %\label{eq:matrix-transformation}
 %\end{equation}
 
-\subsection{Magnetic field produced by ellipsoids}
+\subsection{Theoretical background}
 
 Based on the mathematical theory of the magnetic 
 induction developed by \citet{poisson1824}, 
@@ -371,19 +371,75 @@ body. However, the mathematical developments are conveniently
 done in the local coordinate system related to the
 respective ellipsoidal body. 
 
+\subsection{Coordinate transformation}
+
 Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar function
 obtained by transforming $f(\mathbf{r})$ (equation \ref{eq:f})
 from the main coordinate system to a local coordinate system.
-Apparently, the function $\tilde{f}(\tilde{\mathbf{r}})$ was first 
-presented by Dirichlet in 1839 as a result of his study about
-the gravitational potential produced by homogeneous ellipsoids.
+The function $\tilde{f}(\tilde{\mathbf{r}})$ was first 
+presented by \citet{dirichlet1839} to describe the gravitational potential
+produced by homogeneous ellipsoids.
 Posteriorly, several authors also deduced and used this function
 for describing the magnetic and gravitational fields produced
-by ellipsoids \citep{maxwell1873, thomson1879, dubois1896, 
-peirce1902, webster1904, kellogg1929, stoner1945, osborn1945, sttraton2007}.
+by triaxial, prolate, and/or oblate ellipsoids  
+\citep{maxwell1873, thomson1879, dubois1896, 
+peirce1902, webster1904, kellogg1929, stoner1945, osborn1945,
+lowes1974,  peake1953, chang1961, clark1986, tejedor1995, sttraton2007}.
+It is convenient to use $\tilde{f}_{i}(\tilde{\mathbf{r}})$
+and $\tilde{f}_{e}(\tilde{\mathbf{r}})$ to define 
+the function $\tilde{f}(\tilde{\mathbf{r}})$ evaluated, 
+respectively, at points 
+$\tilde{\mathbf{r}}$ inside and outside the volume $V$ of the
+ellipsoidal body.
 
-INTRODUZIR A FUNCAO $\tilde{f}(\tilde{\mathbf{r}})$ E ADAPTAR 
-O TEXTO ABAIXO
+By following \citet{webster1904}, $\tilde{f}_{i}(\tilde{\mathbf{r}})$
+is given by
+\begin{equation}
+\tilde{f}_{i}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\int_{0}^{\infty} \left( 1 
+- \frac{\tilde{x}^{2}}{a^{2} + u} 
+- \frac{\tilde{y}^{2}}{b^{2} + u}
+- \frac{\tilde{z}^{2}}{c^{2} + u} \right)
+\frac{1}{R(u)} \, du \: , \quad \tilde{\mathbf{r}} \in V \: ,
+\label{eq:fi-tilde}
+\end{equation}
+where
+\begin{equation}
+R(u) = \sqrt{\left( a^{2} + u \right)\left( b^{2} + u \right)\left( c^{2} + u \right)} \: .
+\label{eq:R}
+\end{equation}
+This function represents the gravitational potential
+that would be produced by the ellipsoidal body at
+points located within its volume $V$ if it
+had a uniform density equal to the inverse of the
+gravitational constant.
+Notice that, in this case, the gravitational potential
+is a quadratic function of the spatial coordinates
+$\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, which
+supported the \citeauthor{maxwell1873}'s (\citeyear{maxwell1873})
+postulate about uniformly magnetized ellipsoids.
+
+In a similar way, the function $\tilde{f}_{e}(\tilde{\mathbf{r}})$
+is given by \citep{webster1904}
+\begin{equation}
+\tilde{f}_{e}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\int_{\lambda}^{\infty} \left( 1 
+- \frac{\tilde{x}^{2}}{a^{2} + u} 
+- \frac{\tilde{y}^{2}}{b^{2} + u}
+- \frac{\tilde{z}^{2}}{c^{2} + u} \right)
+\frac{1}{R(u)} \, du \: , \quad \tilde{\mathbf{r}} \not\in V \: ,
+\label{eq:fe-tilde}
+\end{equation}
+where $R(u)$ is defined by equation \ref{eq:R} and the
+parameter $\lambda$ is a constant defining the integral 
+lower limit.
+
+The parameter $\lambda$ is defined according to the
+ellipsoid type. Details about the mathematical meaning
+of this parameter are given in Appendix B.
+
+PAREI AQUI
+
 
 By properly using the orthogonality of matrix $\mathbf{V}$ 
 (equations \ref{eq:V_triaxial_prolate} and \ref{eq:V_oblate}),
@@ -432,7 +488,7 @@ obtained by transforming $f(\mathbf{r})$ (equation \ref{eq:f})
 from the main coordinate system to the respective local
 coordinate system.
 
-\subsubsection{Internal magnetic field and magnetization}
+\subsubsection{Internal magnetic field and demagnetization}
 
 By considering $\mathbf{r}$ as a point internal to the
 volume $V$ of the ellipsoid and using the Maxwell's postulate 
@@ -454,8 +510,7 @@ TEXT
 
 
 \appendix
-\section{Relationship between the derivatives of the functions 
-$f(\mathbf{r})$ and $\tilde{f}(\tilde{\mathbf{r}})$}    %% Appendix A
+\section{Relationship between the derivatives of the functions $f(\mathbf{r})$ and $\tilde{f}(\tilde{\mathbf{r}})$}    %% Appendix A
 
 Let $\tilde{f}(\tilde{\mathbf{r}})$ the scalar
 function obtained by transforming $f(\mathbf{r})$ 
@@ -592,7 +647,132 @@ and \ref{eq:total-H-field-local-system}, we conclude that
 \label{eq:N-tilde-F-tilde}
 \end{equation}
 
-%\subsection{}                               %% Appendix A1, A2, etc.
+\section{Parameter $\lambda$ and its spatial derivatives}    %% Appendix B
+
+Here, we follow the reasoning presented by \citet{webster1904}
+for analysing the parameter $\lambda$ describing triaxial, prolate
+and oblate ellipsoids.
+
+\subsection{Parameter $\lambda$ defining triaxial ellipsoids} %% Appendix A1, A2, etc.
+
+Let us consider an ellipsoid with semi-axes $a$, $b$, $c$ oriented along 
+the $\tilde{x}$-, $\tilde{y}$-, and $\tilde{z}$-axis, respectively, 
+of its local coordinate system, where $a > b > c > 0$. 
+This ellipsoid is defined by the following equation:
+\begin{equation}
+\frac{\tilde{x}^{2}}{a^{2}} + \frac{\tilde{y}^{2}}{b^{2}} + \frac{\tilde{z}^{2}}{c^{2}} = 1 \: .
+\label{eq:reference-triaxial-ell}
+\end{equation}
+A quadric surface which is confocal with the ellipsoid defined in 
+equation \ref{eq:reference-triaxial-ell} can be described as 
+follows:
+\begin{equation}
+\frac{\tilde{x}^{2}}{a^{2} + u} + \frac{\tilde{y}^{2}}{b^{2} + u} + \frac{\tilde{z}^{2}}{c^{2} + u} = 1 \: ,
+\label{eq:quadric-confocal-triaxial-ell}
+\end{equation}
+where $u$ is a real number. We know that \ref{eq:quadric-confocal-triaxial-ell} 
+represents an ellipsoid for $u$ satisfying the condition
+\begin{equation}
+u + c^{2} > 0 \: .
+\label{eq:condition-triaxial-ell}
+\end{equation}
+
+Given $a$, $b$, $c$, and a $u$ satisfying \ref{eq:condition-triaxial-ell}, 
+we may use \ref{eq:quadric-confocal-triaxial-ell} for determining a set of 
+points $(x, y, z)$ lying on the surface of an ellipsoid which is confocal 
+with that one defined in equation \ref{eq:reference-triaxial-ell}. 
+Now, consider the problem of determining the ellipsoid which is confocal 
+with that one defined in \ref{eq:reference-triaxial-ell} and pass through 
+a particular point $(\tilde{x}, \tilde{y}, \tilde{z})$. 
+This problem consists in determining the real number $u$ that, 
+given $a$, $b$, $c$, $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, 
+satisfies the condition expressed by equation \ref{eq:condition-triaxial-ell}.
+By rearranging equation \ref{eq:quadric-confocal-triaxial-ell}, 
+we obtain the following cubic equation for $u$:
+\begin{equation}
+p(u) = (a^{2} + u)(b^{2} + u)(c^{2} + u) - (b^{2} + u)(c^{2} + u) \, \tilde{x}^{2}
+- (a^{2} + u)(c^{2} + u) \, \tilde{y}^{2} - (a^{2} + u)(b^{2} + u) \, \tilde{z}^{2} \: .
+\label{eq:cubic-equation-triaxial-ell}
+\end{equation}
+By analysing the signals of this cubic equation we conclude that:
+\begin{equation}
+u = \begin{cases}
+d \to \infty \: &, \quad p(u) > 0 \\
+-c^{2} \: &, \quad p(u) < 0 \\
+-b^{2} \: &, \quad p(u) > 0 \\
+-a^{2} \: &, \quad p(u) < 0
+\end{cases} \: .
+\label{eq:cubic-equation-signals-triaxial-ell}
+\end{equation}
+Notice that, according to \ref{eq:cubic-equation-signals-triaxial-ell},
+the smaller, intermediate and largest roots of the cubic 
+equation $p(u)$ (equation \ref{eq:cubic-equation-triaxial-ell}) are 
+located, respectively, in the intervals $[ -a^{2} \, , -b^{2} ]$,
+$[ -b^{2} \, , -c^{2} ]$ and $[ -c^{2} \, , \infty [$.
+Remember that we are interested in a $u$ satisfying 
+the condition expressed by equation \ref{eq:condition-triaxial-ell}. 
+Consequently, according to the signal analysis shown in equation
+\ref{eq:cubic-equation-signals-triaxial-ell}, we are interested in 
+the largest root $\lambda$ of the cubic equation $p(u)$ (equation
+\ref{eq:cubic-equation-triaxial-ell}).
+
+From equation \ref{eq:cubic-equation-triaxial-ell}, we obtain a
+simpler one given by
+\begin{equation}
+p(u) =  u^{u} + p_{2} \, u^{2} + p_{1} \, u + p_{0} \: ,
+\label{eq:cubic-equation-triaxial-ell-simpler}
+\end{equation}
+where
+\begin{equation}
+p_{2} = a^{2} + b^{2} + c^{2} - \tilde{x}^{2} - \tilde{y}^{2} - \tilde{z}^{2} \: ,
+\label{eq:p2-triaxial-ell}
+\end{equation}
+\begin{equation}
+p_{1} = p_{1} =  ^{2} \, c^{2} + a^{2} \, c^{2} + a^{2} \, b^{2} 
+- (b^{2} + c^{2}) \, \tilde{x}^{2}
+- (a^{2} + c^{2}) \, \tilde{y}^{2} 
+- (a^{2} + b^{2}) \, \tilde{z}^{2}
+\label{eq:p1-triaxial-ell}
+\end{equation}
+and
+\begin{equation}
+p_{0} =  a^{2} \, b^{2} \, c^{2} - b^{2} \, c^{2} \, 
+\tilde{x}^{2} - a^{2} \, c^{2} \, \tilde{y}^{2} - a^{2} \, 
+b^{2} \, \tilde{z}^{2} \: .
+\label{eq:p0-triaxial-ell}
+\end{equation}
+Finally, from equations \ref{eq:p2-triaxial-ell}, 
+\ref{eq:p1-triaxial-ell} and \ref{eq:p0-triaxial-ell},
+the largest root $\lambda$ of $p(u)$ 
+(equation \ref{eq:cubic-equation-triaxial-ell}) can be 
+calculated as follows \citep{weisstein2017}:
+\begin{equation}
+\lambda = 2 \, \sqrt{-Q} \, \cos \left( \frac{\theta}{3}\right) - \frac{p_{2}}{3} \: ,
+\label{eq:lambda-triaxial-ell}
+\end{equation}
+where
+\begin{equation}
+\theta = \cos^{-1} \left( \frac{R}{\sqrt{Q^{3}}} \right) \: ,
+\label{eq:theta-triaxial-ell}
+\end{equation}
+\begin{equation}
+Q = \frac{3 \, p_{1} - p_{2}^{2}}{9}
+\label{eq:Q-triaxial-ell}
+\end{equation}
+and
+\begin{equation}
+R = \frac{9 \, p_{1} \, p_{2} - 27 \, p_{0} - 2 \, p_{2}^{3}}{54} \: .
+\label{eq:R-triaxial-ell}
+\end{equation}
+
+\subsection{Parameter $\lambda$ defining prolate and oblate ellipsoids} %% Appendix A1, A2, etc.
+
+Let us now consider a prolate ellipsoid with semi-axes $a$, $b$, 
+$c$ oriented along the $\tilde{x}$-, $\tilde{y}$-, and 
+$\tilde{z}$-axis, respectively, of its local coordinate system, 
+where $a > b = c > 0$. 
+
+In this case, 
 
 
 \authorcontribution{TEXT}
