@@ -238,33 +238,20 @@ $\mathbf{r}$ and $\mathbf{r}_{c}$
 are defined in equation \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
 is defined according to equations \ref{eq:V_triaxial_prolate} or
 \ref{eq:V_oblate}, depending on the ellipsoid type.
-Similarly, the transformation of a generic 
-linear system $\mathbf{M} \mathbf{p} = \mathbf{d}$
-referred to the main coordinate system into a new
-linear system 
-$\tilde{\mathbf{M}} \tilde{\mathbf{p}} = \tilde{\mathbf{d}}$
-referred to a local coordinate system is given by
-\begin{equation}
-\tilde{\mathbf{M}} = \mathbf{V}^{\top} \mathbf{M} \mathbf{V} \: , 
-\quad \tilde{\mathbf{p}} = \mathbf{V}^{\top} \mathbf{p} \: ,
-\quad \tilde{\mathbf{d}} = \mathbf{V}^{\top} \mathbf{d} \: .
-\label{eq:matrix_transformation}
-\end{equation}
-
-%A last but not least set of parameters defining the geometry of
-%an ellipsoid are their focal points.
-%The focal points are defined on the axes of the local coordinate 
-%system as follows:
+%Similarly, we may properly use the orthogonality of 
+%matrix $\mathbf{V}$ to transform a generic 
+%linear system $\mathbf{M} \mathbf{p} = \mathbf{d}$,
+%referred to the main coordinate system, into a new
+%linear system 
+%$\tilde{\mathbf{M}} \, \tilde{\mathbf{p}} = \tilde{\mathbf{d}}$,
+%referred to a local coordinate system, 
+%as follows:
 %\begin{equation}
-%\left(\tilde{x}, \tilde{y}, \tilde{z} \right) = 
-%\begin{cases}
-%\left( \pm \sqrt{a^{2} - b^{2}}, 0, 0 \right) \\
-%\left( \pm \sqrt{a^{2} - c^{2}}, 0, 0 \right) \\
-%\left( 0, \pm \sqrt{b^{2} - c^{2}}, 0 \right)
-%\end{cases} \: .
-%\label{eq:focal-points}
+%\underbrace{\mathbf{V}^{\top} \mathbf{M} \mathbf{V}}_{\tilde{\mathbf{M}}} \, 
+%\underbrace{\mathbf{V}^{\top} \mathbf{p}}_{\tilde{\mathbf{p}}} = 
+%\underbrace{\mathbf{V}^{\top} \mathbf{d}}_{\tilde{\mathbf{d}}} \: .
+%\label{eq:matrix-transformation}
 %\end{equation}
-%All ellipsoids sharing a common set of focal points form a family of confocal ellipsoids.
 
 \subsection{Magnetic field produced by ellipsoids}
 
@@ -346,34 +333,119 @@ magnetic susceptibility of the body. In this case, equation
 - \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}_{i} \: ,
 \label{eq:total-H-field-M-uniform}
 \end{equation}
-where $\mathbf{N}(\mathbf{r})$ is a $3 \times 3$ matrix whose
-$\alpha \beta$-element $n_{\alpha \beta}(\mathbf{r})$ is given by
+where $\mathbf{N}(\mathbf{r})$ is a symmetrical matrix whose
+$ij$-element $n_{ij}(\mathbf{r})$ is given by
 \begin{equation}
-n_{\alpha \beta}(\mathbf{r}) = - 
-\frac{1}{4\pi} \frac{\partial^{2}}{\partial \alpha \, \partial \beta}
-\iiint_{V} 
-\frac{1}{\| \mathbf{r} - \mathbf{r}^{\prime} \|}
-\, dx^{\prime}dy^{\prime}dz^{\prime} \: , \quad \alpha = x, y, z \: , 
-\quad \beta = x, y, z \: .
-\label{eq:n-alpha-beta}
+n_{ij}(\mathbf{r}) = - 
+\frac{1}{4\pi} \frac{\partial^{2} \, f(\mathbf{r})}
+{\partial r_{i} \, \partial r_{j}} 
+\: , \quad i = 1, 2, 3 \: , 
+\quad j = 1, 2, 3 \: ,
+\label{eq:nij}
 \end{equation}
-It can be shown that the elements $n_{\alpha \beta}(\mathbf{r})$ are
+$r_{1} = x$, $r_{2} = y$, $r_{3} = z$ are the elements of 
+the position vector $\mathbf{r}$ (equation \ref{eq:ellipsoid_surface}), 
+and
+\begin{equation}
+f(\mathbf{r}) = \iiint_{V} 
+\frac{1}{\| \mathbf{r} - \mathbf{r}^{\prime} \|}
+\, dx^{\prime}dy^{\prime}dz^{\prime} \: .
+\label{eq:f}
+\end{equation}
+Notice that the scalar function $f(\mathbf{r})$ 
+(equation \ref{eq:f}) is proportional
+to the gravitational potential that would be produced by the 
+ellipsoidal body with volume $V$ if it had a uniform density 
+equal to the inverse of the gravitational constant.
+It can be shown that the elements $n_{ij}(\mathbf{r})$ are
 finite whether $\mathbf{r}$ is a point within or without
 the volume $V$ \citep{peirce1902, webster1904}.
 The matrix $\mathbf{N}(\mathbf{r})$ (equation \ref{eq:total-H-field-M-uniform})
 is called \textit{depolarization tensor} \citep{soliverez1981, soliverez2008}.
 
+The following part of this paper moves on to describe 
+the magnetic field $\mathbf{H}(\mathbf{r})$ 
+(equation \ref{eq:total-H-field-M-uniform}) at points located
+both within and without the volume $V$ of the ellipsoidal
+body. However, the mathematical developments are conveniently 
+done in the local coordinate system related to the
+respective ellipsoidal body. 
+
+Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar function
+obtained by transforming $f(\mathbf{r})$ (equation \ref{eq:f})
+from the main coordinate system to a local coordinate system.
+Apparently, the function $\tilde{f}(\tilde{\mathbf{r}})$ was first 
+presented by Dirichlet in 1839 as a result of his study about
+the gravitational potential produced by homogeneous ellipsoids.
+Posteriorly, several authors also deduced and used this function
+for describing the magnetic and gravitational fields produced
+by ellipsoids \citep{maxwell1873, thomson1879, dubois1896, 
+peirce1902, webster1904, kellogg1929, stoner1945, osborn1945, sttraton2007}.
+
+INTRODUZIR A FUNCAO $\tilde{f}(\tilde{\mathbf{r}})$ E ADAPTAR 
+O TEXTO ABAIXO
+
+By properly using the orthogonality of matrix $\mathbf{V}$ 
+(equations \ref{eq:V_triaxial_prolate} and \ref{eq:V_oblate}),
+the magnetic field $\mathbf{H}(\mathbf{r})$ 
+(equation \ref{eq:total-H-field-M-uniform}) can be transformed
+from the main coordinate system to a local coordinate system
+as follows:
+\begin{equation}
+\underbrace{\mathbf{V}^{\top} \mathbf{H}(\mathbf{r})}_{\tilde{\mathbf{H}}(\tilde{\mathbf{r}})} = 
+\underbrace{\mathbf{V}^{\top} \mathbf{H}_{0}}_{\tilde{\mathbf{H}}_{0}}
+- \underbrace{\mathbf{V}^{\top} \mathbf{N}(\mathbf{r}) \mathbf{V}}
+_{\tilde{\mathbf{N}}(\tilde{\mathbf{r}})} \;
+\underbrace{\mathbf{V}^{\top} \mathbf{K} \mathbf{V}}
+_{\tilde{\mathbf{K}}} \; 
+\underbrace{\mathbf{V}^{\top} \mathbf{H}_{i}}
+_{\tilde{\mathbf{H}}_{i}} \: ,
+\label{eq:total-H-field-local-system}
+\end{equation}
+where the superscript "$\sim$" denotes quantities
+referred to the respective local coordinate system.
+
+In equation \ref{eq:total-H-field-local-system}, the transformed
+depolarization tensor $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$
+is calculated as a function of the original depolarization
+tensor $\mathbf{N}(\mathbf{r})$ (equation \ref{eq:total-H-field-M-uniform}).
+In this case, the elements of $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$
+are calculated as a function of the second derivatives of the
+function $f(\mathbf{r})$ (equation \ref{eq:f}),
+which is defined in the main coordinate system.
+It can be shown (Appendix A), however, that the
+elements $\tilde{n}_{ij}(\tilde{\mathbf{r}})$ of
+$\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$ can also be calculated
+as follows:
+\begin{equation}
+\tilde{n}_{ij}(\tilde{\mathbf{r}}) = - 
+\frac{1}{4\pi} \frac{\partial^{2} \, \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{i} \, \partial \tilde{r}_{j}} 
+\: , \quad i = 1, 2, 3 \: , \quad j = 1, 2, 3 \: ,
+\label{eq:nij-tilde}
+\end{equation}
+where $\tilde{r}_{1} = \tilde{x}$, $\tilde{r}_{2} = \tilde{y}$, 
+and $\tilde{r}_{3} = \tilde{z}$ are the elements of the
+transformed vector $\tilde{\mathbf{r}}$ (equation \ref{eq:coord_transformation})
+and $\tilde{f}(\tilde{\mathbf{r}})$ is a scalar function
+obtained by transforming $f(\mathbf{r})$ (equation \ref{eq:f})
+from the main coordinate system to the respective local
+coordinate system.
+
 \subsubsection{Internal magnetic field and magnetization}
 
-
+By considering $\mathbf{r}$ as a point internal to the
+volume $V$ of the ellipsoid and using the Maxwell's postulate 
+about the uniformity of the magnetic field $\mathbf{H}(\mathbf{r})$ 
+inside ellipsoidal bodies, we can rewrite equation \ref{eq:total-H-field-local-system}
+as follows:
+%\begin{equation}
+%
+%\label{eq:total-Hi-local-system}
+%\end{equation}
 
 \subsubsection{External magnetic induction}
 
-
-\subsection{TEXT}
-
-\subsubsection{TEXT}
-TEXT
 
 \conclusions  %% \conclusions[modified heading if necessary]
 TEXT
@@ -382,9 +454,145 @@ TEXT
 
 
 \appendix
-\section{}    %% Appendix A
+\section{Relationship between the derivatives of the functions 
+$f(\mathbf{r})$ and $\tilde{f}(\tilde{\mathbf{r}})$}    %% Appendix A
 
-\subsection{}                               %% Appendix A1, A2, etc.
+Let $\tilde{f}(\tilde{\mathbf{r}})$ the scalar
+function obtained by transforming $f(\mathbf{r})$ 
+(equation \ref{eq:f}) from the
+main coordinate system to a local coordinate system.
+
+For convenience, let us rewrite equation 
+\ref{eq:coord_transformation} as follows:
+\begin{equation}
+\tilde{r}_{k} = v_{k1} \, r_{1} + v_{k2} \, r_{2} + v_{k3} \, r_{3} + c_{k} \: ,
+\label{eq:r-tilde-k}
+\end{equation}
+where $r_{j}$, $j = 1, 2, 3$, are the elements of the position vector
+$\mathbf{r}$ (equation \ref{eq:ellipsoid_surface}),
+$v_{kj}$, $j = 1, 2, 3$, are the elements of the matrix
+$\mathbf{V}$ (equation \ref{eq:V_triaxial_prolate} or \ref{eq:V_oblate}),
+and $c_{k}$ is a constant defined by the coordinates
+$x_{c}$, $y_{c}$, and $z_{c}$ of the centre of the ellipsoid body.
+
+By considering the functions $f(\mathbf{r})$ 
+(equation \ref{eq:f}) and $\tilde{f}(\tilde{\mathbf{r}})$
+evaluated at the same point, but on different coordinate
+systems, we have:
+\begin{equation*}
+\frac{\partial f(\mathbf{r})}{\partial r_{j}} = 
+\frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{1}} \,
+\frac{\partial \tilde{r}_{1}}{\partial r_{j}} +
+\frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{2}} \,
+\frac{\partial \tilde{r}_{2}}{\partial r_{j}} +
+\frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{3}} \,
+\frac{\partial \tilde{r}_{3}}{\partial r_{j}} \: ,
+\quad j = 1, 2, 3 \: ,
+\end{equation*}
+which, from equation \ref{eq:r-tilde-k}, can be given by
+\begin{equation}
+\frac{\partial f(\mathbf{r})}{\partial r_{j}} = 
+v_{j1} \, \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{1}} +
+v_{j2} \, \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{2}} +
+v_{j3} \, \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{3}} \: ,
+\quad j = 1, 2, 3 \: .
+\label{eq:df_drj}
+\end{equation}
+
+Now, by deriving $\frac{\partial f(\mathbf{r})}{\partial r_{j}}$
+(equation \ref{eq:df_drj}) with respect to the $i$th element 
+$r_{i}$ of the position vector $\mathbf{r}$ (equation \ref{eq:ellipsoid_surface}),
+we obtain:
+\begin{equation}
+\begin{split}
+\frac{\partial^{2} f(\mathbf{r})}{\partial r_{i} \, \partial r_{j}} &=
+v_{j1} \, \frac{\partial}{\partial r_{i}} 
+\left( \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{1}} \right) +
+v_{j2} \, \frac{\partial}{\partial r_{i}} 
+\left( \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{2}} \right) +
+v_{j3} \, \frac{\partial}{\partial r_{i}} 
+\left( \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{3}} \right) \\
+&= v_{j1} \, \left( 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{1} \, \partial \tilde{r}_{1}} \, v_{i1} + 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{2} \, \partial \tilde{r}_{1}} \, v_{i2} + 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{3} \, \partial \tilde{r}_{1}} \, v_{i3} 
+\right) + \\
+&+ v_{j2} \, \left( 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{1} \, \partial \tilde{r}_{2}} \, v_{i1} + 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{2} \, \partial \tilde{r}_{2}} \, v_{i2} + 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{3} \, \partial \tilde{r}_{2}} \, v_{i3} 
+\right) + \\
+&+ v_{j3} \, \left( 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{1} \, \partial \tilde{r}_{3}} \, v_{i1} + 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{2} \, \partial \tilde{r}_{3}} \, v_{i2} + 
+\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{3} \, \partial \tilde{r}_{3}} \, v_{i3} 
+\right) \\
+&= \left[ \begin{array}{ccc}
+v_{j1} & v_{j2} & v_{j3}
+\end{array} \right] \tilde{\mathbf{F}}(\tilde{\mathbf{r}})
+\left[ \begin{array}{c}
+v_{i1} \\ v_{i2} \\ v_{i3}
+\end{array} \right]
+\end{split} \: ,
+\label{eq:d2f-dridrj}
+\end{equation}
+where $\tilde{\mathbf{F}}(\tilde{\mathbf{r}})$ is a $3 \times 3$
+matrix whose $ij$-th element is 
+$\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
+{\partial \tilde{r}_{i} \, \partial \tilde{r}_{j}}$.
+From equation \ref{eq:d2f-dridrj}, we obtain
+\begin{equation}
+\mathbf{F}(\mathbf{r}) = \mathbf{V} \, 
+\tilde{\mathbf{F}}(\tilde{\mathbf{r}}) \, \mathbf{V}^{\top} \: ,
+\label{eq:F-V-F-tilde-VT}
+\end{equation}
+where $\mathbf{F}(\mathbf{r})$ is a $3 \times 3$
+matrix whose $ij$-th element is 
+$\frac{\partial^{2} f(\mathbf{r})}
+{\partial r_{i} \, \partial r_{j}}$ and
+$\mathbf{V}$ is defined by equations 
+\ref{eq:V_triaxial_prolate} or
+\ref{eq:V_oblate}, depending on the ellipsoid
+type. As one may noticed, the matrices $\mathbf{F}(\mathbf{r})$ and
+$\tilde{\mathbf{F}}(\tilde{\mathbf{r}})$ represent the Hessians
+of the functions $f(\mathbf{r})$ (equation \ref{eq:f})
+and $\tilde{f}(\tilde{\mathbf{r}})$, respectively.
+Besides, the depolarization tensor $\mathbf{N}(\mathbf{r})$
+(equation \ref{eq:total-H-field-M-uniform}) can be 
+rewritten by using the matrix $\mathbf{F}(\mathbf{r})$
+as follows
+\begin{equation}
+\mathbf{N}(\mathbf{r}) = - \frac{1}{4 \pi} \mathbf{F}(\mathbf{r}) \: .
+\label{eq:N-F}
+\end{equation}
+By properly using the orthogonality of the matrix
+$\mathbf{V}$, we may rewrite equation \ref{eq:F-V-F-tilde-VT}
+as follows:
+\begin{equation}
+\tilde{\mathbf{F}}(\tilde{\mathbf{r}}) = \mathbf{V}^{\top} \, 
+\mathbf{F}(\mathbf{r}) \, \mathbf{V} \: .
+\label{eq:F-tilde-VT-F-V}
+\end{equation}
+Finally, by multiplying both sides of equation \ref{eq:F-tilde-VT-F-V}
+by $-\frac{1}{4 \pi}$ and using equations \ref{eq:N-F}
+and \ref{eq:total-H-field-local-system}, we conclude that 
+\begin{equation}
+\tilde{\mathbf{N}}(\tilde{\mathbf{r}}) = 
+- \frac{1}{4 \pi} 
+\tilde{\mathbf{F}}(\tilde{\mathbf{r}}) \: .
+\label{eq:N-tilde-F-tilde}
+\end{equation}
+
+%\subsection{}                               %% Appendix A1, A2, etc.
 
 
 \authorcontribution{TEXT}
