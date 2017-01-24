@@ -182,7 +182,7 @@ as follows \citep{clark1986}:
 \label{eq:v3_triaxial_prolate}
 \end{equation}
 For triaxial ellipsoids (i.e., $a > b > c$), the orthogonal matrix
-$\mathbf{V}$ (equation \ref{eq:A}) is calculated by using equations
+$\mathbf{V}$ (Eq. \ref{eq:A}) is calculated by using Eqs.
 \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
 \ref{eq:v3_triaxial_prolate} as follows:
 \begin{equation}
@@ -191,15 +191,15 @@ $\mathbf{V}$ (equation \ref{eq:A}) is calculated by using equations
 \end{array} \right] \: .
 \label{eq:V_triaxial_prolate}
 \end{equation}
-Similarly, the matrix $\mathbf{V}$ (equation \ref{eq:A}) for
+Similarly, the matrix $\mathbf{V}$ (Eq. \ref{eq:A}) for
 prolate ellipsoids (i.e., $a > b = c$) is calculated according
-to equation \ref{eq:V_triaxial_prolate} by using equations
+to Equation \ref{eq:V_triaxial_prolate} by using Equations
 \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
 \ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$ 
 \citep{emerson1985}.
-Finally, the matrix $\mathbf{V}$ (equation \ref{eq:A}) for
+Finally, the matrix $\mathbf{V}$ (Eq. \ref{eq:A}) for
 oblate ellipsoids (i.e., $a < b = c$) is calculated by 
-using equations \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
+using Eqs. \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
 \ref{eq:v3_triaxial_prolate}, with $\gamma = 0^{\circ}$, as follows
 \citep{emerson1985}:
 \begin{equation}
@@ -210,9 +210,9 @@ using equations \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
 \end{equation}
 The orientation of the semi-axes $a$, $b$, and $c$ are defined 
 by the first, second, and third columns of the matrix 
-$\mathbf{V}$ given by equation \ref{eq:V_triaxial_prolate},
+$\mathbf{V}$ given by Equation \ref{eq:V_triaxial_prolate},
 in the case of a triaxial or prolate ellipsoid, or the
-matrix $\mathbf{V}$ given by equation \ref{eq:V_oblate},
+matrix $\mathbf{V}$ given by Equation \ref{eq:V_oblate},
 in the case of an oblate ellipsoid.
 
 The magnetic modelling of an ellipsoidal body is commonly performed
@@ -235,8 +235,8 @@ $\tilde{\mathbf{r}} = [\begin{array}{ccc} \tilde{x} &
                                           \tilde{y} & 
                                           \tilde{z} \end{array} ]^{\top}$,
 $\mathbf{r}$ and $\mathbf{r}_{c}$
-are defined in equation \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
-is defined according to equations \ref{eq:V_triaxial_prolate} or
+are defined in Equation \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
+is defined according to Eqs. \ref{eq:V_triaxial_prolate} or
 \ref{eq:V_oblate}, depending on the ellipsoid type.
 %Similarly, we may properly use the orthogonality of 
 %matrix $\mathbf{V}$ to transform a generic 
@@ -284,14 +284,17 @@ of second degree, which are ellipsoids.
 
 Consider a magnetized ellipsoid immersed in
 a uniform magnetic field $\mathbf{H}_{0}$ (in $\unit{Am^{-1}}$).
+This uniform field can be, for example, the main component of the
+Earth's magnetic field, which is usually assumed to be generated
+by the Earth's liquid core.
 In the absence of conduction currents, 
 the total magnetic field $\mathbf{H}(\mathbf{r})$
-at the position $\mathbf{r}$ (equations \ref{eq:A} and 
+at the position $\mathbf{r}$ (Eqs. \ref{eq:A} and 
 \ref{eq:coord_transformation}) of a point referred to the main 
 coordinate system is defined as follows \citep{sttraton2007}:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} - \nabla \phi(\mathbf{r}) \: ,
-\label{eq:total-H-field}
+\label{eq:H}
 \end{equation}
 where the second term is the negative gradient of 
 the magnetic scalar potential $\phi(\mathbf{r})$ given by:
@@ -320,18 +323,18 @@ a point located inside or outside the magnetized body
 Based on \citeauthor{maxwell1873}'s postulate, let us
 assume that the body has a uniform magnetization given by
 \begin{equation}
-\mathbf{M} = \mathbf{K} \, \mathbf{H}_{i} \: ,
+\mathbf{M} = \mathbf{K} \, \mathbf{H}_{I} \: ,
 \label{eq:M-KH}
 \end{equation}
-where $\mathbf{H}_{i}$ is the resultant uniform magnetic field 
+where $\mathbf{H}_{I}$ is the resultant uniform magnetic field 
 at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
-magnetic susceptibility of the body. In this case, equation 
-\ref{eq:total-H-field} can be rewritten as follows:
+magnetic susceptibility of the body. In this case, Equation 
+\ref{eq:H} can be rewritten as follows:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} 
-- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}_{i} \: ,
-\label{eq:total-H-field-M-uniform}
+- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}_{I} \: ,
+\label{eq:H-M-uniform}
 \end{equation}
 where $\mathbf{N}(\mathbf{r})$ is a symmetrical matrix whose
 $ij$-element $n_{ij}(\mathbf{r})$ is given by
@@ -344,7 +347,7 @@ n_{ij}(\mathbf{r}) = -
 \label{eq:nij}
 \end{equation}
 $r_{1} = x$, $r_{2} = y$, $r_{3} = z$ are the elements of 
-the position vector $\mathbf{r}$ (equation \ref{eq:ellipsoid_surface}), 
+the position vector $\mathbf{r}$ (Eq. \ref{eq:ellipsoid_surface}), 
 and
 \begin{equation}
 f(\mathbf{r}) = \iiint_{V} 
@@ -353,49 +356,54 @@ f(\mathbf{r}) = \iiint_{V}
 \label{eq:f}
 \end{equation}
 Notice that the scalar function $f(\mathbf{r})$ 
-(equation \ref{eq:f}) is proportional
+(Eq. \ref{eq:f}) is proportional
 to the gravitational potential that would be produced by the 
 ellipsoidal body with volume $V$ if it had a uniform density 
 equal to the inverse of the gravitational constant.
 It can be shown that the elements $n_{ij}(\mathbf{r})$ are
 finite whether $\mathbf{r}$ is a point within or without
 the volume $V$ \citep{peirce1902, webster1904}.
-The matrix $\mathbf{N}(\mathbf{r})$ (equation \ref{eq:total-H-field-M-uniform})
+The matrix $\mathbf{N}(\mathbf{r})$ (Eq. \ref{eq:H-M-uniform})
 is called \textit{depolarization tensor} \citep{soliverez1981, soliverez2008}.
 
 The following part of this paper moves on to describe 
 the magnetic field $\mathbf{H}(\mathbf{r})$ 
-(equation \ref{eq:total-H-field-M-uniform}) at points located
+(Eq. \ref{eq:H-M-uniform}) at points located
 both within and without the volume $V$ of the ellipsoidal
 body. However, the mathematical developments are conveniently 
-done in the local coordinate system related to the
+performed in the local coordinate system related to the
 respective ellipsoidal body. 
 
 \subsection{Coordinate transformation}
 
-Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar function
-obtained by transforming $f(\mathbf{r})$ (equation \ref{eq:f})
-from the main coordinate system to a local coordinate system.
+To continue our description of the magnetic modelling of 
+ellipsoidal bodies, it is convenient to perform two 
+important coordinate transformations. 
+The first one transforms the scalar function 
+$f(\mathbf{r})$ (Eq. \ref{eq:f}) from the 
+main coordinate system into a new scalar function 
+$\tilde{f}(\tilde{\mathbf{r}})$ referred to the
+local coordinate system.
 The function $\tilde{f}(\tilde{\mathbf{r}})$ was first 
 presented by \citet{dirichlet1839} to describe the gravitational potential
 produced by homogeneous ellipsoids.
 Posteriorly, several authors also deduced and used this function
 for describing the magnetic and gravitational fields produced
-by triaxial, prolate, and/or oblate ellipsoids  
+by triaxial, prolate, and oblate ellipsoids  
 \citep{maxwell1873, thomson1879, dubois1896, 
 peirce1902, webster1904, kellogg1929, stoner1945, osborn1945,
 lowes1974,  peake1953, chang1961, clark1986, tejedor1995, sttraton2007}.
-It is convenient to use $\tilde{f}_{i}(\tilde{\mathbf{r}})$
-and $\tilde{f}_{e}(\tilde{\mathbf{r}})$ to define 
+It is convenient to use $\tilde{f}_{I}(\tilde{\mathbf{r}})$
+and $\tilde{f}_{E}(\tilde{\mathbf{r}})$ to define 
 the function $\tilde{f}(\tilde{\mathbf{r}})$ evaluated, 
 respectively, at points 
 $\tilde{\mathbf{r}}$ inside and outside the volume $V$ of the
 ellipsoidal body.
 
-By following \citet{webster1904}, $\tilde{f}_{i}(\tilde{\mathbf{r}})$
+The scalar function $\tilde{f}_{I}(\tilde{\mathbf{r}})$
 is given by
 \begin{equation}
-\tilde{f}_{i}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\tilde{f}_{I}(\tilde{\mathbf{r}}) = \pi \, abc \, 
 \int_{0}^{\infty} \left( 1 
 - \frac{\tilde{x}^{2}}{a^{2} + u} 
 - \frac{\tilde{y}^{2}}{b^{2} + u}
@@ -418,11 +426,10 @@ is a quadratic function of the spatial coordinates
 $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, which
 supported the \citeauthor{maxwell1873}'s (\citeyear{maxwell1873})
 postulate about uniformly magnetized ellipsoids.
-
-In a similar way, the function $\tilde{f}_{e}(\tilde{\mathbf{r}})$
-is given by \citep{webster1904}
+In a similar way, the function $\tilde{f}_{E}(\tilde{\mathbf{r}})$
+is given by
 \begin{equation}
-\tilde{f}_{e}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\tilde{f}_{E}(\tilde{\mathbf{r}}) = \pi \, abc \, 
 \int_{\lambda}^{\infty} \left( 1 
 - \frac{\tilde{x}^{2}}{a^{2} + u} 
 - \frac{\tilde{y}^{2}}{b^{2} + u}
@@ -430,21 +437,20 @@ is given by \citep{webster1904}
 \frac{1}{R(u)} \, du \: , \quad \tilde{\mathbf{r}} \not\in V \: ,
 \label{eq:fe-tilde}
 \end{equation}
-where $R(u)$ is defined by equation \ref{eq:R} and the
-parameter $\lambda$ is a constant defining the integral 
-lower limit.
+where $R(u)$ is defined by Equation \ref{eq:R} and the
+parameter $\lambda$ is defined according to the
+ellipsoid type as a function of the spatial coordinates
+ $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$ (see Appendix B). 
+For readers interested in additional information about the 
+parameter $\lambda$, we recommend \citet[p.~234]{webster1904},
+\citet[p.~184]{kellogg1929} and \citet{clark1986}.
 
-The parameter $\lambda$ is defined according to the
-ellipsoid type. Details about the mathematical meaning
-of this parameter are given in Appendix B.
-
-PAREI AQUI
-
-
+The second important coordinate transformation is defined
+with respect to Equation \ref{eq:H-M-uniform}.
 By properly using the orthogonality of matrix $\mathbf{V}$ 
-(equations \ref{eq:V_triaxial_prolate} and \ref{eq:V_oblate}),
+(Eqs. \ref{eq:V_triaxial_prolate} and \ref{eq:V_oblate}),
 the magnetic field $\mathbf{H}(\mathbf{r})$ 
-(equation \ref{eq:total-H-field-M-uniform}) can be transformed
+(Eq. \ref{eq:H-M-uniform}) can be transformed
 from the main coordinate system to a local coordinate system
 as follows:
 \begin{equation}
@@ -454,20 +460,20 @@ as follows:
 _{\tilde{\mathbf{N}}(\tilde{\mathbf{r}})} \;
 \underbrace{\mathbf{V}^{\top} \mathbf{K} \mathbf{V}}
 _{\tilde{\mathbf{K}}} \; 
-\underbrace{\mathbf{V}^{\top} \mathbf{H}_{i}}
-_{\tilde{\mathbf{H}}_{i}} \: ,
-\label{eq:total-H-field-local-system}
+\underbrace{\mathbf{V}^{\top} \mathbf{H}_{I}}
+_{\tilde{\mathbf{H}}_{I}} \: ,
+\label{eq:H-tilde}
 \end{equation}
 where the superscript "$\sim$" denotes quantities
 referred to the respective local coordinate system.
 
-In equation \ref{eq:total-H-field-local-system}, the transformed
+In Equation \ref{eq:H-tilde}, the transformed
 depolarization tensor $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$
 is calculated as a function of the original depolarization
-tensor $\mathbf{N}(\mathbf{r})$ (equation \ref{eq:total-H-field-M-uniform}).
+tensor $\mathbf{N}(\mathbf{r})$ (Eq. \ref{eq:H-M-uniform}).
 In this case, the elements of $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$
 are calculated as a function of the second derivatives of the
-function $f(\mathbf{r})$ (equation \ref{eq:f}),
+function $f(\mathbf{r})$ (Eq. \ref{eq:f}),
 which is defined in the main coordinate system.
 It can be shown (Appendix A), however, that the
 elements $\tilde{n}_{ij}(\tilde{\mathbf{r}})$ of
@@ -482,25 +488,132 @@ as follows:
 \end{equation}
 where $\tilde{r}_{1} = \tilde{x}$, $\tilde{r}_{2} = \tilde{y}$, 
 and $\tilde{r}_{3} = \tilde{z}$ are the elements of the
-transformed vector $\tilde{\mathbf{r}}$ (equation \ref{eq:coord_transformation})
-and $\tilde{f}(\tilde{\mathbf{r}})$ is a scalar function
-obtained by transforming $f(\mathbf{r})$ (equation \ref{eq:f})
-from the main coordinate system to the respective local
-coordinate system.
+transformed vector $\tilde{\mathbf{r}}$ (Eq. \ref{eq:coord_transformation})
+and $\tilde{f}(\tilde{\mathbf{r}})$ is given by Equation \ref{eq:fi-tilde}
+or \ref{eq:fe-tilde}, depending if $\tilde{\mathbf{r}}$ represents a
+point located within or without the volume $V$ of the
+ellipsoidal body.
 
-\subsubsection{Internal magnetic field and demagnetization}
+\subsection{Internal magnetic field and magnetization}
 
-By considering $\mathbf{r}$ as a point internal to the
+By considering $\tilde{\mathbf{r}}$ as a point within the
 volume $V$ of the ellipsoid and using the Maxwell's postulate 
 about the uniformity of the magnetic field $\mathbf{H}(\mathbf{r})$ 
-inside ellipsoidal bodies, we can rewrite equation \ref{eq:total-H-field-local-system}
-as follows:
-%\begin{equation}
-%
-%\label{eq:total-Hi-local-system}
-%\end{equation}
+inside ellipsoidal bodies, we can use Equation \ref{eq:H-tilde}
+for defining the resultant uniform magnetic field $\tilde{\mathbf{H}}_{I}$
+inside the ellipsoidal body as follows:
+\begin{equation}
+\tilde{\mathbf{H}}_{I} = 
+\left( \mathbf{I} - \tilde{\mathbf{N}}_{I} \, \tilde{\mathbf{K}} \right)^{-1}
+\tilde{\mathbf{H}}_{0} \: ,
+\label{eq:Hi-tilde}
+\end{equation}
+where $\mathbf{I}$ is the identity matrix and 
+$\tilde{\mathbf{N}}_{I}$ represents the
+transformed depolarization tensor evaluated within 
+the volume $V$ of the ellipsoidal body. The elements
+of $\tilde{\mathbf{N}}_{I}$ will be presented in a 
+later section.
 
-\subsubsection{External magnetic induction}
+Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}_{I}$
+(Eq. \ref{eq:Hi-tilde}) by the transformed 
+susceptibility tensor $\tilde{\mathbf{K}}$ 
+(Eq. \ref{eq:H-tilde}) to obtain
+\begin{equation}
+\begin{split}
+\tilde{\mathbf{M}} 
+&= \tilde{\mathbf{K}} 
+\left( \mathbf{I} - \tilde{\mathbf{N}}_{I} \, \tilde{\mathbf{K}} \right)^{-1}
+\tilde{\mathbf{H}}_{0} \\
+&=  
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}_{I} \right)^{-1}
+\tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0}
+\end{split} \: ,
+\label{eq:M-tilde}
+\end{equation}
+where $\tilde{\mathbf{M}}$
+represents the transformed magnetization, as can be easily
+verified by using Eqs. \ref{eq:M-KH} and \ref{eq:H-tilde}.
+The matrix identity used for obtaining the second line of Equation 
+\ref{eq:M-tilde} is given by \citet[p. ~151]{searle1982}.
+
+Equation \ref{eq:M-tilde} can be easily generalized for the case in 
+which the ellipsoid has also a uniform remanent magnetization
+$\tilde{\mathbf{M}}_{R}$. Let us first consider that
+the uniform remanent magnetization satisfies the condition
+$\tilde{\mathbf{H}}_{A} = \tilde{\mathbf{K}}^{-1} \tilde{\mathbf{M}}_{R}$,
+where $\tilde{\mathbf{H}}_{A}$ represents a hypothetical 
+uniform ancient field. Then, if we assume that $\tilde{\mathbf{H}}_{0}$,
+in Eqs. \ref{eq:Hi-tilde} and \ref{eq:M-tilde},
+is in fact the sum of the uniform magnetic field $\tilde{\mathbf{H}}_{0}$ 
+and the hypothetical ancient field $\tilde{\mathbf{H}}_{A}$, we obtain the 
+following generalized equation
+\begin{equation}
+\tilde{\mathbf{M}} =  
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}_{I} \right)^{-1}
+\left( \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0} + \tilde{\mathbf{M}}_{R} \right) \: .
+\label{eq:M-tilde-remanence}
+\end{equation}
+Equation \ref{eq:M-tilde-remanence} is consistent with that given by
+\citet[Eq. ~38]{clark1986}.
+
+\subsection{External magnetic field and total-field anomaly}
+
+The magnetic field $\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
+produced by an ellipsoid at external points is calculated from 
+Eqs. \ref{eq:H-tilde} and \ref{eq:M-tilde-remanence} as the difference
+between the resultant field $\tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
+and the uniform field $\tilde{\mathbf{H}}_{0}$:
+\begin{equation}
+\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}}) = 
+- \tilde{\mathbf{N}}(\tilde{\mathbf{r}}) \, \tilde{\mathbf{M}} \: .
+\label{eq:delta-H-tilde}
+\end{equation}
+The elements of the transformed depolarization tensor 
+$\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$ used in 
+Equation \ref{eq:delta-H-tilde} will be presented in
+the later following section.
+
+The $\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
+can be interpreted as a uniformly magnetized body located in the
+crust while the uniform field $\tilde{\mathbf{H}}_{0}$ can
+be interpreted as the main component of the geomagnetic field
+on the study area, which is commonly assumed to be
+generated at the liquid part of the Earth's core.
+Equation \ref{eq:delta-H-tilde} gives the magnetic field
+(in \unit{A \, m^{-1}}) produced by an ellipsoid. However,
+in geophysics, the most widely used field is the magnetic 
+induction (in \unit{nT}). Fortunately, this conversion can
+be easily done by multiplying Equation \ref{eq:delta-H-tilde}
+by $k_{m}~=~10^{9}~\mu_{0}$, where $\mu_{0}$ represents the
+magnetic constant (in \unit{H \, m^{-1}}).
+
+For geophysical applications, it is preferable to
+calculate the total-field anomaly produced by the
+magnetic sources. This scalar quantity is defined 
+as follows \citep{blakely1996}:
+\begin{equation}
+\Delta \tilde{T}(\tilde{\mathbf{r}}) = \| 
+\tilde{\mathbf{B}}_{0} + \Delta \tilde{\mathbf{B}}(\tilde{\mathbf{r}}) \|
+- \| \tilde{\mathbf{B}}_{0} \| \: ,
+\label{eq:delta-T-tilde}
+\end{equation}
+where $\tilde{\mathbf{B}}_{0} = k_{m} \, \tilde{\mathbf{H}}_{0}$
+and $\Delta \tilde{\mathbf{B}}(\tilde{\mathbf{r}}) = 
+k_{m} \, \Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$
+(Eq. \ref{eq:delta-H-tilde}).
+In practical situations, however, 
+$\| \tilde{\mathbf{B}}_{0} \| >> \| \Delta \tilde{\mathbf{B}}(\tilde{\mathbf{r}}) \|$
+and, consequently, the following approximation is valid \citep{blakely1996}:
+\begin{equation}
+\Delta \tilde{T}(\tilde{\mathbf{r}}) \approx  
+\frac{\tilde{\mathbf{B}}_{0}^{\top} \Delta \tilde{\mathbf{B}}(\tilde{\mathbf{r}})}{\| \tilde{\mathbf{B}}_{0} \|} \: .
+\label{eq:delta-T-tilde-approx}
+\end{equation}
+
+\subsection{Transformed depolarization tensor $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$}
+
+
 
 
 \conclusions  %% \conclusions[modified heading if necessary]
@@ -512,26 +625,28 @@ TEXT
 \appendix
 \section{Relationship between the derivatives of the functions $f(\mathbf{r})$ and $\tilde{f}(\tilde{\mathbf{r}})$}    %% Appendix A
 
-Let $\tilde{f}(\tilde{\mathbf{r}})$ the scalar
+Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar
 function obtained by transforming $f(\mathbf{r})$ 
-(equation \ref{eq:f}) from the
+(Eq. \ref{eq:f}) from the
 main coordinate system to a local coordinate system.
 
-For convenience, let us rewrite equation 
+For convenience, let us rewrite Equation 
 \ref{eq:coord_transformation} as follows:
 \begin{equation}
 \tilde{r}_{k} = v_{k1} \, r_{1} + v_{k2} \, r_{2} + v_{k3} \, r_{3} + c_{k} \: ,
 \label{eq:r-tilde-k}
 \end{equation}
-where $r_{j}$, $j = 1, 2, 3$, are the elements of the position vector
-$\mathbf{r}$ (equation \ref{eq:ellipsoid_surface}),
+where $\tilde{r}_{k}$, $k = 1, 2, 3$, are the elements of the transformed
+position vector $\tilde{\mathbf{r}}$ (Eq. \ref{eq:coord_transformation}),
+$r_{j}$, $j = 1, 2, 3$, are the elements of the position vector
+$\mathbf{r}$ (Eq. \ref{eq:ellipsoid_surface}),
 $v_{kj}$, $j = 1, 2, 3$, are the elements of the matrix
-$\mathbf{V}$ (equation \ref{eq:V_triaxial_prolate} or \ref{eq:V_oblate}),
+$\mathbf{V}$ (Eq. \ref{eq:V_triaxial_prolate} or \ref{eq:V_oblate}),
 and $c_{k}$ is a constant defined by the coordinates
-$x_{c}$, $y_{c}$, and $z_{c}$ of the centre of the ellipsoid body.
+$x_{c}$, $y_{c}$, and $z_{c}$ of the centre of the ellipsoidal body.
 
 By considering the functions $f(\mathbf{r})$ 
-(equation \ref{eq:f}) and $\tilde{f}(\tilde{\mathbf{r}})$
+(Eq. \ref{eq:f}) and $\tilde{f}(\tilde{\mathbf{r}})$
 evaluated at the same point, but on different coordinate
 systems, we have:
 \begin{equation*}
@@ -544,7 +659,7 @@ systems, we have:
 \frac{\partial \tilde{r}_{3}}{\partial r_{j}} \: ,
 \quad j = 1, 2, 3 \: ,
 \end{equation*}
-which, from equation \ref{eq:r-tilde-k}, can be given by
+which, from Equation \ref{eq:r-tilde-k}, can be given by
 \begin{equation}
 \frac{\partial f(\mathbf{r})}{\partial r_{j}} = 
 v_{j1} \, \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{1}} +
@@ -555,8 +670,8 @@ v_{j3} \, \frac{\partial \tilde{f}(\tilde{\mathbf{r}})}{\partial \tilde{r}_{3}} 
 \end{equation}
 
 Now, by deriving $\frac{\partial f(\mathbf{r})}{\partial r_{j}}$
-(equation \ref{eq:df_drj}) with respect to the $i$th element 
-$r_{i}$ of the position vector $\mathbf{r}$ (equation \ref{eq:ellipsoid_surface}),
+(Eq. \ref{eq:df_drj}) with respect to the $i$th element 
+$r_{i}$ of the position vector $\mathbf{r}$ (Eq. \ref{eq:ellipsoid_surface}),
 we obtain:
 \begin{equation}
 \begin{split}
@@ -604,7 +719,7 @@ where $\tilde{\mathbf{F}}(\tilde{\mathbf{r}})$ is a $3 \times 3$
 matrix whose $ij$-th element is 
 $\frac{\partial^{2} \tilde{f}(\tilde{\mathbf{r}})}
 {\partial \tilde{r}_{i} \, \partial \tilde{r}_{j}}$.
-From equation \ref{eq:d2f-dridrj}, we obtain
+From Equation \ref{eq:d2f-dridrj}, we obtain
 \begin{equation}
 \mathbf{F}(\mathbf{r}) = \mathbf{V} \, 
 \tilde{\mathbf{F}}(\tilde{\mathbf{r}}) \, \mathbf{V}^{\top} \: ,
@@ -614,15 +729,15 @@ where $\mathbf{F}(\mathbf{r})$ is a $3 \times 3$
 matrix whose $ij$-th element is 
 $\frac{\partial^{2} f(\mathbf{r})}
 {\partial r_{i} \, \partial r_{j}}$ and
-$\mathbf{V}$ is defined by equations 
+$\mathbf{V}$ is defined by Eqs. 
 \ref{eq:V_triaxial_prolate} or
 \ref{eq:V_oblate}, depending on the ellipsoid
 type. As one may noticed, the matrices $\mathbf{F}(\mathbf{r})$ and
 $\tilde{\mathbf{F}}(\tilde{\mathbf{r}})$ represent the Hessians
-of the functions $f(\mathbf{r})$ (equation \ref{eq:f})
+of the functions $f(\mathbf{r})$ (Eq. \ref{eq:f})
 and $\tilde{f}(\tilde{\mathbf{r}})$, respectively.
 Besides, the depolarization tensor $\mathbf{N}(\mathbf{r})$
-(equation \ref{eq:total-H-field-M-uniform}) can be 
+(Eq. \ref{eq:H-M-uniform}) can be 
 rewritten by using the matrix $\mathbf{F}(\mathbf{r})$
 as follows
 \begin{equation}
@@ -630,15 +745,15 @@ as follows
 \label{eq:N-F}
 \end{equation}
 By properly using the orthogonality of the matrix
-$\mathbf{V}$, we may rewrite equation \ref{eq:F-V-F-tilde-VT}
+$\mathbf{V}$, we may rewrite Equation \ref{eq:F-V-F-tilde-VT}
 as follows:
 \begin{equation}
 \tilde{\mathbf{F}}(\tilde{\mathbf{r}}) = \mathbf{V}^{\top} \, 
 \mathbf{F}(\mathbf{r}) \, \mathbf{V} \: .
 \label{eq:F-tilde-VT-F-V}
 \end{equation}
-Finally, by multiplying both sides of equation \ref{eq:F-tilde-VT-F-V}
-by $-\frac{1}{4 \pi}$ and using equation \ref{eq:N-F},
+Finally, by multiplying both sides of Equation \ref{eq:F-tilde-VT-F-V}
+by $-\frac{1}{4 \pi}$ and using Equation \ref{eq:N-F},
 we conclude that 
 \begin{equation}
 \tilde{\mathbf{N}}(\tilde{\mathbf{r}}) = 
@@ -664,7 +779,7 @@ This ellipsoid is defined by the following equation:
 \end{equation}
 A quadric surface (e.g., ellipsoid, hyperboloid of one sheet or
 hyperboloid of two sheets) which is confocal with the ellipsoid 
-defined in equation \ref{eq:reference-triaxial-ell} can be 
+defined in Equation \ref{eq:reference-triaxial-ell} can be 
 described as follows:
 \begin{equation}
 \frac{\tilde{x}^{2}}{a^{2} + u} + \frac{\tilde{y}^{2}}{b^{2} + u} + \frac{\tilde{z}^{2}}{c^{2} + u} = 1 \: ,
@@ -680,15 +795,15 @@ u + c^{2} > 0 \: .
 Given $a$, $b$, $c$, and a $u$ satisfying \ref{eq:condition-triaxial-ell}, 
 we may use \ref{eq:quadric-confocal-triaxial-ell} for determining a set of 
 points $(x, y, z)$ lying on the surface of an ellipsoid which is confocal 
-with that one defined in equation \ref{eq:reference-triaxial-ell}. 
+with that one defined in Equation \ref{eq:reference-triaxial-ell}. 
 Now, consider the problem of determining the ellipsoid which is confocal 
 with that one defined in \ref{eq:reference-triaxial-ell} and pass through 
 a particular point $(\tilde{x}, \tilde{y}, \tilde{z})$. 
 This problem consists in determining the real number $u$ that, 
 given $a$, $b$, $c$, $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, 
-satisfies equation \ref{eq:quadric-confocal-triaxial-ell} and
-the condition expressed by equation \ref{eq:condition-triaxial-ell}.
-By rearranging equation \ref{eq:quadric-confocal-triaxial-ell}, 
+satisfies Equation \ref{eq:quadric-confocal-triaxial-ell} and
+the condition expressed by Equation \ref{eq:condition-triaxial-ell}.
+By rearranging Equation \ref{eq:quadric-confocal-triaxial-ell}, 
 we obtain the following cubic equation for $u$:
 \begin{equation}
 p(u) = (a^{2} + u)(b^{2} + u)(c^{2} + u) - (b^{2} + u)(c^{2} + u) \, \tilde{x}^{2}
@@ -707,17 +822,17 @@ d \to \infty \: &, \quad p(u) > 0 \\
 \end{equation}
 Notice that, according to \ref{eq:cubic-equation-signals-triaxial-ell},
 the smaller, intermediate and largest roots of the cubic 
-equation $p(u)$ (equation \ref{eq:cubic-equation-triaxial-ell}) are 
+equation $p(u)$ (Eq. \ref{eq:cubic-equation-triaxial-ell}) are 
 located, respectively, in the intervals $[ -a^{2} \, , -b^{2} ]$,
 $[ -b^{2} \, , -c^{2} ]$ and $[ -c^{2} \, , \infty [$.
 Remember that we are interested in a $u$ satisfying 
-the condition expressed by equation \ref{eq:condition-triaxial-ell}. 
-Consequently, according to the signal analysis shown in equation
+the condition expressed by Equation \ref{eq:condition-triaxial-ell}. 
+Consequently, according to the signal analysis shown in Equation
 \ref{eq:cubic-equation-signals-triaxial-ell}, we are interested in 
-the largest root $\lambda$ of the cubic equation $p(u)$ (equation
+the largest root $\lambda$ of the cubic equation $p(u)$ (Eq.
 \ref{eq:cubic-equation-triaxial-ell}).
 
-From equation \ref{eq:cubic-equation-triaxial-ell}, we obtain a
+From Equation \ref{eq:cubic-equation-triaxial-ell}, we obtain a
 simpler one given by
 \begin{equation}
 p(u) =  u^{u} + p_{2} \, u^{2} + p_{1} \, u + p_{0} \: ,
@@ -742,10 +857,10 @@ p_{0} =  a^{2} \, b^{2} \, c^{2} - b^{2} \, c^{2} \,
 b^{2} \, \tilde{z}^{2} \: .
 \label{eq:p0-triaxial-ell}
 \end{equation}
-Finally, from equations \ref{eq:p2-triaxial-ell}, 
+Finally, from Eqs. \ref{eq:p2-triaxial-ell}, 
 \ref{eq:p1-triaxial-ell} and \ref{eq:p0-triaxial-ell},
 the largest root $\lambda$ of $p(u)$ 
-(equation \ref{eq:cubic-equation-triaxial-ell-simpler}) can be 
+(Eq. \ref{eq:cubic-equation-triaxial-ell-simpler}) can be 
 calculated as follows \citep{weisstein2017}:
 \begin{equation}
 \lambda = 2 \, \sqrt{-Q} \, \cos \left( \frac{\theta}{3}\right) - \frac{p_{2}}{3} \: ,
@@ -772,8 +887,8 @@ Let us now consider a prolate ellipsoid with semi-axes $a$, $b$,
 $c$ oriented along the $\tilde{x}$-, $\tilde{y}$-, and 
 $\tilde{z}$-axis, respectively, of its local coordinate system, 
 where $a > b = c > 0$. 
-In this case, the equation defining the surface of the ellipsoid
-is obtained by substituting $c = b$ in equation \ref{eq:reference-triaxial-ell}.
+In this case, the Equation defining the surface of the ellipsoid
+is obtained by substituting $c = b$ in Equation \ref{eq:reference-triaxial-ell}.
 Consequently, the equation defining the respective confocal quadric
 surface is given by
 \begin{equation}
@@ -781,7 +896,7 @@ surface is given by
 \label{eq:quadric-confocal-prolate-ell}
 \end{equation}
 and the new condition that must be fulfilled by the variable
-$u$ so that equation \ref{eq:quadric-confocal-prolate-ell}
+$u$ so that Equation \ref{eq:quadric-confocal-prolate-ell}
 represent an ellipsoid is
 \begin{equation}
 u + b^{2} > 0 \: .
@@ -792,9 +907,9 @@ Similarly to the case of a triaxial ellipsoid presented
 in the previous subsection, we are interested in
 determining the real number $u$ that, 
 given $a$, $b$, $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, 
-satisfies equation \ref{eq:quadric-confocal-prolate-ell} and
-the condition expressed by equation \ref{eq:condition-prolate-ell}.
-From equation \ref{eq:quadric-confocal-prolate-ell}, 
+satisfies Equation \ref{eq:quadric-confocal-prolate-ell} and
+the condition expressed by Equation \ref{eq:condition-prolate-ell}.
+From Equation \ref{eq:quadric-confocal-prolate-ell}, 
 we obtain the following quadratic equation for $u$:
 \begin{equation}
 p(u) = (a^{2} + u)(b^{2} + u) - (b^{2} + u) \, \tilde{x}^{2}
@@ -813,12 +928,12 @@ d \to \infty \: &, \quad f(\rho) > 0 \\
 and, consequently, that its two roots lie in the intervals
 $[ -a^{2} \, , -b^{2} ]$ and $[ -b^{2} \, , \infty [$.
 Therefore, according to the condition established by
-equation \ref{eq:condition-prolate-ell} and the signal analysis 
-shown in equation \ref{eq:quadratic-equation-signals-prolate-ell}, 
+Equation \ref{eq:condition-prolate-ell} and the signal analysis 
+shown in Equation \ref{eq:quadratic-equation-signals-prolate-ell}, 
 we are interested in the largest root $\lambda$ of the quadratic 
-equation $p(u)$ (equation \ref{eq:quadratic-equation-prolate-ell}).
+equation $p(u)$ (Eq. \ref{eq:quadratic-equation-prolate-ell}).
 
-By properly manipulating equation \ref{eq:quadratic-equation-prolate-ell},
+By properly manipulating Equation \ref{eq:quadratic-equation-prolate-ell},
 we obtain a simpler one given by
 \begin{equation}
 p(u) =  u^{2} + p_{1} \, u + p_{0} \: ,
@@ -836,9 +951,9 @@ p_{0} =  a^{2} \, b^{2}
 - a^{2} \left( \tilde{y}^{2} + \tilde{z}^{2} \right) \: .
 \label{eq:p0-prolate-ell}
 \end{equation}
-Finally, by using equations \ref{eq:p1-prolate-ell} and
+Finally, by using Eqs. \ref{eq:p1-prolate-ell} and
 \ref{eq:p0-prolate-ell}, the largest root $\lambda$ of $p(u)$ 
-(equation \ref{eq:quadratic-equation-prolate-ell-simpler}) can be 
+(Eq. \ref{eq:quadratic-equation-prolate-ell-simpler}) can be 
 easily calculated as follows:
 \begin{equation}
 \lambda = \frac{-p_{1} + \sqrt{p_{1}^{2} - 4 \, p_{0}}}{2} \: .
@@ -856,12 +971,12 @@ In this case, the two roots of the resulting quadratic equation
 lie in the intervals $[ -b^{2} \, , -a^{2} ]$ and $[ -a^{2} \, , \infty [$.
 Consequently, we are still interested in the largest root of
 the quadratic equation for the variable $u$, which is also 
-calculated by using equation \ref{eq:lambda-prolate-ell}.
+calculated by using Equation \ref{eq:lambda-prolate-ell}.
 
 \subsection{Spatial derivative of the parameter $\lambda$}
 
 The magnetic modelling of triaxial, prolate or oblate ellipsoids 
-requires not only the parameter lambda defined by equations
+requires not only the parameter lambda defined by Eqs.
 \ref{eq:lambda-triaxial-ell} and \ref{eq:lambda-prolate-ell},
 but also its derivatives with respect to the spatial coordinates
 $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$.
@@ -885,7 +1000,7 @@ This equation can be determined directly from equation
 \ref{eq:quadric-confocal-triaxial-ell}. 
 The spatial derivatives of $\lambda$ in the case of
 prolate or oblate ellipsoids can also be calculated by using
-equation \ref{eq:dlambda}, but with semi-axes $a > b = c$
+Equation \ref{eq:dlambda}, but with semi-axes $a > b = c$
 or $b = c > a$, respectively.
 
 
