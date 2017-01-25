@@ -34,40 +34,37 @@ def ellipsoid (xp,yp,zp,xc,yc,zc,a,b,azimuth,delta,declirem,inclirem,intensity,d
     
     azimuth = np.deg2rad(azimuth)
     delta = np.deg2rad(delta)
-    angles = np.array([azimuth+np.pi,delta,(np.pi/2)])
+    angles = np.array([azimuth+np.pi,delta,0.])
     
-    mcon, mconT = m_convP(angles)
-    
-    declirem = np.deg2rad(declirem)
-    inclirem = np.deg2rad(inclirem)
-    
-    ln,mn,nn = lmnn_v (declirem, inclirem)
-    
-    decT = np.deg2rad(decT)
-    incT = np.deg2rad(incT)
-    
-    lt,mt,nt = lmnn_v (decT, incT)
+    V = V_e(angles)
 
-    k_int = np.array([k[0][0],k[1][0],k[2][0]])
-    k_inc = np.array([k[0][1],k[1][1],k[2][1]])
-    k_dec = np.array([k[0][2],k[1][2],k[2][2]])
+    ln, mn, nn = utils.dircos(inclirem, declirem)
     
+    lt,mt,nt = utils.dircos(incT, decT)
+
+    k_int = np.array([k[0],k[1],k[2]])
+    k_angles = np.deg2rad(np.array([k[3],k[4],k[5]]))
+
+    #isotropic case
     if k_int[0] == (k_int[1] and k_int[2]):
-        km = k_matrix(k_int,mcon)
+        km = np.diag(k_int)
+    #anisotropic case
     else:
-        km = k_matrix2(k_int,mcon)
+        k_angles[0] = k_angles[0]+np.pi
+        U = V_e(k_angles)
+        km = k_matrix(U,V,np.diag(k_int))
 
     # Earth's field and total body magnetization (including demagnetization) in the body's coordinate
-    F = F_e (intT,lt,mt,nt,mcon)
-    JN = JN_e (intensity,ln,mn,nn,mcon)
+    F = F_e (intT,lt,mt,nt,V)
+    JN = JN_e (intensity,ln,mn,nn,V)
     N1,N2 = N_desmag (axis[0],axis[1])
     JR = JR_e (km,JN,F)
     JRD = JRD_e (km,N1,N2,JR)
-    JRD_carte = (mconT).dot(JRD)
+    JRD_carte = (V).dot(JRD)
     JRD_ang = utils.vec2ang(JRD_carte)
     
     # Ellipsoid cartesian body coordinates
-    x1,x2,x3 = x_e (xp,yp,zp,center,mcon)
+    x1,x2,x3 = x_e (xp,yp,zp,center,V)
 
     # Auxiliar calculations
     r = r_e (x1,x2,x3)
@@ -80,56 +77,61 @@ def ellipsoid (xp,yp,zp,xc,yc,zc,a,b,azimuth,delta,declirem,inclirem,intensity,d
     dlambx1,dlambx2,dlambx3 = dlambx_e (axis[0],axis[1],x1,x2,x3,lamb,r,delta)
     
     # Auxiliar calculations of the magnetic field
-    #f1 = f1_e (axis[0],axis[1],x1,x2,x3,lamb,JRD)
     log = log_m (axis[0],axis[1],lamb)
-    #f2 = f2_e (axis[0],axis[1],lamb,log)
     A,B,C = matrix_d (axis[0],axis[1],lamb,log)
     m11,m12,m13,m21,m22,m23,m31,m32,m33, V1, V2, V3 = mx(axis[0],axis[1],x1,x2,x3,dlambx1,dlambx2,dlambx3,A,B,C,lamb)
     
     # Components of the magnetic field in the body coordinates
-    B1 = B1_e2 (m11,m12,m13,JRD,axis)
-    B2 = B2_e2 (m21,m22,m23,JRD,axis)
-    B3 = B3_e2 (m31,m32,m33,JRD,axis)
-    
-    # Components of the magnetic field in the body coordinates
-    #B1 = B1_e (dlambx1,JRD,f1,f2,log,axis[0],axis[1],lamb)
-    #B2 = B2_e (dlambx2,JRD,f1,f2)
-    #B3 = B3_e (dlambx3,JRD,f1,f2)
+    B1 = B1_e (m11,m12,m13,JRD,axis)
+    B2 = B2_e (m21,m22,m23,JRD,axis)
+    B3 = B3_e (m31,m32,m33,JRD,axis)
     
     # Components of the magnetic field in the cartesian coordinates
-    Bx = Bx_c (B1,B2,B3,mcon[0,0],mcon[1,0],mcon[2,0])
-    By = By_c (B1,B2,B3,mcon[0,1],mcon[1,1],mcon[2,1])
-    Bz = Bz_c (B1,B2,B3,mcon[0,2],mcon[1,2],mcon[2,2])
-    
-    Tf = (Bx*np.cos(incT)*np.cos(decT) + By*np.cos(incT)*np.sin(decT) + Bz*np.sin(incT))
+    Bx = Bx_c (B1,B2,B3,V[0,0],V[0,1],V[0,2])
+    By = By_c (B1,B2,B3,V[1,0],V[1,1],V[1,2])
+    Bz = Bz_c (B1,B2,B3,V[2,0],V[2,1],V[2,2])
+    Tf = (Bx*np.cos(np.deg2rad(incT))*np.cos(np.deg2rad(decT)) + By*np.cos(np.deg2rad(incT))*np.sin(np.deg2rad(decT)) + Bz*np.sin(np.deg2rad(incT)))
     
     return Bx, By, Bz, Tf
     
-def m_convP (angles):
+def V_e (angles):
     '''
-    Builds the matrix of coordinate system change to the center of the ellipsoid. Used for the prolate ellipsoid.
+    Builds the matrix of coordinate system change to the center of the ellipsoid. Used for the triaxial 
+    and prolate ellipsoids.
         
     input:
     alpha - Azimuth+180 degrees in relation to the major-axe and the geographic north (0<=alpha<=360, radians).
     delta - Inclination between the major-axe and the horizontal plane (0<=delta<=90, radians).
     gamma - Angle between the intermediate-axe and the vertical projection of the horizontal plane to the
-    center of the ellipsoid. (=90 degrees).
-        
+    center of the ellipsoid(radians).
+      
     output:
     A 3x3 matrix.
     '''
-    mcon = np.zeros((3,3))
-    mcon[0][0] = (-np.cos(angles[0])*np.cos(angles[1]))
-    mcon[1][0] = (np.cos(angles[0])*np.cos(angles[2])*np.sin(angles[1])+np.sin(angles[0])*np.sin(angles[2]))
-    mcon[2][0] = (np.sin(angles[0])*np.cos(angles[2])-np.cos(angles[0])*np.sin(angles[2])*np.sin(angles[1]))
-    mcon[0][1] = (-np.sin(angles[0])*np.cos(angles[1]))
-    mcon[1][1] = (np.sin(angles[0])*np.cos(angles[2])*np.sin(angles[1])-np.cos(angles[0])*np.sin(angles[2]))
-    mcon[2][1] = (-np.cos(angles[0])*np.cos(angles[2])-np.sin(angles[0])*np.sin(angles[2])*np.sin(angles[1]))
-    mcon[0][2] = (-np.sin(angles[1]))
-    mcon[1][2] = (-np.cos(angles[2])*np.cos(angles[1]))
-    mcon[2][2] = (np.sin(angles[2])*np.cos(angles[1]))
-    mconT = (mcon).T
-    return mcon, mconT
+    cos_alpha = np.cos(angles[0])
+    sin_alpha = np.sin(angles[0])
+    
+    cos_delta = np.cos(angles[1])
+    sin_delta = np.sin(angles[1])
+
+    cos_gamma = np.cos(angles[2])
+    sin_gamma = np.sin(angles[2])
+
+    v1 = np.array([-cos_alpha*cos_delta, 
+                      -sin_alpha*cos_delta, 
+                      -sin_delta])
+
+    v2 = np.array([ cos_alpha*cos_gamma*sin_delta + sin_alpha*sin_gamma,
+                       sin_alpha*cos_gamma*sin_delta - cos_alpha*sin_gamma,
+                      -cos_gamma*cos_delta])
+
+    v3 = np.array([ sin_alpha*cos_gamma - cos_alpha*sin_gamma*sin_delta,
+                      -cos_alpha*cos_gamma - sin_alpha*sin_gamma*sin_delta,
+                       sin_gamma*cos_delta])
+    
+    V = np.vstack((v1, v2, v3)).T
+    
+    return V
     
 def lmnn_v (dec, inc):
 
@@ -149,7 +151,7 @@ def lmnn_v (dec, inc):
     nn = np.sin(inc)
     return ln, mn, nn
     
-def F_e (intT,lt,mt,nt,mcon):
+def F_e (intT,lt,mt,nt,V):
     '''
     Change the magnetization vetor of the Earth's field to the body coordinates.
     
@@ -161,22 +163,22 @@ def F_e (intT,lt,mt,nt,mcon):
     output:
     Ft - The magnetization vetor of the Earth's field to the body coordinates.    
     '''
-    F = intT*np.array([[(lt*mcon[0,0]+mt*mcon[0,1]+nt*mcon[0,2])], [(lt*mcon[1,0]+mt*mcon[1,1]+nt*mcon[1,2])], [(lt*mcon[2,0]+mt*mcon[2,1]+nt*mcon[2,2])]])
+    F = intT*np.array([[(lt*V[0,0]+mt*V[1,0]+nt*V[2,0])], [(lt*V[0,1]+mt*V[1,1]+nt*V[2,1])], [(lt*V[0,2]+mt*V[1,2]+nt*V[2,2])]])
     return F
     
-def JN_e (intensity,ln,mn,nn,mcon):
+def JN_e (intensity,ln,mn,nn,V):
     '''
     Changes the remanent magnetization vector to the body coordinate.
         
     input:
     intensity - intensity of remanent vector.
     ln,nn,mn - direction cosines of the remanent magnetization vector.
-    mcon - matrix of conversion.
+    V - matrix of conversion.
         
     output:
     JN - Remanent magnetization vector in the body coordinate.         
     '''
-    JN = intensity*np.array([[(ln*mcon[0,0]+mn*mcon[0,1]+nn*mcon[0,2])], [(ln*mcon[1,0]+mn*mcon[1,1]+nn*mcon[1,2])], [(ln*mcon[2,0]+mn*mcon[2,1]+nn*mcon[2,2])]])
+    JN = intensity*np.array([[(ln*V[0,0]+mn*V[1,0]+nn*V[2,0])], [(ln*V[0,1]+mn*V[1,1]+nn*V[2,1])], [(ln*V[0,2]+mn*V[1,2]+nn*V[2,2])]])
     return JN
 
 def N_desmag (a,b):
@@ -193,50 +195,27 @@ def N_desmag (a,b):
     N2 = 2.*np.pi - N1/2.
     return N1, N2
     
-def k_matrix (k_int,mcon):
-    '''
-    Build susceptibility tensors matrix for the isotropic case in the body coordinates.
+def k_matrix (U,V,K):
+        '''
+        Build the susceptibility tensor for the anisotropic case.
         
-    input:
-    mcon - Matrix of conversion.
-    k_int - Intensity of the three directions of susceptibility.
+        Parameters:
         
-    output:
-    km - Susceptibility tensors matrix.        
-    '''
+        * U: array
+            Direction cosines of the susceptibilities.
+        * V: array
+            Matrix of coordinates conversion.
+        * K: array
+            Diagonal matrix with k1,k2,k3 (intensity of the susceptibilities).
         
-    km = np.zeros([3,3])
-    for i in range (3):
-        for j in range (3):
-            for r in range (3):
-                km[i,j] = km[i,j] + (k_int[r]*(mcon[r,0]*mcon[i,0] + mcon[r,1]*mcon[i,1] + mcon[r,2]*mcon[i,2])*(mcon[r,0]*mcon[j,0] + mcon[r,1]*mcon[j,1] + mcon[r,2]*mcon[j,2]))
-    return km
-
-def k_matrix2 (k_int,mcon):
-    '''
-    Build the susceptibility tensors matrix for the anisotropic case in the body coordinates.
+        Returns:
         
-    input:
-    mcon - Matrix of conversion.
-    k_int - Intensity of the three directions of susceptibility.
+        * km: array
+            Susceptibility tensors matrix.
+        '''
         
-    output:
-    km - Susceptibility tensors matrix.        
-    '''
-        
-    Lr = np.zeros(3)
-    Mr = np.zeros(3)
-    Nr = np.zeros(3)
-    for i in range (3):
-        Lr[i] = np.cos(k_dec[i])*np.cos(k_inc[i])
-        Mr[i] = np.sin(k_dec[i])*np.cos(k_inc[i])
-        Nr[i] = np.sin(k_inc[i])
-    km = np.zeros([3,3])
-    for i in range (3):
-        for j in range (3):
-            for r in range (3):
-                km[i,j] = km[i,j] + (k_int[r]*(Lr[r]*mcon[i,0] + Mr[r]*mcon[i,1] + Nr[r]*mcon[i,2])*(Lr[r]*mcon[j,0] + Mr[r]*mcon[j,1] + Nr[r]*mcon[j,2]))
-    return km
+        km = np.dot(np.dot(np.dot(V.T,U), K), np.dot(U.T,V))
+        return km
     
 def JR_e (km,JN,F):
     '''
@@ -276,7 +255,7 @@ def JRD_e (km,N1,N2,JR):
     JRD = (linalg.inv(A)).dot(JR)
     return JRD
     
-def x_e (xp,yp,zp,center,mcon):
+def x_e (xp,yp,zp,center,V):
     '''
     Calculates the new coordinates with origin at the center of the ellipsoid.
 
@@ -284,15 +263,15 @@ def x_e (xp,yp,zp,center,mcon):
     xp,yp - Origin of the ellipsoid in the geographic coordinate.
     zp - Depth of the the ellipsoid.
     center - point in the grid that has the center of the ellipsoid.
-    mcon - Matrix of conversion.
+    V - Matrix of conversion.
         
     output:
     x1, x2, x3 - The three axes of the coordinates.
     '''
     
-    x1 = (xp-center[0])*mcon[0,0]+(yp-center[1])*mcon[0,1]-(zp+center[2])*mcon[0,2]
-    x2 = (xp-center[0])*mcon[1,0]+(yp-center[1])*mcon[1,1]-(zp+center[2])*mcon[1,2]
-    x3 = (xp-center[0])*mcon[2,0]+(yp-center[1])*mcon[2,1]-(zp+center[2])*mcon[2,2]
+    x1 = (xp-center[0])*V[0,0]+(yp-center[1])*V[1,0]-(zp+center[2])*V[2,0]
+    x2 = (xp-center[0])*V[0,1]+(yp-center[1])*V[1,1]-(zp+center[2])*V[2,1]
+    x3 = (xp-center[0])*V[0,2]+(yp-center[1])*V[1,2]-(zp+center[2])*V[2,2]
     return x1, x2, x3
 
 def r_e (x1,x2,x3):
@@ -362,23 +341,6 @@ def dlambx_e (a,b,x1,x2,x3,lamb,r,delta):
     dlambx2 = x2*(1+(r**2+a**2-b**2)/delta)
     dlambx3 = x3*(1+(r**2+a**2-b**2)/delta)
     return dlambx1, dlambx2, dlambx3
-
-def f1_e (a,b,x1,x2,x3,lamb,JRD):
-    '''
-    Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-
-    input:
-    a,b - Major and minor axis, respectively.
-    x1,x2,x3 - Axis of the body coordinate system.
-    lamb - Larger root of the cartesian ellipsoidal equation.
-    JRD - Resultant magnetization vector with self-demagnetization correction.
-    
-    output:
-    f1 - Auxiliar calculus of magnetic field generated by a prolate or an oblate ellipsoid.
-    '''
-    
-    f1 = 2*np.pi*a*(b**2)*(((JRD[0]*x1)/(((a**2+lamb)**1.5)*(b**2+lamb))) + ((JRD[1]*x2 + JRD[2]*x3)/(((a**2+lamb)**0.5)*((b**2+lamb)**2))))
-    return f1
     
 def log_m (a,b,lamb):
     '''
@@ -394,22 +356,6 @@ def log_m (a,b,lamb):
     
     log = np.log(((a**2-b**2)**0.5+(a**2+lamb)**0.5)/((b**2+lamb)**0.5))
     return log
-    
-def f2_e (a,b,lamb,log):
-    '''
-    Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-
-    input:
-    a,b - Major and minor axis, respectively.
-    lamb - Larger root of the cartesian ellipsoidal equation.
-    log - Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-    
-    output:
-    f2 - Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-    '''
-    
-    f2 = ((2*np.pi*a*(b**2))/((a**2-b**2)**1.5))*(log-((((a**2-b**2)*(a**2+lamb))**0.5)/(b**2+lamb)))
-    return f2
     
 def matrix_d (a,b,lamb,log):
     '''
@@ -448,7 +394,7 @@ def mx(a,b,x1,x2,x3,dlambx1,dlambx2,dlambx3,A,B,C,lamb):
     m33 = (dlambx3*V3) - C
     return m11, m12, m13, m21, m22, m23, m31, m32, m33, V1, V2, V3
     
-def B1_e2 (m11,m12,m13,J,axis):
+def B1_e (m11,m12,m13,J,axis):
     '''
     Calculates the B1 component of the magnetic field generated by n-ellipsoids in the body coordinates.
     Used in the triaxial ellipsoid.
@@ -465,7 +411,7 @@ def B1_e2 (m11,m12,m13,J,axis):
     B1 = 2*np.pi*axis[0]*axis[1]*axis[1]*(m11*J[0]+m12*J[1]+m13*J[2])
     return B1
 
-def B2_e2 (m21,m22,m23,J,axis):
+def B2_e (m21,m22,m23,J,axis):
     '''
     Calculates the B2 component of the magnetic field generated by n-ellipsoids in the body coordinates.
     Used in the triaxial ellipsoid.
@@ -482,7 +428,7 @@ def B2_e2 (m21,m22,m23,J,axis):
     B2 = 2*np.pi*axis[0]*axis[1]*axis[1]*(m21*J[0]+m22*J[1]+m23*J[2])
     return B2
     
-def B3_e2 (m31,m32,m33,J,axis):
+def B3_e (m31,m32,m33,J,axis):
     '''
     Calculates the B3 component of the magnetic field generated by n-ellipsoids in the body coordinates.
     Used in the triaxial ellipsoid.
@@ -499,59 +445,6 @@ def B3_e2 (m31,m32,m33,J,axis):
     B3 = 2*np.pi*axis[0]*axis[1]*axis[1]*(m31*J[0]+m32*J[1]+m33*J[2])
     return B3
 
-def B1_e (dlambx1,JRD,f1,f2,log,a,b,lamb):
-    '''
-    Calculates the B1 component of the magnetic field generated by n-ellipsoids in the body coordinates.
-    Used in the prolate ellipsoid.
-    
-    input:
-    dlambx1 - Derivative of the ellipsoid equation for each body coordinates in realation to x1.
-    JRD - Resultant magnetization vector with self-demagnetization correction.
-    f1,f2,log - Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-    a,b - Major and minor axis, respectively.
-    lamb - Larger root of the cartesian ellipsoidal equation.
-    
-    output:
-    B1 - The B1 component of the magnetic field generated by n-ellipsoids in the body coordinates.
-    '''
-    
-    B1 = (dlambx1*f1) + ((4*np.pi*a*b**2)/((a**2-b**2)**1.5)) * JRD[0] * ((((a**2-b**2)/(a**2+lamb))**0.5) - log)
-    return B1
-
-def B2_e (dlambx2,JRD,f1,f2):
-    '''
-    Calculates the B2 component of the magnetic field generated by n-ellipsoids in the body coordinates.
-    Used in the prolate ellipsoid.
-    
-    input:
-    dlambx2 - Derivative of the ellipsoid equation for each body coordinates in realation to x2.
-    JRD - Resultant magnetization vector with self-demagnetization correction.
-    f1,f2 - Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-    
-    output:
-    B2 - The B2 component of the magnetic field generated by n-ellipsoids in the body coordinates.
-    '''
-    
-    B2 = (dlambx2*f1) + (JRD[1]*f2)
-    return B2
-    
-def B3_e (dlambx3,JRD,f1,f2):
-    '''
-    Calculates the B3 component of the magnetic field generated by n-ellipsoids in the body coordinates.
-    Used in the prolate ellipsoids.
-    
-    input:
-    dlambx3 - Derivative of the ellipsoid equation for each body coordinates in realation to x3.
-    JRD - Resultant magnetization vector with self-demagnetization correction.
-    f1,f2 - Auxiliar calculus of magnetic field generated by a prolate ellipsoid.
-    
-    output:
-    B3 - The B3 component of the magnetic field generated by n-ellipsoids in the body coordinates.
-    '''
-    
-    B3 = (dlambx3*f1) + (JRD[2]*f2)
-    return B3
-    
 def Bx_c (B1,B2,B3,l1,l2,l3):
     '''
     Change the X component of the magnetic field generated by n-ellipsoids to the cartesian coordinates.
