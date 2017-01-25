@@ -323,17 +323,17 @@ a point located inside or outside the magnetized body
 Based on \citeauthor{maxwell1873}'s postulate, let us
 assume that the body has a uniform magnetization given by
 \begin{equation}
-\mathbf{M} = \mathbf{K} \, \mathbf{H}_{I} \: ,
+\mathbf{M} = \mathbf{K} \, \mathbf{H}^{\ast} \: ,
 \label{eq:M-KH}
 \end{equation}
-where $\mathbf{H}_{I}$ is the resultant uniform magnetic field 
+where $\mathbf{H}^{\ast}$ is the resultant uniform magnetic field 
 at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
 magnetic susceptibility of the body. In this case, Equation 
 \ref{eq:H} can be rewritten as follows:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} 
-- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}_{I} \: ,
+- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}^{\ast} \: ,
 \label{eq:H-M-uniform}
 \end{equation}
 where $\mathbf{N}(\mathbf{r})$ is a symmetrical matrix whose
@@ -393,17 +393,17 @@ by triaxial, prolate, and oblate ellipsoids
 \citep{maxwell1873, thomson1879, dubois1896, 
 peirce1902, webster1904, kellogg1929, stoner1945, osborn1945,
 lowes1974,  peake1953, chang1961, clark1986, tejedor1995, sttraton2007}.
-It is convenient to use $\tilde{f}_{I}(\tilde{\mathbf{r}})$
-and $\tilde{f}_{E}(\tilde{\mathbf{r}})$ to define 
+It is convenient to use $\tilde{f}^{\ast}(\tilde{\mathbf{r}})$
+and $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$ to define 
 the function $\tilde{f}(\tilde{\mathbf{r}})$ evaluated, 
 respectively, at points 
 $\tilde{\mathbf{r}}$ inside and outside the volume $V$ of the
 ellipsoidal body.
 
-The scalar function $\tilde{f}_{I}(\tilde{\mathbf{r}})$
+The scalar function $\tilde{f}^{\ast}(\tilde{\mathbf{r}})$
 is given by
 \begin{equation}
-\tilde{f}_{I}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\tilde{f}^{\ast}(\tilde{\mathbf{r}}) = \pi \, abc \, 
 \int_{0}^{\infty} \left( 1 
 - \frac{\tilde{x}^{2}}{a^{2} + u} 
 - \frac{\tilde{y}^{2}}{b^{2} + u}
@@ -426,10 +426,10 @@ is a quadratic function of the spatial coordinates
 $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, which
 supported the \citeauthor{maxwell1873}'s (\citeyear{maxwell1873})
 postulate about uniformly magnetized ellipsoids.
-In a similar way, the function $\tilde{f}_{E}(\tilde{\mathbf{r}})$
+In a similar way, the function $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
 is given by
 \begin{equation}
-\tilde{f}_{E}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\tilde{f}^{\dagger}(\tilde{\mathbf{r}}) = \pi \, abc \, 
 \int_{\lambda}^{\infty} \left( 1 
 - \frac{\tilde{x}^{2}}{a^{2} + u} 
 - \frac{\tilde{y}^{2}}{b^{2} + u}
@@ -460,8 +460,8 @@ as follows:
 _{\tilde{\mathbf{N}}(\tilde{\mathbf{r}})} \;
 \underbrace{\mathbf{V}^{\top} \mathbf{K} \mathbf{V}}
 _{\tilde{\mathbf{K}}} \; 
-\underbrace{\mathbf{V}^{\top} \mathbf{H}_{I}}
-_{\tilde{\mathbf{H}}_{I}} \: ,
+\underbrace{\mathbf{V}^{\top} \mathbf{H}^{\ast}}
+_{\tilde{\mathbf{H}}^{\ast}} \: ,
 \label{eq:H-tilde}
 \end{equation}
 where the superscript "$\sim$" denotes quantities
@@ -500,22 +500,22 @@ By considering $\tilde{\mathbf{r}}$ as a point within the
 volume $V$ of the ellipsoid and using the Maxwell's postulate 
 about the uniformity of the magnetic field $\mathbf{H}(\mathbf{r})$ 
 inside ellipsoidal bodies, we can use Equation \ref{eq:H-tilde}
-for defining the resultant uniform magnetic field $\tilde{\mathbf{H}}_{I}$
+for defining the resultant uniform magnetic field $\tilde{\mathbf{H}}^{\ast}$
 inside the ellipsoidal body as follows:
 \begin{equation}
-\tilde{\mathbf{H}}_{I} = 
-\left( \mathbf{I} - \tilde{\mathbf{N}}_{I} \, \tilde{\mathbf{K}} \right)^{-1}
+\tilde{\mathbf{H}}^{\ast} = 
+\left( \mathbf{I} - \tilde{\mathbf{N}}^{\ast} \, \tilde{\mathbf{K}} \right)^{-1}
 \tilde{\mathbf{H}}_{0} \: ,
 \label{eq:Hi-tilde}
 \end{equation}
 where $\mathbf{I}$ is the identity matrix and 
-$\tilde{\mathbf{N}}_{I}$ represents the
+$\tilde{\mathbf{N}}^{\ast}$ represents the
 transformed depolarization tensor evaluated within 
 the volume $V$ of the ellipsoidal body. The elements
-of $\tilde{\mathbf{N}}_{I}$ will be presented in a 
-later section.
+of $\tilde{\mathbf{N}}^{\ast}$ will be presented in a 
+latter section.
 
-Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}_{I}$
+Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}^{\ast}$
 (Eq. \ref{eq:Hi-tilde}) by the transformed 
 susceptibility tensor $\tilde{\mathbf{K}}$ 
 (Eq. \ref{eq:H-tilde}) to obtain
@@ -523,10 +523,10 @@ susceptibility tensor $\tilde{\mathbf{K}}$
 \begin{split}
 \tilde{\mathbf{M}} 
 &= \tilde{\mathbf{K}} 
-\left( \mathbf{I} - \tilde{\mathbf{N}}_{I} \, \tilde{\mathbf{K}} \right)^{-1}
+\left( \mathbf{I} - \tilde{\mathbf{N}}^{\ast} \, \tilde{\mathbf{K}} \right)^{-1}
 \tilde{\mathbf{H}}_{0} \\
 &=  
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}_{I} \right)^{-1}
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\ast} \right)^{-1}
 \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0}
 \end{split} \: ,
 \label{eq:M-tilde}
@@ -550,7 +550,7 @@ and the hypothetical ancient field $\tilde{\mathbf{H}}_{A}$, we obtain the
 following generalized equation
 \begin{equation}
 \tilde{\mathbf{M}} =  
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}_{I} \right)^{-1}
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\ast} \right)^{-1}
 \left( \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0} + \tilde{\mathbf{M}}_{R} \right) \: .
 \label{eq:M-tilde-remanence}
 \end{equation}
@@ -566,13 +566,13 @@ between the resultant field $\tilde{\mathbf{H}}(\tilde{\mathbf{r}})$
 and the uniform field $\tilde{\mathbf{H}}_{0}$:
 \begin{equation}
 \Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}}) = 
-- \tilde{\mathbf{N}}(\tilde{\mathbf{r}}) \, \tilde{\mathbf{M}} \: .
+- \tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}}) \, \tilde{\mathbf{M}} \: .
 \label{eq:delta-H-tilde}
 \end{equation}
 The elements of the transformed depolarization tensor 
-$\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$ used in 
+$\tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}})$ used in 
 Equation \ref{eq:delta-H-tilde} will be presented in
-the later following section.
+the following section.
 
 The $\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
 can be interpreted as a uniformly magnetized body located in the
@@ -611,8 +611,69 @@ and, consequently, the following approximation is valid \citep{blakely1996}:
 \label{eq:delta-T-tilde-approx}
 \end{equation}
 
-\subsection{Transformed depolarization tensor $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$}
+\subsection{Transformed depolarization tensors $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$}
 
+\subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\ast}$}
+
+The elements of the transformed depolarization tensor 
+$\tilde{\mathbf{N}}^{\ast}$ used to compute the 
+uniform magnetic field $\tilde{\mathbf{H}}^{\ast}$
+(Eq. \ref{eq:Hi-tilde}) and the magnetization $\tilde{\mathbf{M}}$ 
+(Eqs. \ref{eq:M-tilde} and \ref{eq:M-tilde-remanence})
+are calculated according to Equation \ref{eq:nij-tilde}, with 
+$\tilde{f}(\tilde{\mathbf{r}})$ given by 
+$\tilde{f}^{\ast}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fi-tilde}).
+As we have already pointed out, the  
+$\tilde{f}^{\ast}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fi-tilde}) is a
+quadratic function of the spatial coordinates $\tilde{x}$,
+$\tilde{y}$ and $\tilde{z}$. Consequently, the off-diagonal
+elements $\tilde{n}^{\ast}_{ij}(\tilde{\mathbf{r}})$, $i = 1, 2, 3$, 
+$j = 1, 2, 3$, $i \ne j$, are equal to zero. The remaining
+diagonal elements are given by \citep{stoner1945}:
+\begin{equation}
+\tilde{n}^{\ast}_{ii}(\tilde{\mathbf{r}}) = \frac{abc}{2}
+\int_{0}^{\infty} \frac{1}{\left( e_{i}^{2} 
++ u \right) R(u)} \, du \: , \quad i = 1, 2, 3 \: ,
+\label{eq:n-tilde-ast-ii}
+\end{equation}
+where $R(u)$ is defined by Equation \ref{eq:R} and
+$e_{1} = a$, $e_{2} = b$, and $e_{3} = c$. These elements
+are commonly known as \textit{demagnetizing factors}.
+Notice that, according to Equations \ref{eq:H-tilde} 
+and \ref{eq:N-tilde-VT-N-V},
+\begin{equation}
+\mathbf{N}(\mathbf{r}) = 
+\mathbf{V} \, \tilde{\mathbf{N}}^{\ast} \, 
+\mathbf{V}^{\top} \: ,
+\label{eq:N-V-N-ast-VT}
+\end{equation}
+where $\tilde{\mathbf{N}}^{\ast}$ (Eqs. \ref{eq:Hi-tilde}, 
+\ref{eq:M-tilde} and \ref{eq:M-tilde-remanence}) is a diagonal 
+matrix and $\mathbf{V}$ (Eqs. \ref{eq:V_triaxial_prolate} and
+\ref{eq:V_oblate}) is an orthogonal matrix.
+This equation shows that, for the particular case 
+in which $\mathbf{r}$ and consequently $\tilde{\mathbf{r}}$
+represent a point inside the
+volume $V$ of the ellipsoid, the elements 
+$\tilde{n}^{\ast}_{ii}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:n-tilde-ast-ii})
+of $\tilde{\mathbf{N}}^{\ast}$ represent the eigenvalues while the 
+columns of $\mathbf{V}$ represent the eigenvectors of the 
+original depolarization tensor $\mathbf{N}(\mathbf{r})$.
+
+INTRODUZIR OS ELEMENTOS $\tilde{n}^{\ast}_{ii}(\tilde{\mathbf{r}})$
+PARA OS TRES TIPOS DE ELIPSOIDE
+
+\subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}})$}
+
+The elements of the transformed depolarization tensor 
+$\tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}})$ used to compute
+the magnetic field $\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
+produced by the ellipsoid (Eq. \ref{eq:delta-H-tilde}) and
+the total-field anomaly $\Delta \tilde{T}(\tilde{\mathbf{r}})$
+(Eqs. \ref{eq:delta-T-tilde} and \ref{eq:delta-T-tilde-approx}) 
+are calculated according to Equation \ref{eq:nij-tilde}, with 
+$\tilde{f}(\tilde{\mathbf{r}})$ given by $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
+(Eq. \ref{eq:fe-tilde}).
 
 
 
@@ -629,7 +690,6 @@ Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar
 function obtained by transforming $f(\mathbf{r})$ 
 (Eq. \ref{eq:f}) from the
 main coordinate system to a local coordinate system.
-
 For convenience, let us rewrite Equation 
 \ref{eq:coord_transformation} as follows:
 \begin{equation}
