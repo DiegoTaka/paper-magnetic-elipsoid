@@ -256,10 +256,10 @@ is defined according to Eqs. \ref{eq:V_triaxial_prolate} or
 
 Based on the mathematical theory of the magnetic 
 induction developed by \citet{poisson1824}, 
-\citet{maxwell1873} affirmed that, if $V$ is the 
+\citet{maxwell1873} affirmed that, if $U$ is the 
 gravitational potential produced by any body 
 with uniform density $\rho$ and arbitrary shape at 
-a point $(x, y, z)$, then $-\frac{\partial V}{\partial x}$
+a point $(x, y, z)$, then $-\frac{\partial U}{\partial x}$
 is the magnetic scalar potential produced 
 at the same point by the same body 
 if it has a uniform magnetization oriented along $x$ 
@@ -271,7 +271,7 @@ By presuming that this uniform magnetization is due to
 induction, he postulated that the resulting magnetic
 field (intensity) at all points within the body must
 also be uniform and parallel the magnetization, which
-results that the gravitational potential $V$ at points
+results that the gravitational potential $U$ at points
 within the body must be a quadratic function of the
 spatial coordinates.
 Apparently, \citet{maxwell1873} was the first one to
@@ -293,13 +293,13 @@ at the position $\mathbf{r}$ (Eqs. \ref{eq:A} and
 coordinate system is defined as follows \citep{sharma1966, 
 eskola1980, reitz1992, sttraton2007}:
 \begin{equation}
-\mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} - \nabla \phi(\mathbf{r}) \: ,
+\mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} - \nabla V(\mathbf{r}) \: ,
 \label{eq:H}
 \end{equation}
 where the second term is the negative gradient of 
-the magnetic scalar potential $\phi(\mathbf{r})$ given by:
+the magnetic scalar potential $V(\mathbf{r})$ given by:
 \begin{equation}
-\phi(\mathbf{r}) = -\frac{1}{4\pi} \iiint_{V} 
+V(\mathbf{r}) = -\frac{1}{4\pi} \iiint_{\vartheta} 
 \mathbf{M}(\mathbf{r}^{\prime})^{\top} 
 \nabla \left(
 \frac{1}{\| \mathbf{r} - \mathbf{r}^{\prime} \|}
@@ -308,10 +308,10 @@ the magnetic scalar potential $\phi(\mathbf{r})$ given by:
 \end{equation}
 In this equation, $\mathbf{r}^{\prime} = [\begin{array}{ccc} 
 x^{\prime} & y^{\prime} & z^{\prime} \end{array} ]^{\top}$
-is the position vector of a point located within the volume $V$, 
+is the position vector of a point located within the volume $\vartheta$, 
 the integral is conducted over the variables 
 $x^{\prime}$, $y^{\prime}$ and, $z^{\prime}$ representing
-the coordinates of a point located within the volume $V$
+the coordinates of a point located within the volume $\vartheta$
 of the ellipsoid, $\| \cdot \|$ denotes the Euclidean norm and 
 $\mathbf{M}(\mathbf{r}^{\prime})$ is the magnetization vector
 (in $\unit{Am^{-1}}$).
@@ -323,17 +323,17 @@ a point located inside or outside the magnetized body
 Based on \citeauthor{maxwell1873}'s postulate, let us
 assume that the body has a uniform magnetization given by
 \begin{equation}
-\mathbf{M} = \mathbf{K} \, \mathbf{H}^{\ast} \: ,
+\mathbf{M} = \mathbf{K} \, \mathbf{H}^{\dagger} \: ,
 \label{eq:M-KH}
 \end{equation}
-where $\mathbf{H}^{\ast}$ is the resultant uniform magnetic field 
+where $\mathbf{H}^{\dagger}$ is the resultant uniform magnetic field 
 at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
 magnetic susceptibility of the body. In this case, Equation 
 \ref{eq:H} can be rewritten as follows:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} 
-- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}^{\ast} \: ,
+- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}^{\dagger} \: ,
 \label{eq:H-M-uniform}
 \end{equation}
 where $\mathbf{N}(\mathbf{r})$ is a symmetrical matrix whose
@@ -350,7 +350,7 @@ $r_{1} = x$, $r_{2} = y$, $r_{3} = z$ are the elements of
 the position vector $\mathbf{r}$ (Eq. \ref{eq:ellipsoid_surface}), 
 and
 \begin{equation}
-f(\mathbf{r}) = \iiint_{V} 
+f(\mathbf{r}) = \iiint_{\vartheta} 
 \frac{1}{\| \mathbf{r} - \mathbf{r}^{\prime} \|}
 \, dx^{\prime}dy^{\prime}dz^{\prime} \: .
 \label{eq:f}
@@ -358,18 +358,18 @@ f(\mathbf{r}) = \iiint_{V}
 Notice that the scalar function $f(\mathbf{r})$ 
 (Eq. \ref{eq:f}) is proportional
 to the gravitational potential that would be produced by the 
-ellipsoidal body with volume $V$ if it had a uniform density 
+ellipsoidal body with volume $\vartheta$ if it had a uniform density 
 equal to the inverse of the gravitational constant.
 It can be shown that the elements $n_{ij}(\mathbf{r})$ are
 finite whether $\mathbf{r}$ is a point within or without
-the volume $V$ \citep{peirce1902, webster1904}.
+the volume $\vartheta$ \citep{peirce1902, webster1904}.
 The matrix $\mathbf{N}(\mathbf{r})$ (Eq. \ref{eq:H-M-uniform})
 is called \textit{depolarization tensor} \citep{soliverez1981, soliverez2008}.
 
 The following part of this paper moves on to describe 
 the magnetic field $\mathbf{H}(\mathbf{r})$ 
 (Eq. \ref{eq:H-M-uniform}) at points located
-both within and without the volume $V$ of the ellipsoidal
+both within and without the volume $\vartheta$ of the ellipsoidal
 body. However, the mathematical developments are conveniently 
 performed in the local coordinate system related to the
 respective ellipsoidal body. 
@@ -393,17 +393,17 @@ by triaxial, prolate, and oblate ellipsoids
 \citep{maxwell1873, thomson1879, dubois1896, 
 peirce1902, webster1904, kellogg1929, stoner1945, osborn1945,
 lowes1974,  peake1953, chang1961, clark1986, tejedor1995, sttraton2007}.
-It is convenient to use $\tilde{f}^{\ast}(\tilde{\mathbf{r}})$
-and $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$ to define 
+It is convenient to use $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
+and $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$ to define 
 the function $\tilde{f}(\tilde{\mathbf{r}})$ evaluated, 
 respectively, at points 
-$\tilde{\mathbf{r}}$ inside and outside the volume $V$ of the
+$\tilde{\mathbf{r}}$ inside and outside the volume $\vartheta$ of the
 ellipsoidal body.
 
-The scalar function $\tilde{f}^{\ast}(\tilde{\mathbf{r}})$
+The scalar function $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
 is given by
 \begin{equation}
-\tilde{f}^{\ast}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\tilde{f}^{\dagger}(\tilde{\mathbf{r}}) = \pi \, abc \, 
 \int_{0}^{\infty} \left( 1 
 - \frac{\tilde{x}^{2}}{a^{2} + u} 
 - \frac{\tilde{y}^{2}}{b^{2} + u}
@@ -418,7 +418,7 @@ R(u) = \sqrt{\left( a^{2} + u \right)\left( b^{2} + u \right)\left( c^{2} + u \r
 \end{equation}
 This function represents the gravitational potential
 that would be produced by the ellipsoidal body at
-points located within its volume $V$ if it
+points located within its volume $\vartheta$ if it
 had a uniform density equal to the inverse of the
 gravitational constant.
 Notice that, in this case, the gravitational potential
@@ -426,10 +426,10 @@ is a quadratic function of the spatial coordinates
 $\tilde{x}$, $\tilde{y}$, and $\tilde{z}$, which
 supported the \citeauthor{maxwell1873}'s (\citeyear{maxwell1873})
 postulate about uniformly magnetized ellipsoids.
-In a similar way, the function $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
+In a similar way, the function $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$
 is given by
 \begin{equation}
-\tilde{f}^{\dagger}(\tilde{\mathbf{r}}) = \pi \, abc \, 
+\tilde{f}^{\ddagger}(\tilde{\mathbf{r}}) = \pi \, abc \, 
 \int_{\lambda}^{\infty} \left( 1 
 - \frac{\tilde{x}^{2}}{a^{2} + u} 
 - \frac{\tilde{y}^{2}}{b^{2} + u}
@@ -460,8 +460,8 @@ as follows:
 _{\tilde{\mathbf{N}}(\tilde{\mathbf{r}})} \;
 \underbrace{\mathbf{V}^{\top} \mathbf{K} \mathbf{V}}
 _{\tilde{\mathbf{K}}} \; 
-\underbrace{\mathbf{V}^{\top} \mathbf{H}^{\ast}}
-_{\tilde{\mathbf{H}}^{\ast}} \: ,
+\underbrace{\mathbf{V}^{\top} \mathbf{H}^{\dagger}}
+_{\tilde{\mathbf{H}}^{\dagger}} \: ,
 \label{eq:H-tilde}
 \end{equation}
 where the superscript "$\sim$" denotes quantities
@@ -491,31 +491,31 @@ and $\tilde{r}_{3} = \tilde{z}$ are the elements of the
 transformed vector $\tilde{\mathbf{r}}$ (Eq. \ref{eq:coord_transformation})
 and $\tilde{f}(\tilde{\mathbf{r}})$ is given by Equation \ref{eq:fi-tilde}
 or \ref{eq:fe-tilde}, depending if $\tilde{\mathbf{r}}$ represents a
-point located within or without the volume $V$ of the
+point located within or without the volume $\vartheta$ of the
 ellipsoidal body.
 
 \subsection{Internal magnetic field and magnetization}
 
 By considering $\tilde{\mathbf{r}}$ as a point within the
-volume $V$ of the ellipsoid and using the Maxwell's postulate 
+volume $\vartheta$ of the ellipsoid and using the Maxwell's postulate 
 about the uniformity of the magnetic field $\mathbf{H}(\mathbf{r})$ 
 inside ellipsoidal bodies, we can use Equation \ref{eq:H-tilde}
-for defining the resultant uniform magnetic field $\tilde{\mathbf{H}}^{\ast}$
+for defining the resultant uniform magnetic field $\tilde{\mathbf{H}}^{\dagger}$
 inside the ellipsoidal body as follows:
 \begin{equation}
-\tilde{\mathbf{H}}^{\ast} = 
-\left( \mathbf{I} - \tilde{\mathbf{N}}^{\ast} \, \tilde{\mathbf{K}} \right)^{-1}
+\tilde{\mathbf{H}}^{\dagger} = 
+\left( \mathbf{I} - \tilde{\mathbf{N}}^{\dagger} \, \tilde{\mathbf{K}} \right)^{-1}
 \tilde{\mathbf{H}}_{0} \: ,
 \label{eq:Hi-tilde}
 \end{equation}
 where $\mathbf{I}$ is the identity matrix and 
-$\tilde{\mathbf{N}}^{\ast}$ represents the
+$\tilde{\mathbf{N}}^{\dagger}$ represents the
 transformed depolarization tensor evaluated within 
-the volume $V$ of the ellipsoidal body. The elements
-of $\tilde{\mathbf{N}}^{\ast}$ will be presented in a 
+the volume $\vartheta$ of the ellipsoidal body. The elements
+of $\tilde{\mathbf{N}}^{\dagger}$ will be presented in a 
 latter section.
 
-Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}^{\ast}$
+Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}^{\dagger}$
 (Eq. \ref{eq:Hi-tilde}) by the transformed 
 susceptibility tensor $\tilde{\mathbf{K}}$ 
 (Eq. \ref{eq:H-tilde}) to obtain
@@ -523,10 +523,10 @@ susceptibility tensor $\tilde{\mathbf{K}}$
 \begin{split}
 \tilde{\mathbf{M}} 
 &= \tilde{\mathbf{K}} 
-\left( \mathbf{I} - \tilde{\mathbf{N}}^{\ast} \, \tilde{\mathbf{K}} \right)^{-1}
+\left( \mathbf{I} - \tilde{\mathbf{N}}^{\dagger} \, \tilde{\mathbf{K}} \right)^{-1}
 \tilde{\mathbf{H}}_{0} \\
 &=  
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\ast} \right)^{-1}
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
 \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0}
 \end{split} \: ,
 \label{eq:M-tilde}
@@ -550,7 +550,7 @@ and the hypothetical ancient field $\tilde{\mathbf{H}}_{A}$, we obtain the
 following generalized equation
 \begin{equation}
 \tilde{\mathbf{M}} =  
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\ast} \right)^{-1}
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
 \left( \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0} + \tilde{\mathbf{M}}_{R} \right) \: .
 \label{eq:M-tilde-remanence}
 \end{equation}
@@ -566,11 +566,11 @@ between the resultant field $\tilde{\mathbf{H}}(\tilde{\mathbf{r}})$
 and the uniform field $\tilde{\mathbf{H}}_{0}$:
 \begin{equation}
 \Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}}) = 
-- \tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}}) \, \tilde{\mathbf{M}} \: .
+- \tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}}) \, \tilde{\mathbf{M}} \: .
 \label{eq:delta-H-tilde}
 \end{equation}
 The elements of the transformed depolarization tensor 
-$\tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}})$ used in 
+$\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$ used in 
 Equation \ref{eq:delta-H-tilde} will be presented in
 the following section.
 
@@ -613,66 +613,177 @@ and, consequently, the following approximation is valid \citep{blakely1996}:
 
 \subsection{Transformed depolarization tensors $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$}
 
-\subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\ast}$}
+\subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\dagger}$}
 
 The elements of the transformed depolarization tensor 
-$\tilde{\mathbf{N}}^{\ast}$ used to compute the 
-uniform magnetic field $\tilde{\mathbf{H}}^{\ast}$
+$\tilde{\mathbf{N}}^{\dagger}$ used to compute the 
+uniform magnetic field $\tilde{\mathbf{H}}^{\dagger}$
 (Eq. \ref{eq:Hi-tilde}) and the magnetization $\tilde{\mathbf{M}}$ 
 (Eqs. \ref{eq:M-tilde} and \ref{eq:M-tilde-remanence})
 are calculated according to Equation \ref{eq:nij-tilde}, with 
 $\tilde{f}(\tilde{\mathbf{r}})$ given by 
-$\tilde{f}^{\ast}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fi-tilde}).
+$\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fi-tilde}).
 As we have already pointed out, the  
-$\tilde{f}^{\ast}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fi-tilde}) is a
+$\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fi-tilde}) is a
 quadratic function of the spatial coordinates $\tilde{x}$,
-$\tilde{y}$ and $\tilde{z}$. Consequently, the off-diagonal
-elements $\tilde{n}^{\ast}_{ij}(\tilde{\mathbf{r}})$, $i = 1, 2, 3$, 
-$j = 1, 2, 3$, $i \ne j$, are equal to zero. The remaining
-diagonal elements are given by \citep{stoner1945}:
+$\tilde{y}$ and $\tilde{z}$. Consequently, the 
+elements $\tilde{n}^{\dagger}_{ij}$, $i = 1, 2, 3$, 
+$j = 1, 2, 3$, of $\tilde{\mathbf{N}}^{\dagger}$ 
+do not depend on the transformed position
+vector $\tilde{\mathbf{r}}$ (equation \ref{eq:coord_transformation}). 
+Besides, the off-diagonal elements, $i \ne j$, are zero and
+the diagonal elements are given by \citep{stoner1945}:
 \begin{equation}
-\tilde{n}^{\ast}_{ii}(\tilde{\mathbf{r}}) = \frac{abc}{2}
+\tilde{n}^{\dagger}_{ii} = \frac{abc}{2}
 \int_{0}^{\infty} \frac{1}{\left( e_{i}^{2} 
 + u \right) R(u)} \, du \: , \quad i = 1, 2, 3 \: ,
-\label{eq:n-tilde-ast-ii}
+\label{eq:n-tilde-dagger-ii}
 \end{equation}
 where $R(u)$ is defined by Equation \ref{eq:R} and
-$e_{1} = a$, $e_{2} = b$, and $e_{3} = c$. These elements
-are commonly known as \textit{demagnetizing factors}.
+$e_{1} = a$, $e_{2} = b$, and $e_{3} = c$. These elements 
+are commonly known as \textit{demagnetizing factors}
+and are defined according to the ellipsoid type.
 Notice that, according to Equations \ref{eq:H-tilde} 
 and \ref{eq:N-tilde-VT-N-V},
 \begin{equation}
 \mathbf{N}(\mathbf{r}) = 
-\mathbf{V} \, \tilde{\mathbf{N}}^{\ast} \, 
+\mathbf{V} \, \tilde{\mathbf{N}}^{\dagger} \, 
 \mathbf{V}^{\top} \: ,
-\label{eq:N-V-N-ast-VT}
+\label{eq:N-V-N-dagger-VT}
 \end{equation}
-where $\tilde{\mathbf{N}}^{\ast}$ (Eqs. \ref{eq:Hi-tilde}, 
+where $\tilde{\mathbf{N}}^{\dagger}$ (Eqs. \ref{eq:Hi-tilde}, 
 \ref{eq:M-tilde} and \ref{eq:M-tilde-remanence}) is a diagonal 
 matrix and $\mathbf{V}$ (Eqs. \ref{eq:V_triaxial_prolate} and
 \ref{eq:V_oblate}) is an orthogonal matrix.
 This equation shows that, for the particular case 
 in which $\mathbf{r}$ and consequently $\tilde{\mathbf{r}}$
 represent a point inside the
-volume $V$ of the ellipsoid, the elements 
-$\tilde{n}^{\ast}_{ii}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:n-tilde-ast-ii})
-of $\tilde{\mathbf{N}}^{\ast}$ represent the eigenvalues while the 
+volume $\vartheta$ of the ellipsoid, the elements 
+$\tilde{n}^{\dagger}_{ii}$ (Eq. \ref{eq:n-tilde-dagger-ii})
+of $\tilde{\mathbf{N}}^{\dagger}$ represent the eigenvalues while the 
 columns of $\mathbf{V}$ represent the eigenvectors of the 
 original depolarization tensor $\mathbf{N}(\mathbf{r})$.
 
-INTRODUZIR OS ELEMENTOS $\tilde{n}^{\ast}_{ii}(\tilde{\mathbf{r}})$
-PARA OS TRES TIPOS DE ELIPSOIDE
+\subparagraph*{Triaxial ellipsoids}
 
-\subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}})$}
+For triaxial ellipsoids (e.g., $a > b > c$), the demagnetization
+factors are given by:
+\begin{equation}
+\tilde{n}^{\dagger}_{11} = \frac{abc}
+{\left( a^{2} - c^{2} \right)^{\frac{1}{2}} 
+\left( a^{2} - b^{2} \right)} 
+\left[ F(\kappa, \phi) - E(\kappa, \phi) \right] \: ,
+\label{eq:n-tilde-dagger-11-triaxial}
+\end{equation}
+\begin{equation}
+\tilde{n}^{\dagger}_{22} = 
+-\frac{abc}
+{\left( a^{2} - c^{2} \right)^{\frac{1}{2}} 
+\left( a^{2} - b^{2} \right)} 
+\left[ F(\kappa, \phi) - E(\kappa, \phi) \right] + 
+\frac{abc}
+{\left( a^{2} - c^{2} \right)^{\frac{1}{2}} 
+\left( b^{2} - c^{2} \right)} E(\kappa, \phi)
+- \frac{c^{2}}{b^{2} - c^{2}}
+\label{eq:n-tilde-dagger-22-triaxial}
+\end{equation}
+and
+\begin{equation}
+\tilde{n}^{\dagger}_{33} = 
+-\frac{abc}
+{\left( a^{2} - c^{2} \right)^{\frac{1}{2}} 
+\left( b^{2} - c^{2} \right)} E(\kappa, \phi) +
+\frac{b^{2}}{b^{2} - c^{2}} \: ,
+\label{eq:n-tilde-dagger-33-triaxial}
+\end{equation}
+where $\kappa = \left[ \left( a^{2} - b^{2} \right) / 
+\left( a^{2} - c^{2} \right) \right]^{\frac{1}{2}}$,
+$\cos \phi = c/a$,
+\begin{equation}
+F(\kappa, \phi) = 
+\int^{\phi}_{0} 
+\frac{1}{\left( 1 - \kappa^{2} \sin^{2} \psi \right)^{\frac{1}{2}}}
+d\psi \: ,
+\label{eq:F-kappa-phi}
+\end{equation}
+and
+\begin{equation}
+E(\kappa, \phi) = 
+\int^{\phi}_{0} 
+\left( 1 - \kappa^{2} \sin^{2} \psi \right)^{\frac{1}{2}}
+d\psi \: .
+\label{eq:E-kappa-phi}
+\end{equation}
+The functions $F(\kappa, \phi)$ (Eq. \ref{eq:F-kappa-phi}) and 
+$E(\kappa, \phi)$ (Eq. \ref{eq:E-kappa-phi}) are
+called Legendre's normal elliptic integrals of the first and 
+second kind, respectivelly. \citet{stoner1945} presented a 
+detailed deduction of the demagnetization factors $\tilde{n}^{\dagger}_{11}$
+(Eq. \ref{eq:n-tilde-dagger-11-triaxial}), $\tilde{n}^{\dagger}_{22}$
+(Eq. \ref{eq:n-tilde-dagger-22-triaxial}) and $\tilde{n}^{\dagger}_{33}$
+(Eq. \ref{eq:n-tilde-dagger-33-triaxial}). \citet{clark1986} presented similar
+formulas, but without any proof.
+
+\subparagraph*{Prolate ellipsoids}
+
+For prolate ellipsoids (e.g., $a > b = c$), the demagnetization
+factors are given by
+\begin{equation}
+\tilde{n}^{\dagger}_{11} = \frac{1}{m^{2} - 1}
+\left\lbrace \frac{m}{\left( m^{2} - 1 \right)^{\frac{1}{2}}}
+\ln \left[ m + \left( m^{2} - 1 \right)^{\frac{1}{2}} \right]
+- 1 \right\rbrace
+\label{eq:n-tilde-dagger-11-prolate}
+\end{equation}
+and
+\begin{equation}
+\tilde{n}^{\dagger}_{22} = \frac{1}{2} \left(1 - \tilde{n}^{\dagger}_{11} \right) \: ,
+\label{eq:n-tilde-dagger-22-prolate}
+\end{equation}
+where $\tilde{n}^{\dagger}_{33} = \tilde{n}^{\dagger}_{22}$, 
+which uses the $\tilde{n}^{\dagger}_{11}$ defined in 
+Equation \ref{eq:n-tilde-dagger-11-prolate}, and $m = a/b$.
+The detailed deduction of the demagnetization factors 
+$\tilde{n}^{\dagger}_{11}$ (Eq. \ref{eq:n-tilde-dagger-11-prolate}) 
+and $\tilde{n}^{\dagger}_{22}$ (Eq. \ref{eq:n-tilde-dagger-22-prolate})
+can be found in \citet{stoner1945}. These formulas were posteriorly 
+presented by \citet{emerson1985}, but without any mathematical proof.
+
+\subparagraph*{Oblate ellipsoids}
+
+For oblate ellipsoids (e.g., $a < b = c$), the demagnetization
+factors are given by
+\begin{equation}
+\tilde{n}^{\dagger}_{11} = 
+\frac{1}{1 - m^{2}} \left[
+1 - \frac{m}{\left( 1 - m^{2} \right)^{\frac{1}{2}}} \cos^{-1}m
+\right] \: ,
+\label{eq:n-tilde-dagger-11-oblate}
+\end{equation}
+where $\tilde{n}^{\dagger}_{22}$ and $\tilde{n}^{\dagger}_{33}$ 
+are calculated according to
+\ref{eq:n-tilde-dagger-22-prolate}, but with $\tilde{n}^{\dagger}_{11}$ 
+defined in Equation \ref{eq:n-tilde-dagger-11-oblate}), 
+and $m = a/b$.
+The detailed deduction of these demagnetization factors 
+can be found in \citet{stoner1945}. These formulas can also be found
+in \citet{emerson1985}, but without any mathematical proof.
+The only difference, however, is that \citet{emerson1985} replaced
+the term $\cos^{-1}$ by a term $\tan^{-1}$, according to 
+the trigonometric identity 
+$\tan^{-1}x = \cos^{-1}(1/\sqrt{x^{2} + 1})$, $x > 0$.
+
+
+\subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$}
 
 The elements of the transformed depolarization tensor 
-$\tilde{\mathbf{N}}^{\dagger}(\tilde{\mathbf{r}})$ used to compute
+$\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$ used to compute
 the magnetic field $\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
 produced by the ellipsoid (Eq. \ref{eq:delta-H-tilde}) and
 the total-field anomaly $\Delta \tilde{T}(\tilde{\mathbf{r}})$
 (Eqs. \ref{eq:delta-T-tilde} and \ref{eq:delta-T-tilde-approx}) 
 are calculated according to Equation \ref{eq:nij-tilde}, with 
-$\tilde{f}(\tilde{\mathbf{r}})$ given by $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
+$\tilde{f}(\tilde{\mathbf{r}})$ given by $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$
 (Eq. \ref{eq:fe-tilde}).
 
 
