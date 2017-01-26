@@ -664,10 +664,13 @@ of $\tilde{\mathbf{N}}^{\dagger}$ represent the eigenvalues while the
 columns of $\mathbf{V}$ represent the eigenvectors of the 
 original depolarization tensor $\mathbf{N}(\mathbf{r})$.
 
+
 \subparagraph*{Triaxial ellipsoids}
 
+
 For triaxial ellipsoids (e.g., $a > b > c$), the demagnetization
-factors are given by:
+factors obtained by solving Equation \ref{eq:n-tilde-dagger-ii} 
+are given by:
 \begin{equation}
 \tilde{n}^{\dagger}_{11} = \frac{abc}
 {\left( a^{2} - c^{2} \right)^{\frac{1}{2}} 
@@ -724,10 +727,13 @@ detailed deduction of the demagnetization factors $\tilde{n}^{\dagger}_{11}$
 (Eq. \ref{eq:n-tilde-dagger-33-triaxial}). \citet{clark1986} presented similar
 formulas, but without any proof.
 
+
 \subparagraph*{Prolate ellipsoids}
 
+
 For prolate ellipsoids (e.g., $a > b = c$), the demagnetization
-factors are given by
+factors obtained by solving Equation \ref{eq:n-tilde-dagger-ii} 
+are given by:
 \begin{equation}
 \tilde{n}^{\dagger}_{11} = \frac{1}{m^{2} - 1}
 \left\lbrace \frac{m}{\left( m^{2} - 1 \right)^{\frac{1}{2}}}
@@ -746,13 +752,17 @@ Equation \ref{eq:n-tilde-dagger-11-prolate}, and $m = a/b$.
 The detailed deduction of the demagnetization factors 
 $\tilde{n}^{\dagger}_{11}$ (Eq. \ref{eq:n-tilde-dagger-11-prolate}) 
 and $\tilde{n}^{\dagger}_{22}$ (Eq. \ref{eq:n-tilde-dagger-22-prolate})
-can be found in \citet{stoner1945}. These formulas were posteriorly 
+can be found, for example, in \citet{stoner1945}. 
+These formulas were posteriorly 
 presented by \citet{emerson1985}, but without any mathematical proof.
+
 
 \subparagraph*{Oblate ellipsoids}
 
+
 For oblate ellipsoids (e.g., $a < b = c$), the demagnetization
-factors are given by
+factors obtained by solving Equation \ref{eq:n-tilde-dagger-ii} 
+are given by:
 \begin{equation}
 \tilde{n}^{\dagger}_{11} = 
 \frac{1}{1 - m^{2}} \left[
@@ -761,12 +771,12 @@ factors are given by
 \label{eq:n-tilde-dagger-11-oblate}
 \end{equation}
 where $\tilde{n}^{\dagger}_{22}$ and $\tilde{n}^{\dagger}_{33}$ 
-are calculated according to
+are calculated according to Equation
 \ref{eq:n-tilde-dagger-22-prolate}, but with $\tilde{n}^{\dagger}_{11}$ 
-defined in Equation \ref{eq:n-tilde-dagger-11-oblate}), 
+defined in Equation \ref{eq:n-tilde-dagger-11-oblate}, 
 and $m = a/b$.
 The detailed deduction of these demagnetization factors 
-can be found in \citet{stoner1945}. These formulas can also be found
+can be found, for example, in \citet{stoner1945}. These formulas can also be found
 in \citet{emerson1985}, but without any mathematical proof.
 The only difference, however, is that \citet{emerson1985} replaced
 the term $\cos^{-1}$ by a term $\tan^{-1}$, according to 
@@ -776,15 +786,17 @@ $\tan^{-1}x = \cos^{-1}(1/\sqrt{x^{2} + 1})$, $x > 0$.
 
 \subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$}
 
-The elements of the transformed depolarization tensor 
+The elements $\tilde{n}^{\ddagger}_{ij}(\tilde{\mathbf{r}})$,
+$i = 1, 2, 3$, $j = 1, 2, 3$, of the transformed depolarization tensor 
 $\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$ used to compute
 the magnetic field $\Delta \tilde{\mathbf{H}}(\tilde{\mathbf{r}})$ 
-produced by the ellipsoid (Eq. \ref{eq:delta-H-tilde}) and
+(Eq. \ref{eq:delta-H-tilde}) and
 the total-field anomaly $\Delta \tilde{T}(\tilde{\mathbf{r}})$
 (Eqs. \ref{eq:delta-T-tilde} and \ref{eq:delta-T-tilde-approx}) 
 are calculated according to Equation \ref{eq:nij-tilde}, with 
 $\tilde{f}(\tilde{\mathbf{r}})$ given by $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$
 (Eq. \ref{eq:fe-tilde}).
+
 
 
 
@@ -1132,7 +1144,7 @@ easily calculated as follows:
 \end{equation}
 
 In the case of oblate ellipsoids, the procedure for determining
-the parameter $\lambda$ is very similar to that one for prolate
+the parameter $\lambda$ is very similar to this one for prolate
 ellipsoids.
 The semi-axes $a$, $b$, $c$ of oblate 
 ellipsoids are defined so that $b = c > a > 0$
@@ -1171,8 +1183,8 @@ This equation can be determined directly from equation
 \ref{eq:quadric-confocal-triaxial-ell}. 
 The spatial derivatives of $\lambda$ in the case of
 prolate or oblate ellipsoids can also be calculated by using
-Equation \ref{eq:dlambda}, but with semi-axes $a > b = c$
-or $b = c > a$, respectively.
+Equation \ref{eq:dlambda} for the particular case in
+with $b = c$.
 
 
 \authorcontribution{TEXT}
