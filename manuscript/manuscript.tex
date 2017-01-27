@@ -782,9 +782,7 @@ and
 \frac{b^{2}}{b^{2} - c^{2}} \: ,
 \label{eq:n-tilde-dagger-33-triaxial}
 \end{equation}
-where $\kappa = \left[ \left( a^{2} - b^{2} \right) / 
-\left( a^{2} - c^{2} \right) \right]^{\frac{1}{2}}$,
-$\cos \phi = c/a$,
+where
 \begin{equation}
 F(\kappa, \phi) = 
 \int^{\phi}_{0} 
@@ -797,9 +795,12 @@ and
 E(\kappa, \phi) = 
 \int^{\phi}_{0} 
 \left( 1 - \kappa^{2} \sin^{2} \psi \right)^{\frac{1}{2}}
-d\psi \: .
+d\psi \: ,
 \label{eq:E-kappa-phi}
 \end{equation}
+with $\kappa = \left[ \left( a^{2} - b^{2} \right) / 
+\left( a^{2} - c^{2} \right) \right]^{\frac{1}{2}}$ and
+$\cos \phi = c/a$.
 The functions $F(\kappa, \phi)$ (Eq. \ref{eq:F-kappa-phi}) and 
 $E(\kappa, \phi)$ (Eq. \ref{eq:E-kappa-phi}) are
 called Legendre's normal elliptic integrals of the first and 
@@ -869,6 +870,7 @@ $\tan^{-1}x = \cos^{-1}(1/\sqrt{x^{2} + 1})$, $x > 0$.
 
 \subsubsection{Depolarization tensor $\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$}
 
+
 The elements $\tilde{n}^{\ddagger}_{ij}(\tilde{\mathbf{r}})$,
 $i = 1, 2, 3$, $j = 1, 2, 3$, of the transformed depolarization tensor 
 $\tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}})$ used to compute
@@ -879,7 +881,9 @@ the total-field anomaly $\Delta \tilde{T}(\tilde{\mathbf{r}})$
 are calculated according to Eq. \ref{eq:nij-tilde}, with 
 $\tilde{f}(\tilde{\mathbf{r}})$ given by $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$
 (Eq. \ref{eq:fe-tilde}).
-
+By following \citet{clark1986}, the diagonal elements $\tilde{n}^{\ddagger}_{ii}$
+and the off-diagonal elements $\tilde{n}^{\ddagger}_{ij}$, $i = 1, 2, 3$,
+$j = 1, 2, 3$, are given by
 \begin{equation}
 \tilde{n}^{\ddagger}_{ii}(\tilde{\mathbf{r}}) =
 \frac{abc}{2}
@@ -887,32 +891,56 @@ $\tilde{f}(\tilde{\mathbf{r}})$ given by $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}
 - g_{i} \right)
 \label{eq:n-tilde-dagger-ii}
 \end{equation}
-
+and
 \begin{equation}
 \tilde{n}^{\ddagger}_{ij}(\tilde{\mathbf{r}}) =
 \frac{abc}{2} \left(
 \frac{\partial \lambda}{\partial \tilde{r}_{i}} \, h_{j} \, \tilde{r}_{j} 
-\right)
+\right) \: ,
 \label{eq:n-tilde-dagger-ij}
 \end{equation}
-
+where
 \begin{equation}
-h_{i} = \frac{1}{\left( e_{i}^{2} + \lambda \right) R(\lambda)}
+h_{i} = \frac{1}{\left( e_{i}^{2} + \lambda \right) R(\lambda)} \: ,
 \label{eq:hi}
 \end{equation}
-
 \begin{equation}
-g_{i} = \int_{\lambda}^{\infty} \frac{1}{\left( e_{i}^{2} + u \right) R(u)} du
+g_{i} = \int_{\lambda}^{\infty} \frac{1}{\left( e_{i}^{2} + u \right) R(u)} du \: ,
 \label{eq:gi}
 \end{equation}
-
+$e_{1} = a$, $e_{2} = b$, $e_{3} = c$, and 
+$\frac{\partial \lambda}{\partial \tilde{r}_{i}}$
+is defined in Appendix B (Eq. \ref{eq:dlambda}).
+The functions $g_{i}$ (Eq. \ref{eq:gi}) are defined according
+to the ellipsoid type.
 
 
 \subparagraph*{Triaxial ellipsoids}
 
 
 
-TEXT
+For triaxial ellipsoids (e.g., $a > b > c$), the functions
+$g_{i}$ (Eq. \ref{eq:gi}) are defined as follows
+\citep{clark1986}:
+
+\begin{equation}
+g_{1} = \frac{2}{\left( a^{2} - b^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
+\left[ F(\kappa, \phi) - E(\kappa, \phi) \right] \: ,
+\label{eq:g1-triaxial}
+\end{equation}
+\begin{equation}
+g_{2} = 
+\label{eq:g2-triaxial}
+\end{equation}
+and
+\begin{equation}
+g_{3} = \: ,
+\label{eq:g3-triaxial}
+\end{equation}
+where $F(\kappa, \phi)$ and $E(\kappa, \phi)$ are defined by
+Eqs. \ref{eq:E-kappa-phi} and \ref{eq:F-kappa-phi},
+but with 
+$\sin \phi = \sqrt{\left( a^{2} - c^{2} \right)/\left( a^{2} + \lambda \right)}$.
 
 
 
@@ -921,10 +949,27 @@ TEXT
 
 TEXT
 
+\section{Numerical simulations}
 
+\subsection{Demagnetization factors}
+
+Figure \ref{fig:fig1} TEXT TEXT TEXT Fig. \ref{fig:fig1} TEXT TEXT TEXT (Fig. \ref{fig:fig1})
+
+\subsection{Ellipsoidal models}
+
+TEXT
+
+\subsection{Susceptibility}
+
+TEXT
 
 
 \conclusions  %% \conclusions[modified heading if necessary]
+TEXT
+
+
+\section{Code availability}
+
 TEXT
 
 
@@ -1368,6 +1413,14 @@ TEXT
 %\caption{TEXT}
 %\end{figure}
 %
+
+%f
+\begin{figure}[t]
+\includegraphics[width=8.3cm]{figures/n_triaxial.pdf}
+\caption{TEXT}
+\label{fig:fig1}
+\end{figure}
+
 %%% TWO-COLUMN FIGURES
 %
 %%f
