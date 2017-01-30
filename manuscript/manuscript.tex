@@ -148,7 +148,7 @@ whose shape derives from an ellipsoid
 (e.g., spheres, elliptic cylinders), however all the
 remaining non-ellipsoidal bodies cannot be
 uniformly magnetized in the presence of a uniform
-inducing field \citep{jahren1963, schlomann1965, clark1999}.
+inducing field.
 
 Self-demagnetization demagnetization gives rise to shape 
 anisotropy.
@@ -751,7 +751,7 @@ original depolarization tensor $\mathbf{N}(\mathbf{r})$.
 \subparagraph*{Triaxial ellipsoids}
 
 
-For triaxial ellipsoids (e.g., $a > b > c$), the demagnetization
+For triaxial ellipsoids (e.g., $a > b > c$), the demagnetizing
 factors obtained by solving Eq. \ref{eq:n-tilde-dagger-ii} 
 are given by:
 \begin{equation}
@@ -805,7 +805,7 @@ The functions $F(\kappa, \phi)$ (Eq. \ref{eq:F-kappa-phi}) and
 $E(\kappa, \phi)$ (Eq. \ref{eq:E-kappa-phi}) are
 called Legendre's normal elliptic integrals of the first and 
 second kind, respectivelly. \citet{stoner1945} presented a 
-detailed deduction of the demagnetization factors $\tilde{n}^{\dagger}_{11}$
+detailed deduction of the demagnetizing factors $\tilde{n}^{\dagger}_{11}$
 (Eq. \ref{eq:n-tilde-dagger-11-triaxial}), $\tilde{n}^{\dagger}_{22}$
 (Eq. \ref{eq:n-tilde-dagger-22-triaxial}) and $\tilde{n}^{\dagger}_{33}$
 (Eq. \ref{eq:n-tilde-dagger-33-triaxial}). \citet{clark1986} presented similar
@@ -815,7 +815,7 @@ formulas, but without any proof.
 \subparagraph*{Prolate ellipsoids}
 
 
-For prolate ellipsoids (e.g., $a > b = c$), the demagnetization
+For prolate ellipsoids (e.g., $a > b = c$), the demagnetizing
 factors obtained by solving Eq. \ref{eq:n-tilde-dagger-ii} 
 are given by:
 \begin{equation}
@@ -833,7 +833,7 @@ and
 where $\tilde{n}^{\dagger}_{33} = \tilde{n}^{\dagger}_{22}$, 
 which uses the $\tilde{n}^{\dagger}_{11}$ defined in 
 Eq. \ref{eq:n-tilde-dagger-11-prolate}, and $m = a/b$.
-The detailed deduction of the demagnetization factors 
+The detailed deduction of the demagnetizing factors 
 $\tilde{n}^{\dagger}_{11}$ (Eq. \ref{eq:n-tilde-dagger-11-prolate}) 
 and $\tilde{n}^{\dagger}_{22}$ (Eq. \ref{eq:n-tilde-dagger-22-prolate})
 can be found, for example, in \citet{stoner1945}. 
@@ -844,7 +844,7 @@ presented by \citet{emerson1985}, but without any mathematical proof.
 \subparagraph*{Oblate ellipsoids}
 
 
-For oblate ellipsoids (e.g., $a < b = c$), the demagnetization
+For oblate ellipsoids (e.g., $a < b = c$), the demagnetizing
 factors obtained by solving Eq. \ref{eq:n-tilde-dagger-ii} 
 are given by:
 \begin{equation}
@@ -859,7 +859,7 @@ are calculated according to Eq.
 \ref{eq:n-tilde-dagger-22-prolate}, but with $\tilde{n}^{\dagger}_{11}$ 
 defined in Equation \ref{eq:n-tilde-dagger-11-oblate}, 
 and $m = a/b$.
-The detailed deduction of these demagnetization factors 
+The detailed deduction of these demagnetizing factors 
 can be found, for example, in \citet{stoner1945}. These formulas can also be found
 in \citet{emerson1985}, but without any mathematical proof.
 The only difference, however, is that \citet{emerson1985} replaced
@@ -929,29 +929,56 @@ g_{1} = \frac{2}{\left( a^{2} - b^{2} \right) \left( a^{2} - c^{2} \right)^{\fra
 \label{eq:g1-triaxial}
 \end{equation}
 \begin{equation}
-g_{2} = 
+g_{2} = \frac{2 \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
+{\left( a^{2} - b^{2} \right)\left( b^{2} - c^{2} \right)}
+\left[ E\left(\kappa, \phi \right) 
+- \frac{\left( b^{2} - c^{2} \right)}{\left( a^{2} - c^{2} \right)}
+F\left(\kappa, \phi \right) 
+- \frac{\kappa^{2} \sin\phi \, \cos\phi}
+{\left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
+\right]
 \label{eq:g2-triaxial}
 \end{equation}
 and
 \begin{equation}
-g_{3} = \: ,
+g_{3} = \frac{2}{\left( a^{2} - b^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
+\left[ \frac{\sin\phi \left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
+{\cos\phi}  - E\left(\kappa, \phi \right) \right]
+\: ,
 \label{eq:g3-triaxial}
 \end{equation}
+CHECAR A EQUACAO ACIMA - TEM UM PARANTESES A MAIS NO ARTIGO DO CLARK86
 where $F(\kappa, \phi)$ and $E(\kappa, \phi)$ are defined by
 Eqs. \ref{eq:E-kappa-phi} and \ref{eq:F-kappa-phi},
 but with 
 $\sin \phi = \sqrt{\left( a^{2} - c^{2} \right)/\left( a^{2} + \lambda \right)}$.
 
-
-
 \subparagraph*{Prolate and oblate ellipsoids}
 
 
-TEXT
+For prolate (e.g., $a > b = c$) and oblate (e.g., $a < b = c$)
+ellipsoids, the functions
+$g_{i}$ (Eq. \ref{eq:gi}) are defined as follows
+\citep{emerson1985}:
+
+\begin{equation}
+g_{1} =  \frac{1}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}} 
+\left[ \tan^{-1} \left( \sqrt{\frac{b^{2} - a^{2}}{a^{2} + \lambda}} \right)
+- \frac{\sqrt{\left( b^{2} - a^{2} \right)\left( a^{2} + \lambda \right)}}
+{\left( b^{2} + \lambda \right)} \right]
+\label{eq:g1-prolate-oblate}
+\end{equation}
+\begin{equation}
+g_{2} = \frac{2}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}} 
+\left[ \sqrt{\frac{b^{2} - a^{2}}{a^{2} + \lambda}}
+- \tan^{-1} \left( \sqrt{\frac{b^{2} - a^{2}}{a^{2} + \lambda}} \right) \right] \: ,
+\label{eq:g2-prolate-oblate}
+\end{equation}
+where $g_{3} = g_{2}$.
 
 \section{Numerical simulations}
 
-\subsection{Demagnetization factors}
+\subsection{Demagnetizing factors}
 
 Figure \ref{fig:fig1} TEXT TEXT TEXT Fig. \ref{fig:fig1} TEXT TEXT TEXT (Fig. \ref{fig:fig1})
 
@@ -1187,7 +1214,7 @@ the largest root $\lambda$ of the cubic equation $p(u)$ (Eq.
 From Eq. \ref{eq:cubic-equation-triaxial-ell}, we obtain a
 simpler one given by
 \begin{equation}
-p(u) =  u^{u} + p_{2} \, u^{2} + p_{1} \, u + p_{0} \: ,
+p(u) =  u^{3} + p_{2} \, u^{2} + p_{1} \, u + p_{0} \: ,
 \label{eq:cubic-equation-triaxial-ell-simpler}
 \end{equation}
 where
@@ -1416,7 +1443,7 @@ TEXT
 
 %f
 \begin{figure}[t]
-\includegraphics[width=8.3cm]{figures/n_triaxial.pdf}
+\includegraphics[width=8.3cm]{figures/demag_factors.pdf}
 \caption{TEXT}
 \label{fig:fig1}
 \end{figure}
