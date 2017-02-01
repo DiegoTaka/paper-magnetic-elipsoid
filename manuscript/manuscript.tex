@@ -997,7 +997,34 @@ TEXT
 
 \section{Code availability}
 
-TEXT
+%The mocsy package is distributed under the MIT license and
+%is available from GitHub. It can be retrieved in the conventional
+%manner with Git, namely by issuing the command
+%git clone git://github.com/jamesorr/mocsy.git
+%in an X terminal on Linux, Mac, or PC operating systems. If
+%that fails, install Git and try again, or go to the main web page
+%on GitHub (https://github.com/jamesorr/mocsy) and click on
+%the link ?Download ZIP?. Once downloaded, mocsy can be
+%compiled under Linux or Unix by typing
+%make .
+%More details on the code, its compilation, and examples of
+%its use in Fortran or when called from Python can be found
+%in the mocsy manual at http://ocmip5.ipsl.jussieu.fr/mocsy/.
+
+%We use the original code MOM4p1 as distributed by NOAA?s
+%Geophysical Fluid Dynamics Laboratory (http://www.gfdl.
+%noaa.gov/fms) except for in the first year of spin-up, where
+%we use a modified version of ocean_tracer.F90, which caps
+%outlying temperatures and salinities to enforce numerical stability.
+%The model configuration described here ? including
+%respective namelists, the forcing, initial conditions and the
+%modified ocean_tracer.F90 ? is accessible via http://www.
+%baltic-ocean.org. In addition, we distribute a modified version
+%of memutils.F90 which runs on OS X 10.8.5.
+
+\citet{uieda2013}
+
+
 
 
 
@@ -1247,7 +1274,7 @@ calculated as follows \citep{weisstein2017}:
 \end{equation}
 where
 \begin{equation}
-\theta = \cos^{-1} \left( \frac{R}{\sqrt{Q^{3}}} \right) \: ,
+\theta = \cos^{-1} \left( \frac{R}{\sqrt{-Q^{3}}} \right) \: ,
 \label{eq:theta-triaxial-ell}
 \end{equation}
 \begin{equation}
