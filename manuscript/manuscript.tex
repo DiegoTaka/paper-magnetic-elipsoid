@@ -900,22 +900,22 @@ and the off-diagonal elements $\tilde{n}^{\ddagger}_{ij}$, $i = 1, 2, 3$,
 $j = 1, 2, 3$, are given by
 \begin{equation}
 \tilde{n}^{\ddagger}_{ii}(\tilde{\mathbf{r}}) =
-\frac{abc}{2}
+-\frac{abc}{2}
 \left( \frac{\partial \lambda}{\partial \tilde{r}_{i}} \, h_{i} \, \tilde{r}_{i}
-- g_{i} \right)
++ g_{i} \right)
 \label{eq:n-tilde-dagger-ii}
 \end{equation}
 and
 \begin{equation}
 \tilde{n}^{\ddagger}_{ij}(\tilde{\mathbf{r}}) =
-\frac{abc}{2} \left(
+-\frac{abc}{2} \left(
 \frac{\partial \lambda}{\partial \tilde{r}_{i}} \, h_{j} \, \tilde{r}_{j} 
 \right) \: ,
 \label{eq:n-tilde-dagger-ij}
 \end{equation}
 where
 \begin{equation}
-h_{i} = \frac{1}{\left( e_{i}^{2} + \lambda \right) R(\lambda)} \: ,
+h_{i} = -\frac{1}{\left( e_{i}^{2} + \lambda \right) R(\lambda)} \: ,
 \label{eq:hi}
 \end{equation}
 \begin{equation}
@@ -955,7 +955,7 @@ F\left(\kappa, \phi \right)
 \end{equation}
 and
 \begin{equation}
-g_{3} = \frac{2}{\left( a^{2} - b^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
+g_{3} = \frac{2}{\left( b^{2} - c^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
 \left[ \frac{\sin\phi \left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
 {\cos\phi}  - E\left(\kappa, \phi \right) \right]
 \: ,
@@ -966,11 +966,10 @@ Eqs. \ref{eq:E-kappa-phi} and \ref{eq:F-kappa-phi},
 but with 
 $\sin \phi = \sqrt{\left( a^{2} - c^{2} \right)/\left( a^{2} + \lambda \right)}$.
 
-\subparagraph*{Prolate and oblate ellipsoids}
+\subparagraph*{Prolate ellipsoids}
 
 
-For prolate (e.g., $a > b = c$) and oblate (e.g., $a < b = c$)
-ellipsoids, the functions
+For prolate (e.g., $a > b = c$) ellipsoids, the functions
 $g_{i}$ (Eq. \ref{eq:gi}) are defined as follows
 \citep{emerson1985}:
 
@@ -988,6 +987,7 @@ g_{2} = \frac{2}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}}
 \label{eq:g2-prolate-oblate}
 \end{equation}
 where $g_{3} = g_{2}$.
+ESTES COEFICIENTES ESTAO ERRADOS
 
 \section{Numerical simulations}
 
