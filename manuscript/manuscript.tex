@@ -426,8 +426,31 @@ assume that the body has a uniform magnetization given by
 where $\mathbf{H}^{\dagger}$ is the resultant uniform magnetic field 
 at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
-magnetic susceptibility of the body. In this case, Equation 
-\ref{eq:H} can be rewritten as follows:
+magnetic susceptibility of the body. 
+In general, the susceptibility tensor $\mathbf{K}$ is represented as
+follows:
+\begin{equation}
+\mathbf{K} = \mathbf{U}
+\left[ \begin{array}{ccc}
+k_{1} & 0 & 0 \\
+0 & k_{2} & 0 \\
+0 & 0 & k_{3} 
+\end{array} \right] \mathbf{U}^{\top} \: ,
+\label{eq:K}
+\end{equation}
+where $k_{1} > k_{2} > k_{3}$ are the 
+\textit{principal susceptibilities} and $\mathbf{U}$ is
+an orthogonal matrix whose columns $\mathbf{u}_{i}$,
+$i = 1, 2, 3$, are unit vectors called 
+\textit{principal directions} \citep{hrouda1982}.
+For the particular case in which the principal directions 
+coincide with the ellipsoid axes, $\mathbf{U} = \mathbf{V}$
+where $\mathbf{V}$ is defined by Eq. \ref{eq:V_triaxial_prolate} 
+or \ref{eq:V_oblate}), depending on the ellipsoid type.
+
+By using the magnetization $\mathbf{M}$ defined by Eq. \ref{eq:M-KH}, 
+the total magnetic field $\mathbf{H}(\mathbf{r})$ (Eq. \ref{eq:H}) 
+can be rewritten as follows:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} 
 - \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}^{\dagger} \: ,
@@ -932,7 +955,6 @@ to the ellipsoid type.
 \subparagraph*{Triaxial ellipsoids}
 
 
-
 For triaxial ellipsoids (e.g., $a > b > c$), the functions
 $g_{i}$ (Eq. \ref{eq:gi}) are defined as follows
 \citep{clark1986}:
@@ -966,28 +988,70 @@ Eqs. \ref{eq:E-kappa-phi} and \ref{eq:F-kappa-phi},
 but with 
 $\sin \phi = \sqrt{\left( a^{2} - c^{2} \right)/\left( a^{2} + \lambda \right)}$.
 
+FALAR DO \citet{tejedor1995}
+
+
 \subparagraph*{Prolate ellipsoids}
 
 
 For prolate (e.g., $a > b = c$) ellipsoids, the functions
-$g_{i}$ (Eq. \ref{eq:gi}) are defined as follows
+$g_{i}$ (Eq. \ref{eq:gi}) are given by
 \citep{emerson1985}:
 
 \begin{equation}
-g_{1} =  \frac{1}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}} 
-\left[ \tan^{-1} \left( \sqrt{\frac{b^{2} - a^{2}}{a^{2} + \lambda}} \right)
-- \frac{\sqrt{\left( b^{2} - a^{2} \right)\left( a^{2} + \lambda \right)}}
-{\left( b^{2} + \lambda \right)} \right]
-\label{eq:g1-prolate-oblate}
+g_{1} =  \frac{2}{\left( a^{2} - b^{2} \right)^{\frac{3}{2}}}
+\left\lbrace
+\ln \left[ \frac{\left( a^{2} - b^{2} \right)^{\frac{1}{2}} + 
+                 \left( a^{2} + \lambda \right)^{\frac{1}{2}}}{
+                 \left( b^{2} + \lambda \right)^{\frac{1}{2}}} \right] -
+\left( \frac{a^{2} - b^{2}}{a^{2} + \lambda} \right)^{\frac{1}{2}}
+\right\rbrace
+\label{eq:g1-prolate}
 \end{equation}
+and
 \begin{equation}
-g_{2} = \frac{2}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}} 
-\left[ \sqrt{\frac{b^{2} - a^{2}}{a^{2} + \lambda}}
-- \tan^{-1} \left( \sqrt{\frac{b^{2} - a^{2}}{a^{2} + \lambda}} \right) \right] \: ,
-\label{eq:g2-prolate-oblate}
+g_{2} =  \frac{1}{\left( a^{2} - b^{2} \right)^{\frac{3}{2}}}
+\left\lbrace
+\frac{\left[ \left( a^{2} - b^{2} \right)
+             \left( a^{2} + \lambda \right) \right]^{\frac{1}{2}}}
+     {b^{2} + \lambda} -
+\ln \left[ \frac{\left( a^{2} - b^{2} \right)^{\frac{1}{2}} + 
+                 \left( a^{2} + \lambda \right)^{\frac{1}{2}}}{
+                 \left( b^{2} + \lambda \right)^{\frac{1}{2}}} \right]
+\right\rbrace \: ,
+\label{eq:g2-prolate}
 \end{equation}
 where $g_{3} = g_{2}$.
-ESTES COEFICIENTES ESTAO ERRADOS
+
+
+\subparagraph*{Oblate ellipsoids}
+
+
+For oblate (e.g., $a < b = c$) ellipsoids, the functions
+$g_{i}$ (Eq. \ref{eq:gi}) are given by
+\citep{emerson1985}:
+
+\begin{equation}
+g_{1} =  \frac{2}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}}
+\left\lbrace
+\left( \frac{b^{2} - a^{2}}{a^{2} + \lambda}\right)^{\frac{1}{2}} -
+\tan^{-1} \left[ \left( \frac{b^{2} - a^{2}}{a^{2} + \lambda}\right)^{\frac{1}{2}} \right]
+\right\rbrace
+\label{eq:g1-oblate}
+\end{equation}
+and
+\begin{equation}
+g_{2} =  \frac{1}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}}
+\left\lbrace
+\tan^{-1} \left[ \left( \frac{b^{2} - a^{2}}{a^{2} + \lambda}\right)^{\frac{1}{2}} \right] -
+\frac{\left[ \left( b^{2} - a^{2} \right)
+             \left( a^{2} + \lambda \right) \right]^{\frac{1}{2}}}
+     {b^{2} + \lambda}
+\right\rbrace \: ,
+\label{eq:g2-oblate}
+\end{equation}
+where $g_{3} = g_{2}$.
+
 
 \section{Numerical simulations}
 
