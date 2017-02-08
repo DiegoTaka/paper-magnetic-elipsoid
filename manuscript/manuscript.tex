@@ -143,9 +143,8 @@ postulate that ellipsoids are the only finite bodies
 having a gravitational potential which satisfies this 
 property and hence can be uniformly magnetized 
 in the presence of a uniform magnetic field.
-
 This property can be extended to other bodies
-whose shape derives from an ellipsoid 
+defined as limiting cases of an ellipsoid
 (e.g., spheres, elliptic cylinders), however all the
 remaining non-ellipsoidal bodies cannot be
 uniformly magnetized in the presence of a uniform
@@ -173,23 +172,19 @@ be neglected if the body has a susceptibility lower
 than 0.1 SI \citep{austin2014, clark2014, clark1986, 
 emerson1985, eskola1980, guo1998, guo2001, purss2005,
 hillan2013}.
-
 However, neglecting the self-demagnetization in
 geological bodies with high susceptibilities (> 0.1 SI) 
-may strongly mislead the results obtained from
+may strongly mislead the interpretation obtained from
 magnetic methods.
-
 \citet{farrar1979} demonstrated the importance of the
 ellipsoidal model in taking into account the 
 self-demagnetization and determining reliable 
 drilling directions on the Tennant Creek field, 
 Australia.
-
 Posteriorly, \citet{hoschke1991} also showed how the
 ellipsoidal model proved to be highly successful in
 locating and defining ironstone bodies in the
 Tennant Creek field.
-
 \citet{clark2000} provides a good discussion about the
 influence of the self-demagnetization in magnetic
 interpretation of the Osborne copper-gold deposit, 
@@ -198,49 +193,44 @@ bodies that have very high susceptibility.
 According to \citet{clark2000}, neglecting the effects 
 of self-demagnetisation led errors of $\approx 55^{\circ}$
 in the interpreted dip. 
-
-Based on magnetic modelling and rock property 
-measurements, \citet{austin2014} showed that,
+Recently, \citet{austin2014} used magnetic modelling 
+and rock property measurements to show that,
 contrary to previous interpretations, the magnetization
 of the Candelaria iron oxide copper-gold deposit, 
 Chile, is not dominated by the induced component.
 Rather, the deposit has a relatively weak remanent 
 magnetization and is strongly affected by 
 self-demagnetization.
+These examples show the importance of the ellipsoidal
+model in producing trustworthy geological models of
+high-susceptibility orebodies, which may save significant 
+cost associated with drilling.
 
-These examples show the practical importance of
-self-demagnetization for the correct interpretation
-of magnetic data produced by geological bodies having
-high susceptibilities.
+As we can see, a vast literature about the magnetic
+modelling of ellipsoidal bodies was developed in which 
+are to be found the names of many brilliant researchers.
+Nevertheless, interest in this subject has not yet died
+out, as is evidenced by the list of modern papers in this
+field.
+Besides, the geoscientific community lacks an easy-to-use 
+tool to simulate the magnetic field produced by uniformly 
+magnetized ellipsoids.
+Such a tool could prove to be useful either for teaching
+and researching geophysics.
 
-These examples also show the importance of the ellipsoidal
-model in producing trustworthy geological models of orebodies,
-which may save significant cost associated with drilling.
+To fill this gap, we provide here a set of routines to 
+model the magnetic field produced by ellipsoids.
+The routines are written in Python language as part of
+the Fatiando a Terra \citep{uieda2013}, which is an 
+open-source library for modelling and inversion in geophysics.
+We attempt to use the best practices of continuous 
+integration, documentation, unit-testing, and version-control
+for the purpose of providing a reliable and easy-to-use
+code.
+It is hoped that the presentation of the theoretical and
+practical aspects given here will be found useful to the
+wide community of geoscientists.
 
-%The ellipsoidal model ability in analytically
-%incorporating the self-demagnetization...
-%FALAR DA APLICACAO DIDATICA 
-
-%Apesar da grande aplicabilidade do modelo elipsoidal 
-%na geofísica, apenas alguns softwares proprietários 
-%possuem sua implementação. Neste sentido, este trabalho 
-%tem a finalidade de disponibilizar uma ferramenta de 
-%código aberto, que poderá ser utilizada livremente 
-%por toda a comunidade geofísica. 
-%exemplo1:
-%Isostasy is one of the oldest and most widely applied
-%concepts in the geosciences, but the geoscientific community
-%lacks a coherent, easy-to-use tool to simulate flexure
-%of a realistic (i.e., laterally heterogeneous) lithosphere under
-%an arbitrary set of surface loads. Such a model is needed for
-%studies of mountain building, sedimentary basin formation,
-%glaciation, sea-level change, and other tectonic, geodynamic,
-%and surface processes.
-%exemplo2:
-%In spite of these efforts,
-%the community currently lacks a robust, easy-to-use,
-%generalized tool for flexural isostatic solutions that can be
-%used by modelers and data-driven scientists alike.
 
 \section{Methodology}
 
@@ -427,8 +417,8 @@ where $\mathbf{H}^{\dagger}$ is the resultant uniform magnetic field
 at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
 magnetic susceptibility of the body. 
-In general, the susceptibility tensor $\mathbf{K}$ is represented as
-follows:
+In general, the susceptibility tensor $\mathbf{K}$ is represented,
+in the main coordinate system, as follows:
 \begin{equation}
 \mathbf{K} = \mathbf{U}
 \left[ \begin{array}{ccc}
@@ -444,9 +434,9 @@ an orthogonal matrix whose columns $\mathbf{u}_{i}$,
 $i = 1, 2, 3$, are unit vectors called 
 \textit{principal directions} \citep{hrouda1982}.
 For the particular case in which the principal directions 
-coincide with the ellipsoid axes, $\mathbf{U} = \mathbf{V}$
-where $\mathbf{V}$ is defined by Eq. \ref{eq:V_triaxial_prolate} 
-or \ref{eq:V_oblate}), depending on the ellipsoid type.
+coincide with the ellipsoid axes, the matrix $\mathbf{U}$ is
+equal to the matrix $\mathbf{V}$ (Eqs. \ref{eq:V_triaxial_prolate}
+and \ref{eq:V_oblate}), depending on the ellipsoid type.
 
 By using the magnetization $\mathbf{M}$ defined by Eq. \ref{eq:M-KH}, 
 the total magnetic field $\mathbf{H}(\mathbf{r})$ (Eq. \ref{eq:H}) 
@@ -512,7 +502,8 @@ for describing the magnetic and gravitational fields produced
 by triaxial, prolate, and oblate ellipsoids  
 \citep{maxwell1873, thomson1879, dubois1896, 
 peirce1902, webster1904, kellogg1929, stoner1945, osborn1945,
-lowes1974,  peake1953, chang1961, clark1986, tejedor1995, sttraton2007}.
+macmillan1958, lowes1974,  peake1953, chang1961, clark1986, 
+tejedor1995, sttraton2007}.
 
 It is convenient to use $\tilde{f}^{\dagger}(\tilde{\mathbf{r}})$
 and $\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$ to define 
@@ -676,6 +667,21 @@ following generalized equation
 \end{equation}
 Equation \ref{eq:M-tilde-remanence} is consistent with that given by
 \citet[Eq. ~38]{clark1986}.
+
+FALAR QUE ESTA EQUACAO REPRESENTA O CASO HOMOGENEO ANISOTROPICO. 
+FALAR QUE A MAIORIA DOS TRABALHOS DISCUTE O CASO HOMOGENEO ISOTROPICO
+(CITAR TRABALHOS)
+O CASO ANISOTROPICO FOI APRESENTADO PELA PRIMEIRA VEZ POR \citet{soliverez1981} and
+posteriorly by \citet{emerson1985} and \citet{clark1986} (CHECAR).
+
+
+FALAR DO CASO PARTICULAR EM QUE A SUSCETIBILIDADE EH MUITO FRACA E
+A REMANENCIA EH NULA. NESTE CASO, A MAGNETIZACAO EH A FORMULA CLASSICA
+DE MAGNETIZACAO INDUZIDA ENCONTRADA NOS LIVROS.
+
+FALAR TAMBEM SOBRE O CASO ISOTROPICO E CITAR O TRABALHO DO GUO 2001.
+USAR OS TERMOS INTRINSIC E EFFECTIVE MAGNETIZATIONS.
+
 
 \subsection{External magnetic field and total-field anomaly}
 
@@ -846,7 +852,7 @@ detailed deduction of the demagnetizing factors $\tilde{n}^{\dagger}_{11}$
 (Eq. \ref{eq:n-tilde-dagger-11-triaxial}), $\tilde{n}^{\dagger}_{22}$
 (Eq. \ref{eq:n-tilde-dagger-22-triaxial}) and $\tilde{n}^{\dagger}_{33}$
 (Eq. \ref{eq:n-tilde-dagger-33-triaxial}). \citet{clark1986} presented similar
-formulas, but without any proof.
+formulas.
 
 
 \subparagraph*{Prolate ellipsoids}
@@ -875,7 +881,7 @@ $\tilde{n}^{\dagger}_{11}$ (Eq. \ref{eq:n-tilde-dagger-11-prolate})
 and $\tilde{n}^{\dagger}_{22}$ (Eq. \ref{eq:n-tilde-dagger-22-prolate})
 can be found, for example, in \citet{stoner1945}. 
 These formulas were posteriorly 
-presented by \citet{emerson1985}, but without any mathematical proof.
+presented by \citet{emerson1985}.
 
 
 \subparagraph*{Oblate ellipsoids}
@@ -897,8 +903,8 @@ are calculated according to Eq.
 defined in Equation \ref{eq:n-tilde-dagger-11-oblate}, 
 and $m = a/b$.
 The detailed deduction of these demagnetizing factors 
-can be found, for example, in \citet{stoner1945}. These formulas can also be found
-in \citet{emerson1985}, but without any mathematical proof.
+can be found, for example, in \citet{stoner1945}.
+These formulas can also be found in \citet{emerson1985}.
 The only difference, however, is that \citet{emerson1985} replaced
 the term $\cos^{-1}$ by a term $\tan^{-1}$, according to 
 the trigonometric identity 
@@ -956,48 +962,66 @@ to the ellipsoid type.
 
 
 For triaxial ellipsoids (e.g., $a > b > c$), the functions
-$g_{i}$ (Eq. \ref{eq:gi}) are defined as follows
-\citep{clark1986}:
-
+$g_{i}$ (Eq. \ref{eq:gi}) are defined as follows:
 \begin{equation}
 g_{1} = \frac{2}{\left( a^{2} - b^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
 \left[ F(\kappa, \phi) - E(\kappa, \phi) \right] \: ,
 \label{eq:g1-triaxial}
 \end{equation}
+%\begin{equation}
+%g_{2} = \frac{2 \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
+%{\left( a^{2} - b^{2} \right)\left( b^{2} - c^{2} \right)}
+%\left[ E\left(\kappa, \phi \right) 
+%- \frac{\left( b^{2} - c^{2} \right)}{\left( a^{2} - c^{2} \right)}
+%F\left(\kappa, \phi \right) 
+%- \frac{\kappa^{2} \sin\phi \, \cos\phi}
+%{\left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
+%\right]
+%\label{eq:g2-triaxial}
+%\end{equation}
 \begin{equation}
 g_{2} = \frac{2 \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
 {\left( a^{2} - b^{2} \right)\left( b^{2} - c^{2} \right)}
-\left[ E\left(\kappa, \phi \right) 
-- \frac{\left( b^{2} - c^{2} \right)}{\left( a^{2} - c^{2} \right)}
-F\left(\kappa, \phi \right) 
-- \frac{\kappa^{2} \sin\phi \, \cos\phi}
-{\left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
-\right]
+\left\lbrace
+E\left(\kappa, \phi \right) 
+- \left( \frac{b^{2} - c^{2}}{a^{2} - c^{2}} \right)
+F\left(\kappa, \phi \right) -
+\frac{a^{2} - b^{2}}{\left( a^{2} - c^{2} \right)^{\frac{1}{2}}} \left[
+\frac{c^{2} + \lambda}{\left( a^{2} + \lambda \right)\left( b^{2} + \lambda \right)}
+\right]^{\frac{1}{2}} \right\rbrace
 \label{eq:g2-triaxial}
 \end{equation}
 and
+%\begin{equation}
+%g_{3} = \frac{2}{\left( b^{2} - c^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
+%\left[ \frac{\sin\phi \left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
+%{\cos\phi}  - E\left(\kappa, \phi \right) \right]
+%\: ,
+%\label{eq:g3-triaxial}
+%\end{equation}
 \begin{equation}
 g_{3} = \frac{2}{\left( b^{2} - c^{2} \right) \left( a^{2} - c^{2} \right)^{\frac{1}{2}}}
-\left[ \frac{\sin\phi \left( 1 - \kappa^{2} \sin^{2}\phi \right)^{\frac{1}{2}}}
-{\cos\phi}  - E\left(\kappa, \phi \right) \right]
+E\left(\kappa, \phi \right) +
+\frac{2}{b^{2} - c^{2}}
+\left[
+\frac{b^{2} + \lambda}{\left( a^{2} + \lambda \right)\left( c^{2} + \lambda \right)}
+\right]^{\frac{1}{2}}
 \: ,
 \label{eq:g3-triaxial}
 \end{equation}
 where $F(\kappa, \phi)$ and $E(\kappa, \phi)$ are defined by
-Eqs. \ref{eq:E-kappa-phi} and \ref{eq:F-kappa-phi},
-but with 
+Eqs. \ref{eq:E-kappa-phi} and \ref{eq:F-kappa-phi}, but with 
 $\sin \phi = \sqrt{\left( a^{2} - c^{2} \right)/\left( a^{2} + \lambda \right)}$.
-
-FALAR DO \citet{tejedor1995}
+A deduction of these formulas was presented by \citet{tejedor1995}.
+Despite the small differences, these formulas can also be found in
+\citet{clark1986}.
 
 
 \subparagraph*{Prolate ellipsoids}
 
 
 For prolate (e.g., $a > b = c$) ellipsoids, the functions
-$g_{i}$ (Eq. \ref{eq:gi}) are given by
-\citep{emerson1985}:
-
+$g_{i}$ (Eq. \ref{eq:gi}) are given by:
 \begin{equation}
 g_{1} =  \frac{2}{\left( a^{2} - b^{2} \right)^{\frac{3}{2}}}
 \left\lbrace
@@ -1022,15 +1046,15 @@ g_{2} =  \frac{1}{\left( a^{2} - b^{2} \right)^{\frac{3}{2}}}
 \label{eq:g2-prolate}
 \end{equation}
 where $g_{3} = g_{2}$.
+These formulas can be obtained by properly manipulating those
+presented by \citep{emerson1985}.
 
 
 \subparagraph*{Oblate ellipsoids}
 
 
 For oblate (e.g., $a < b = c$) ellipsoids, the functions
-$g_{i}$ (Eq. \ref{eq:gi}) are given by
-\citep{emerson1985}:
-
+$g_{i}$ (Eq. \ref{eq:gi}) are given by:
 \begin{equation}
 g_{1} =  \frac{2}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}}
 \left\lbrace
@@ -1051,6 +1075,9 @@ g_{2} =  \frac{1}{\left( b^{2} - a^{2} \right)^{\frac{3}{2}}}
 \label{eq:g2-oblate}
 \end{equation}
 where $g_{3} = g_{2}$.
+Similarly to the case of prolate ellipsoid shown previously,
+these formulas can be obtained by properly manipulating those
+presented by \citep{emerson1985}.
 
 
 \section{Numerical simulations}
@@ -1075,7 +1102,7 @@ TEXT
 \section{Code availability}
 
 The code is freely distributed under 
-BSD 3-clause licence as part of Fatiando a Terra 
+BSD 3-clause licence as part of the Fatiando a Terra 
 \citep{uieda2013}, which is an open-source Python 
 library for modelling and inversion in geophysics.
 Documentation and installation instructions for 
