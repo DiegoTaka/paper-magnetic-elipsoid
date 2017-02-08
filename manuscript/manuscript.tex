@@ -437,6 +437,16 @@ For the particular case in which the principal directions
 coincide with the ellipsoid axes, the matrix $\mathbf{U}$ is
 equal to the matrix $\mathbf{V}$ (Eqs. \ref{eq:V_triaxial_prolate}
 and \ref{eq:V_oblate}), depending on the ellipsoid type.
+Another important particular case is that in which the
+susceptibility is isotropic and, consequently, the principal
+susceptibilities $k_{1}$, $k_{2}$, and $k_{3}$ (Eq. \ref{eq:K})
+are equal to a constant $\chi$. In this case, the susceptibility
+tensor $\mathbf{K}$ (Eq. \ref{eq:K}) assumes the particular form
+\begin{equation}
+\mathbf{K} = \chi \, \mathbf{I} \: ,
+\label{eq:K-isotropic}
+\end{equation}
+where $\mathbf{I}$ represents the identity matrix.
 
 By using the magnetization $\mathbf{M}$ defined by Eq. \ref{eq:M-KH}, 
 the total magnetic field $\mathbf{H}(\mathbf{r})$ (Eq. \ref{eq:H}) 
@@ -620,11 +630,11 @@ inside the ellipsoidal body as follows:
 \label{eq:Hi-tilde}
 \end{equation}
 where $\mathbf{I}$ is the identity matrix and 
-$\tilde{\mathbf{N}}^{\dagger}$ represents the
-transformed depolarization tensor evaluated within 
-the volume $\vartheta$ of the ellipsoidal body. The elements
-of $\tilde{\mathbf{N}}^{\dagger}$ will be presented in a 
-latter section.
+$\tilde{\mathbf{N}}^{\dagger}$ is a diagonal matrix
+representing the transformed depolarization tensor 
+evaluated within the volume $\vartheta$ of the ellipsoidal body. 
+The elements of $\tilde{\mathbf{N}}^{\dagger}$ will be 
+presented in a latter section.
 
 Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}^{\dagger}$
 (Eq. \ref{eq:Hi-tilde}) by the transformed 
@@ -647,6 +657,20 @@ represents the transformed magnetization, as can be easily
 verified by using Eqs. \ref{eq:M-KH} and \ref{eq:H-tilde}.
 The matrix identity used for obtaining the second line of Eq. 
 \ref{eq:M-tilde} is given by \citet[p. ~151]{searle1982}.
+For the particular case in which the susceptibility is isotropic
+(Eq. \ref{eq:K-isotropic}) and $\chi << 1$, the magnetization
+$\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde}) can be approximated
+as follows:
+\begin{equation}
+\tilde{\mathbf{M}} \approx \chi \, \tilde{\mathbf{H}}_{0} \: ,
+\label{eq:M-tilde-chi-H0}
+\end{equation}
+which is the classical equation describing the induced
+magnetization in applied geophysics \citep[p. 87]{blakely1996}.
+Notice that, in this particular case, the magnetization is
+parallel to the inducing field $\tilde{\mathbf{H}}_{0}$.
+
+FALAR DO CASO EM QUE A INDUCAO EH PARALELA A UM EIXO DO ELIPSOIDE
 
 Equation \ref{eq:M-tilde} can be easily generalized for the case in 
 which the ellipsoid has also a uniform remanent magnetization
@@ -667,20 +691,6 @@ following generalized equation
 \end{equation}
 Equation \ref{eq:M-tilde-remanence} is consistent with that given by
 \citet[Eq. ~38]{clark1986}.
-
-FALAR QUE ESTA EQUACAO REPRESENTA O CASO HOMOGENEO ANISOTROPICO. 
-FALAR QUE A MAIORIA DOS TRABALHOS DISCUTE O CASO HOMOGENEO ISOTROPICO
-(CITAR TRABALHOS)
-O CASO ANISOTROPICO FOI APRESENTADO PELA PRIMEIRA VEZ POR \citet{soliverez1981} and
-posteriorly by \citet{emerson1985} and \citet{clark1986} (CHECAR).
-
-
-FALAR DO CASO PARTICULAR EM QUE A SUSCETIBILIDADE EH MUITO FRACA E
-A REMANENCIA EH NULA. NESTE CASO, A MAGNETIZACAO EH A FORMULA CLASSICA
-DE MAGNETIZACAO INDUZIDA ENCONTRADA NOS LIVROS.
-
-FALAR TAMBEM SOBRE O CASO ISOTROPICO E CITAR O TRABALHO DO GUO 2001.
-USAR OS TERMOS INTRINSIC E EFFECTIVE MAGNETIZATIONS.
 
 
 \subsection{External magnetic field and total-field anomaly}
@@ -769,6 +779,11 @@ where $R(u)$ is defined by Eq. \ref{eq:R} and
 $e_{1} = a$, $e_{2} = b$, and $e_{3} = c$. These elements 
 are commonly known as \textit{demagnetizing factors}
 and are defined according to the ellipsoid type.
+Here, we calculate the demagnetizing factors in the SI
+system. Consequently, they satisfies the condition
+$\tilde{n}^{\dagger}_{11} + \tilde{n}^{\dagger}_{22} + 
+\tilde{n}^{\dagger}_{33} = 1$, independently of the
+ellipsoid type.
 Notice that, according to Eqs. \ref{eq:H-tilde} 
 and \ref{eq:N-tilde-VT-N-V},
 \begin{equation}
@@ -956,6 +971,17 @@ $\frac{\partial \lambda}{\partial \tilde{r}_{i}}$
 is defined in Appendix B (Eq. \ref{eq:dlambda}).
 The functions $g_{i}$ (Eq. \ref{eq:gi}) are defined according
 to the ellipsoid type.
+Notice that the elements $\tilde{n}^{\ddagger}_{ij}$
+(Eqs. \ref{eq:n-tilde-dagger-ii} and \ref{eq:n-tilde-dagger-ij}) 
+are proportional to the second derivatives of the function
+$\tilde{f}^{\ddagger}(\tilde{\mathbf{r}})$ (Eq. \ref{eq:fe-tilde}),
+which is harmonic. Consequently, the diagonal elements defined
+in Eq. \ref{eq:n-tilde-dagger-ii} satisfies the condition
+$\tilde{n}^{\ddagger}_{11}(\tilde{\mathbf{r}}) +
+\tilde{n}^{\ddagger}_{22}(\tilde{\mathbf{r}}) +
+\tilde{n}^{\ddagger}_{33}(\tilde{\mathbf{r}}) = 0$ for any
+point $\tilde{\mathbf{r}}$ outside the ellipsoid, independently
+of the ellipsoid type.
 
 
 \subparagraph*{Triaxial ellipsoids}
@@ -1080,7 +1106,27 @@ these formulas can be obtained by properly manipulating those
 presented by \citep{emerson1985}.
 
 
+\section{Computational implementation and testing}
+
+
+The code is implemented in Python language,
+by using use the NumPy and SciPy libraries \citep{vanderwalt2011},
+as part of the open-source source library
+Fatiando a Terra \citep{uieda2013}.
+Because of that, it is very modular and has a
+test suite formed by a considerable number of 
+assertions, unit tests, doc tests and integration tests.
+For readers interested in automated code testing,
+we recommend taking a look at the 
+freely reusable lessons of the Software Carpentry 
+(\url{https://software-carpentry.org/}) and at the
+description of the doctest module that is available
+in the documentation for Python 2.X 
+(\url{https://docs.python.org/2/library/doctest.html}).
+
+
 \section{Numerical simulations}
+
 
 \subsection{Demagnetizing factors}
 
@@ -1095,7 +1141,7 @@ TEXT
 TEXT
 
 
-\conclusions  %% \conclusions[modified heading if necessary]
+\section{Conclusions}  %% \conclusions[modified heading if necessary]
 TEXT
 
 
