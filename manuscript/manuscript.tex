@@ -632,9 +632,10 @@ inside the ellipsoidal body as follows:
 where $\mathbf{I}$ is the identity matrix and 
 $\tilde{\mathbf{N}}^{\dagger}$ is a diagonal matrix
 representing the transformed depolarization tensor 
-evaluated within the volume $\vartheta$ of the ellipsoidal body. 
-The elements of $\tilde{\mathbf{N}}^{\dagger}$ will be 
-presented in a latter section.
+evaluated within the volume $\vartheta$ of the ellipsoidal body.
+For a given ellipsoid, the elements of $\tilde{\mathbf{N}}^{\dagger}$ 
+are constants which are expressed in terms of the ellipsoid semi-axes.
+These elements are presented in detail in a latter section.
 
 Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}^{\dagger}$
 (Eq. \ref{eq:Hi-tilde}) by the transformed 
@@ -657,8 +658,31 @@ represents the transformed magnetization, as can be easily
 verified by using Eqs. \ref{eq:M-KH} and \ref{eq:H-tilde}.
 The matrix identity used for obtaining the second line of Eq. 
 \ref{eq:M-tilde} is given by \citet[p. ~151]{searle1982}.
-For the particular case in which the susceptibility is isotropic
-(Eq. \ref{eq:K-isotropic}) and $\chi << 1$, the magnetization
+
+555555555555555555555555555
+
+For the particular case in which the susceptibility is isotropic,
+the susceptibility tensor is defined according to Eq. \ref{eq:K-isotropic}.
+In this case, the magnetization $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde})
+can be rewritten as follows:
+\begin{equation}
+\tilde{\mathbf{M}} = \left[ \begin{array}{ccc}
+\frac{\chi}{1 - \chi \, \tilde{n}^{\dagger}_{11}} & 0 & 0 \\
+0 & \frac{\chi}{1 - \chi \, \tilde{n}^{\dagger}_{22}} & 0 \\
+0 & 0 & \frac{\chi}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
+\end{array} \right]
+\tilde{\mathbf{H}}_{0} \: ,
+\label{eq:M-tilde-K-isotropic}
+\end{equation}
+where $\tilde{n}^{\dagger}_{ii}$, $i = 1, 2, 3$, are the constant
+elements of the transformed depolarization tensor
+$\tilde{\mathbf{N}}^{\dagger}$.
+Equation \ref{eq:M-tilde-K-isotropic} reveals that,
+the magnetization $\tilde{\mathbf{M}}$ is parallel to
+the inducing field $\tilde{\mathbf{H}}_{0}$
+is parallel to an ellipsoid axis, the magnetization is 
+
+If we additionally consider that $\chi << 1$, the magnetization
 $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde}) can be approximated
 as follows:
 \begin{equation}
@@ -670,7 +694,7 @@ magnetization in applied geophysics \citep[p. 87]{blakely1996}.
 Notice that, in this particular case, the magnetization is
 parallel to the inducing field $\tilde{\mathbf{H}}_{0}$.
 
-FALAR DO CASO EM QUE A INDUCAO EH PARALELA A UM EIXO DO ELIPSOIDE
+555555555555555555555555555555555555555555
 
 Equation \ref{eq:M-tilde} can be easily generalized for the case in 
 which the ellipsoid has also a uniform remanent magnetization
