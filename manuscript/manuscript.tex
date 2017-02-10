@@ -633,8 +633,9 @@ where $\mathbf{I}$ is the identity matrix and
 $\tilde{\mathbf{N}}^{\dagger}$ is a diagonal matrix
 representing the transformed depolarization tensor 
 evaluated within the volume $\vartheta$ of the ellipsoidal body.
-For a given ellipsoid, the elements of $\tilde{\mathbf{N}}^{\dagger}$ 
-are constants which are expressed in terms of the ellipsoid semi-axes.
+For a given ellipsoid, the elements $\tilde{n}^{\dagger}_{ii}$, 
+$i = 1, 2, 3$, of $\tilde{\mathbf{N}}^{\dagger}$ are constants 
+which are expressed in terms of the ellipsoid semi-axes.
 These elements are presented in detail in a latter section.
 
 Let us pre-multiply the uniform internal field $\tilde{\mathbf{H}}^{\dagger}$
@@ -659,43 +660,6 @@ verified by using Eqs. \ref{eq:M-KH} and \ref{eq:H-tilde}.
 The matrix identity used for obtaining the second line of Eq. 
 \ref{eq:M-tilde} is given by \citet[p. ~151]{searle1982}.
 
-555555555555555555555555555
-
-For the particular case in which the susceptibility is isotropic,
-the susceptibility tensor is defined according to Eq. \ref{eq:K-isotropic}.
-In this case, the magnetization $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde})
-can be rewritten as follows:
-\begin{equation}
-\tilde{\mathbf{M}} = \left[ \begin{array}{ccc}
-\frac{\chi}{1 - \chi \, \tilde{n}^{\dagger}_{11}} & 0 & 0 \\
-0 & \frac{\chi}{1 - \chi \, \tilde{n}^{\dagger}_{22}} & 0 \\
-0 & 0 & \frac{\chi}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
-\end{array} \right]
-\tilde{\mathbf{H}}_{0} \: ,
-\label{eq:M-tilde-K-isotropic}
-\end{equation}
-where $\tilde{n}^{\dagger}_{ii}$, $i = 1, 2, 3$, are the constant
-elements of the transformed depolarization tensor
-$\tilde{\mathbf{N}}^{\dagger}$.
-Equation \ref{eq:M-tilde-K-isotropic} reveals that,
-the magnetization $\tilde{\mathbf{M}}$ is parallel to
-the inducing field $\tilde{\mathbf{H}}_{0}$
-is parallel to an ellipsoid axis, the magnetization is 
-
-If we additionally consider that $\chi << 1$, the magnetization
-$\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde}) can be approximated
-as follows:
-\begin{equation}
-\tilde{\mathbf{M}} \approx \chi \, \tilde{\mathbf{H}}_{0} \: ,
-\label{eq:M-tilde-chi-H0}
-\end{equation}
-which is the classical equation describing the induced
-magnetization in applied geophysics \citep[p. 87]{blakely1996}.
-Notice that, in this particular case, the magnetization is
-parallel to the inducing field $\tilde{\mathbf{H}}_{0}$.
-
-555555555555555555555555555555555555555555
-
 Equation \ref{eq:M-tilde} can be easily generalized for the case in 
 which the ellipsoid has also a uniform remanent magnetization
 $\tilde{\mathbf{M}}_{R}$. Let us first consider that
@@ -715,6 +679,44 @@ following generalized equation
 \end{equation}
 Equation \ref{eq:M-tilde-remanence} is consistent with that given by
 \citet[Eq. ~38]{clark1986}.
+
+For the particular case in which the susceptibility is isotropic,
+the susceptibility tensor is defined according to Eq. \ref{eq:K-isotropic}.
+In this case, the magnetization $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde-remanence})
+can be rewritten as follows:
+\begin{equation}
+\tilde{\mathbf{M}} = \left[ \begin{array}{ccc}
+\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{11}} & 0 & 0 \\
+0 & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} & 0 \\
+0 & 0 & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
+\end{array} \right] \left( \chi \, \tilde{\mathbf{H}}_{0} +
+\tilde{\mathbf{M}}_{R} \right) \: .
+\label{eq:M-tilde-K-isotropic}
+\end{equation}
+This equation is in perfect agreement with those presented 
+by \citet[Eqs. ~13--15]{guo2001}.
+The first term, depending on the inducing field $\tilde{\mathbf{H}}_{0}$, 
+represents the induced magnetization whereas the term depending on
+$\tilde{\mathbf{M}}_{R}$ is the remanent magnetization.
+Equation \ref{eq:M-tilde-K-isotropic} reveals that, as pointed out by \citet{maxwell1873},
+the induced magnetization opposes the inducing field 
+if it is parallel to an ellipsoid axis, 
+independently of the ellipsoid type. Otherwise, the
+magnetization is not necessarily parallel to
+the inducing field.
+If we additionally consider that $\chi << 1$, the magnetization
+$\mathbf{M}$ (Eq. \ref{eq:M-KH}), defined in the main coordinate system,
+can be approximated as follows:
+\begin{equation}
+\mathbf{M} \approx \chi \, \mathbf{H}_{0} +
+\mathbf{M}_{R} \: ,
+\label{eq:M-approx}
+\end{equation}
+which is the classical equation describing the resultant
+magnetization in applied geophysics \citep[p. ~89]{blakely1996}.
+Notice that, in this particular case, the induced magnetization
+is parallel to the inducing field $\mathbf{H}_{0}$,
+whether it is parallel to an ellipsoid axis or not.
 
 
 \subsection{External magnetic field and total-field anomaly}
@@ -1134,7 +1136,7 @@ presented by \citep{emerson1985}.
 
 
 The code is implemented in Python language,
-by using use the NumPy and SciPy libraries \citep{vanderwalt2011},
+by using the NumPy and SciPy libraries \citep{vanderwalt2011},
 as part of the open-source source library
 Fatiando a Terra \citep{uieda2013}.
 Because of that, it is very modular and has a
@@ -1144,7 +1146,7 @@ For readers interested in automated code testing,
 we recommend taking a look at the 
 freely reusable lessons of the Software Carpentry 
 (\url{https://software-carpentry.org/}) and at the
-description of the doctest module that is available
+description of the doctest module available
 in the documentation for Python 2.X 
 (\url{https://docs.python.org/2/library/doctest.html}).
 
