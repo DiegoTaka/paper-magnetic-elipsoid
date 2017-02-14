@@ -234,14 +234,16 @@ wide community of geoscientists.
 Let $(x, y, z)$ be a point referred to a Cartesian coordinate system with axes
 $x$, $y$ and $z$ pointing to, respectively, North, East and down.
 For convenience, we denominate this coordinate system as 
-\textit{main coordinate system}.
+\textit{main coordinate system} (Fig. \ref{fig:orientation-angles}a).
 Let us consider an ellipsoidal body with centre at the point $(x_{c}, y_{c}, z_{c})$,
-semi-axes defined by positive constants $a$, $b$, $c$, 
-where $a > b > c$, and orientation defined by
-three angles $\alpha$, $\beta$, and $\gamma$.
+orientation defined by angles \textit{strike}, \textit{dip}, and
+\textit{rake} (Fig. \ref{fig:orientation-angles}a), and semi-axes defined by
+positive constants $a$, $b$, $c$ (Fig. \ref{fig:orientation-angles}b).
+The angles strike, dip and rake are commonly used to
+define the orientation of lines in structural geology
+\citep{clark1986, allmendinger2012}.
 
-DESCREVER A ORIENTACAO EM FUNCAO DOS ANGULOS DE GEOLOGIA ESTRUTURAL
-\citep{clark1986, allmendinger2012}
+PAREI AQUI
 
 The points $(x, y, z)$ located on the surface of this ellipsoidal body
 satisfy the following equation:
@@ -1155,7 +1157,7 @@ in the documentation for Python 2.X
 
 \subsection{Demagnetizing factors}
 
-Figure \ref{fig:fig1} TEXT TEXT TEXT Fig. \ref{fig:fig1} TEXT TEXT TEXT (Fig. \ref{fig:fig1})
+Figure \ref{fig:figxxx} TEXT TEXT TEXT Fig. \ref{fig:figxxx} TEXT TEXT TEXT (Fig. \ref{fig:figxxx})
 
 \subsection{Ellipsoidal models}
 
@@ -1622,9 +1624,42 @@ TEXT
 
 %f
 \begin{figure}[t]
+\includegraphics[width=8.3cm]{figures/structural_orientation_angles.png}
+\caption{Schematic representation of the coordinate systems used to
+represent an ellipsoidal body. 
+(a) Main coordinate system with axes $x$, $y$, and $z$.
+The dark gray plane contains the center $(x_{c}, y_{c}, z_{c})$
+(white circle) and two unit vectors, $\mathbf{u}$ and $\mathbf{w}$, defining two
+semi-axes of the ellipsoidal body. For triaxial and prolate ellipsoids,
+$\mathbf{u}$ and $\mathbf{w}$ define, respectively, 
+the semi-axes $a$ and $b$. For oblate ellipsoids, $\mathbf{u}$ and 
+$\mathbf{w}$ define the semi-axes $b$ and $c$, respectively.
+The strike direction is defined by the intersection of the
+dark gray plane and the horizontal plane (represented in light gray),
+which contains the $x$ and $y$ axes. The angle between "minus $x$"
+and the strike direction is called \textit{strike}. The angle
+between the horizontal plane and the dark gray plane
+is called \textit{dip}. The line containing the unit vector
+$\mathbf{u}$ defines the \textit{plunge direction}. The projection
+of the plunge direction on the horizontal plane is called
+\textit{plunge azimuth direction}. (b) Local coordinate system
+with origin at the ellipsoid center $(x_{c}, y_{c}, z_{c})$
+(black dot) and axes defined by unit vectors $\mathbf{v}_{1}$,
+$\mathbf{v}_{2}$, and $\mathbf{v}_{3}$. These unit vectors
+define the semi-axes $a$, $b$, and $c$ of triaxial, prolate,
+and oblate ellipsoids. Notice that, for triaxial and prolate ellipsoids,
+the unit vectors $\mathbf{u}$ and $\mathbf{w}$ shown in (a) coincide
+with $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$, respectively. For 
+oblate ellipsoids, the unit vectors $\mathbf{u}$ and $\mathbf{w}$ 
+shown in (a) coincide with $\mathbf{v}_{2}$ and $\mathbf{v}_{3}$,
+respectively.}
+\label{fig:orientation-angles}
+\end{figure}
+
+\begin{figure}[t]
 \includegraphics[width=8.3cm]{figures/demag_factors.pdf}
 \caption{TEXT}
-\label{fig:fig1}
+\label{fig:figxxx}
 \end{figure}
 
 %%% TWO-COLUMN FIGURES
