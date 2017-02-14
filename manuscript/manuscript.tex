@@ -132,11 +132,16 @@ with intensity $\rho$.
 of determining the magnetic scalar potential produced
 by any body uniformly magnetized in a given direction.
 By presuming that this uniform magnetization is due to
-induction, he postulated that the resulting magnetic
-field (intensity) at all points within the body must
-also be uniform and parallel to the magnetization.
-As a consequence, the gravitational potential 
-$U$ at points within the body must be a quadratic 
+induction and that it is proportional to the resulting
+magnetic field (intensity) inside the body, he postulated 
+that the resulting field must also be uniform and 
+parallel to the magnetization. This uniformity is due to
+the fact that the resulting field is defined as the
+negative gradient of the magnetic scalar potential
+within the body.
+As a consequence of this uniformity, 
+the gravitational potential $U$ at points within the 
+body must be a quadratic 
 function of the spatial coordinates.
 Apparently, \citet{maxwell1873} was the first one to
 postulate that ellipsoids are the only finite bodies 
@@ -150,23 +155,14 @@ remaining non-ellipsoidal bodies cannot be
 uniformly magnetized in the presence of a uniform
 inducing field.
 
-Self-demagnetization demagnetization gives rise to shape 
-anisotropy.
-
-Self-demagnetization is a function of the shape of 
-the body.
-
+Another particularity of ellipsoids are that they are
+the only bodies which enable an analytical computation 
+of its self-demagnetization.
 The self-demagnetization contributes to decrease the
 magnitude of the magnetization along the shortest 
-dimensions of a body.
-
-Ellipsoids are the only bodies which enable an
-analytical computation of its self-demagnetization.
-
-Ellipsoids can assume a wide range of shapes and
-therefore can be used to represent different geological
-bodies.
-
+axes of a body.
+It is a function of the shape of the body and gives rise
+to shape anisotropy \citep{thompson1986, clark1999, tauxe2003}.
 It is well-known by that the self-demagnetization can 
 be neglected if the body has a susceptibility lower 
 than 0.1 SI \citep{austin2014, clark2014, clark1986, 
@@ -206,18 +202,17 @@ model in producing trustworthy geological models of
 high-susceptibility orebodies, which may save significant 
 cost associated with drilling.
 
-As we can see, a vast literature about the magnetic
+A vast literature about the magnetic
 modelling of ellipsoidal bodies was developed in which 
 are to be found the names of many brilliant researchers.
 Nevertheless, interest in this subject has not yet died
-out, as is evidenced by the list of modern papers in this
+out, as is evidenced by a list of modern papers in this
 field.
 Besides, the geoscientific community lacks an easy-to-use 
 tool to simulate the magnetic field produced by uniformly 
 magnetized ellipsoids.
 Such a tool could prove to be useful either for teaching
 and researching geophysics.
-
 To fill this gap, we provide here a set of routines to 
 model the magnetic field produced by ellipsoids.
 The routines are written in Python language as part of
@@ -244,6 +239,10 @@ Let us consider an ellipsoidal body with centre at the point $(x_{c}, y_{c}, z_{
 semi-axes defined by positive constants $a$, $b$, $c$, 
 where $a > b > c$, and orientation defined by
 three angles $\alpha$, $\beta$, and $\gamma$.
+
+DESCREVER A ORIENTACAO EM FUNCAO DOS ANGULOS DE GEOLOGIA ESTRUTURAL
+\citep{clark1986, allmendinger2012}
+
 The points $(x, y, z)$ located on the surface of this ellipsoidal body
 satisfy the following equation:
 \begin{equation}
