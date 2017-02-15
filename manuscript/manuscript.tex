@@ -235,16 +235,15 @@ Let $(x, y, z)$ be a point referred to a Cartesian coordinate system with axes
 $x$, $y$ and $z$ pointing to, respectively, North, East and down.
 For convenience, we denominate this coordinate system as 
 \textit{main coordinate system} (Fig. \ref{fig:orientation-angles}a).
-Let us consider an ellipsoidal body with centre at the point $(x_{c}, y_{c}, z_{c})$,
-orientation defined by angles \textit{strike}, \textit{dip}, and
-\textit{rake} (Fig. \ref{fig:orientation-angles}a), and semi-axes defined by
+Let us consider an ellipsoidal body with centre at the point 
+$(x_{c}, y_{c}, z_{c})$, orientation defined by three angles 
+$\varepsilon$, $\zeta$, and $\eta$ (Fig. \ref{fig:orientation-angles}a), 
+and semi-axes defined by
 positive constants $a$, $b$, $c$ (Fig. \ref{fig:orientation-angles}b).
-The angles strike, dip and rake are commonly used to
+The angles $\varepsilon$, $\zeta$, and $\eta$ are called \textit{strike}, 
+\textit{dip}, and \textit{rake}, respectively, and are commonly used to
 define the orientation of lines in structural geology
 \citep{clark1986, allmendinger2012}.
-
-PAREI AQUI
-
 The points $(x, y, z)$ located on the surface of this ellipsoidal body
 satisfy the following equation:
 \begin{equation}
@@ -263,13 +262,36 @@ a^{-2} & 0 & 0 \\
 \end{array} \right] \mathbf{V}^{\top} \: ,
 \label{eq:A}
 \end{equation}
-and $\mathbf{V}$ is an orthogonal matrix whose columns are defined
-by unit vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$.
-
-The vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$ 
-depend on the orientation angles 
-$\alpha$, $\beta$, $\gamma$ and are defined 
+and $\mathbf{V}$ is an orthogonal matrix whose first, second and third columns 
+are defined by unit vectors $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$
+(Fig. \ref{fig:orientation-angles}b), respectively, depending on the ellipsoid type.
+These unit vectors depend on orientation angles $\alpha$, 
+$\beta$, and $\gamma$, which are not commonly used in
+geosciences. These angles, however, can be defined from
+$\varepsilon$, $\zeta$, and $\eta$ (Fig. \ref{fig:orientation-angles}a)
 as follows \citep{clark1986}:
+\begin{equation}
+\alpha = \varepsilon - \cos^{-1} \left[ \frac{\cos \eta}
+{\left( 1 - \sin^{2} \zeta \, \sin^{2} \eta \right)^{\frac{1}{2}}}\right] \: ,
+\label{eq:alpha}
+\end{equation}
+\begin{equation}
+\gamma = \tan^{-1} \left( \frac{\cos \zeta}{\sin \zeta \, \cos \eta}\right)
+\label{eq:gamma}
+\end{equation}
+and
+\begin{equation}
+\delta = \sin^{-1} \left( \sin \zeta \, \sin \eta \right) \: ,
+\label{eq:delta}
+\end{equation}
+where $-90^{\circ} \leq \gamma \leq 90^{\circ}$ and
+$0 \leq \delta \leq 90^{\circ}$.
+Then, given the orientation angles $\varepsilon$, $\zeta$, and $\eta$ (Fig. \ref{fig:orientation-angles}a and Eqs. \ref{eq:alpha}, \ref{eq:gamma}, and
+\ref{eq:delta}), we define the unit vectors
+$\mathbf{v}_{1}$, $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$
+(Fig. \ref{fig:orientation-angles}b) according to the ellipsoid type.
+For triaxial ellipsoids (i.e., $a > b > c$), these unit vectors are 
+given by \citep{clark1986}:
 \begin{equation}
 \mathbf{v}_{1} = \left[\begin{array}{c} 
                   -\cos\alpha \; \cos\delta \\
@@ -294,44 +316,50 @@ as follows \citep{clark1986}:
                   \end{array} \right] \: .
 \label{eq:v3_triaxial_prolate}
 \end{equation}
-For triaxial ellipsoids (i.e., $a > b > c$), the orthogonal matrix
-$\mathbf{V}$ (Eq. \ref{eq:A}) is calculated by using Eqs.
-\ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
-\ref{eq:v3_triaxial_prolate} as follows:
-\begin{equation}
-\mathbf{V} = \left[ \begin{array}{ccc}
-\mathbf{v}_{1} & \mathbf{v}_{2} & \mathbf{v}_{3}
-\end{array} \right] \: .
-\label{eq:V_triaxial_prolate}
-\end{equation}
-Similarly, the matrix $\mathbf{V}$ (Eq. \ref{eq:A}) for
-prolate ellipsoids (i.e., $a > b = c$) is calculated according
-to Eq. \ref{eq:V_triaxial_prolate} by using Eqs.
-\ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
-\ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$ 
+Similarly, the unit vectors defining the matrix $\mathbf{V}$ (Eq. \ref{eq:A}) for
+prolate ellipsoids (i.e., $a > b = c$) are calculated
+by using Eqs. \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
+\ref{eq:v3_triaxial_prolate}, but with $\gamma = 0^{\circ}$
 \citep{emerson1985}.
-Finally, the matrix $\mathbf{V}$ (Eq. \ref{eq:A}) for
-oblate ellipsoids (i.e., $a < b = c$) is calculated by 
-using Eqs. \ref{eq:v1_triaxial_prolate}, \ref{eq:v2_triaxial_prolate}, and
-\ref{eq:v3_triaxial_prolate}, with $\gamma = 0^{\circ}$, as follows
-\citep{emerson1985}:
+Finally, the unit vectors defining the matrix $\mathbf{V}$ (Eq. \ref{eq:A}) for
+oblate ellipsoids (i.e., $a < b = c$) are calculated as follows:
 \begin{equation}
-\mathbf{V} = \left[ \begin{array}{ccc}
-\mathbf{v}_{2} & \mathbf{v}_{1} & -\mathbf{v}_{3}
-\end{array} \right] \: .
-\label{eq:V_oblate}
+\mathbf{v}_{1} = \left[\begin{array}{c} 
+                  -\cos\alpha \; \sin\gamma \; \sin\delta + \sin\alpha \; \cos\gamma \\               
+                  -\sin\alpha \; \sin\gamma \; \sin\delta - \cos\alpha \; \cos\gamma \\ 
+                  \sin\gamma \; \cos\delta
+                  \end{array} \right] \: ,
+\label{eq:v1_oblate}
 \end{equation}
-The orientation of the semi-axes $a$, $b$, and $c$ are defined 
-by the first, second, and third columns of the matrix 
-$\mathbf{V}$ given by Eq. \ref{eq:V_triaxial_prolate},
-in the case of a triaxial or prolate ellipsoid, or the
-matrix $\mathbf{V}$ given by Eq. \ref{eq:V_oblate},
-in the case of an oblate ellipsoid.
+\begin{equation}
+\mathbf{v}_{2} = \left[\begin{array}{c} 
+                  -\cos\alpha \; \cos\delta \\
+                  -\sin\alpha \; \cos\delta \\
+                  -\sin\delta
+                  \end{array} \right] \: ,
+\label{eq:v2_oblate}
+\end{equation}                   
+\begin{equation}                    
+\mathbf{v}_{3} = \left[\begin{array}{c} 
+                  \sin\alpha \; \sin\gamma + \cos\alpha \; \cos\gamma \; \sin\delta \\                    
+                  -\cos\alpha \; \sin\gamma + \sin\alpha \; \cos\gamma \; \sin\delta \\
+                  -\cos\gamma \; \cos\delta
+                  \end{array} \right] \: .
+\label{eq:v3_oblate}
+\end{equation}
+These formulas are similar to those presented by \citep{emerson1985}.
 
+%The orientation of the semi-axes $a$, $b$, and $c$ are defined 
+%by the first, second, and third columns of the matrix 
+%$\mathbf{V}$ given by Eq. \ref{eq:V_triaxial_prolate},
+%in the case of a triaxial or prolate ellipsoid, or the
+%matrix $\mathbf{V}$ given by Eq. \ref{eq:V_oblate},
+%in the case of an oblate ellipsoid.
 The magnetic modelling of an ellipsoidal body is commonly performed
 in a particular Cartesian coordinate system that is aligned 
 with the body semi-axes
-and has the origin coincident with the body centre.
+and has the origin coincident with the body centre
+(Fig. \ref{fig:orientation-angles}b).
 For convenience, we denominate this particular coordinate 
 system as \textit{local coordinate system}.
 The relationship between the Cartesian coordinates 
@@ -349,22 +377,7 @@ $\tilde{\mathbf{r}} = [\begin{array}{ccc} \tilde{x} &
                                           \tilde{z} \end{array} ]^{\top}$,
 $\mathbf{r}$ and $\mathbf{r}_{c}$
 are defined in Eq. \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
-is defined according to Eqs. \ref{eq:V_triaxial_prolate} or
-\ref{eq:V_oblate}, depending on the ellipsoid type.
-%Similarly, we may properly use the orthogonality of 
-%matrix $\mathbf{V}$ to transform a generic 
-%linear system $\mathbf{M} \mathbf{p} = \mathbf{d}$,
-%referred to the main coordinate system, into a new
-%linear system 
-%$\tilde{\mathbf{M}} \, \tilde{\mathbf{p}} = \tilde{\mathbf{d}}$,
-%referred to a local coordinate system, 
-%as follows:
-%\begin{equation}
-%\underbrace{\mathbf{V}^{\top} \mathbf{M} \mathbf{V}}_{\tilde{\mathbf{M}}} \, 
-%\underbrace{\mathbf{V}^{\top} \mathbf{p}}_{\tilde{\mathbf{p}}} = 
-%\underbrace{\mathbf{V}^{\top} \mathbf{d}}_{\tilde{\mathbf{d}}} \: .
-%\label{eq:matrix-transformation}
-%\end{equation}
+(Eq. \ref{eq:A}) is defined according to the ellipsoid type.
 
 \subsection{Theoretical background}
 
@@ -419,7 +432,7 @@ at any point within the body and $\mathbf{K}$ is a
 constant and symmetrical 2nd-order tensor representing the 
 magnetic susceptibility of the body. 
 In general, the susceptibility tensor $\mathbf{K}$ is represented,
-in the main coordinate system, as follows:
+in the main coordinate system (Fig. \ref{fig:orientation-angles}a), as follows:
 \begin{equation}
 \mathbf{K} = \mathbf{U}
 \left[ \begin{array}{ccc}
@@ -492,8 +505,8 @@ the magnetic field $\mathbf{H}(\mathbf{r})$
 (Eq. \ref{eq:H-M-uniform}) at points located
 both within and without the volume $\vartheta$ of the ellipsoidal
 body. However, the mathematical developments are conveniently 
-performed in the local coordinate system related to the
-respective ellipsoidal body. 
+performed in the local coordinate system (Fig. \ref{fig:orientation-angles}b)
+related to the respective ellipsoidal body. 
 
 \subsection{Coordinate transformation}
 
@@ -502,9 +515,10 @@ ellipsoidal bodies, it is convenient to perform two
 important coordinate transformations. 
 The first one transforms the scalar function 
 $f(\mathbf{r})$ (Eq. \ref{eq:f}) from the 
-main coordinate system into a new scalar function 
+main coordinate system (Fig. \ref{fig:orientation-angles}a)
+into a new scalar function 
 $\tilde{f}(\tilde{\mathbf{r}})$ referred to the
-local coordinate system.
+local coordinate system (Fig. \ref{fig:orientation-angles}b).
 The function $\tilde{f}(\tilde{\mathbf{r}})$ was first 
 presented by \citet{dirichlet1839} to describe the gravitational potential
 produced by homogeneous ellipsoids.
@@ -573,8 +587,8 @@ By properly using the orthogonality of matrix $\mathbf{V}$
 (Eqs. \ref{eq:V_triaxial_prolate} and \ref{eq:V_oblate}),
 the magnetic field $\mathbf{H}(\mathbf{r})$ 
 (Eq. \ref{eq:H-M-uniform}) can be transformed
-from the main coordinate system to a local coordinate system
-as follows:
+from the main coordinate system (Fig. \ref{fig:orientation-angles}a) 
+to the local coordinate system (Fig. \ref{fig:orientation-angles}b) as follows:
 \begin{equation}
 \underbrace{\mathbf{V}^{\top} \mathbf{H}(\mathbf{r})}_{\tilde{\mathbf{H}}(\tilde{\mathbf{r}})} = 
 \underbrace{\mathbf{V}^{\top} \mathbf{H}_{0}}_{\tilde{\mathbf{H}}_{0}}
@@ -596,7 +610,7 @@ tensor $\mathbf{N}(\mathbf{r})$ (Eq. \ref{eq:H-M-uniform}).
 In this case, the elements of $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$
 are calculated as a function of the second derivatives of the
 function $f(\mathbf{r})$ (Eq. \ref{eq:f}),
-which is defined in the main coordinate system.
+which is defined in the main coordinate system (Fig. \ref{fig:orientation-angles}a).
 It can be shown (Appendix A), however, that the
 elements $\tilde{n}_{ij}(\tilde{\mathbf{r}})$ of
 $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$ can also be calculated
@@ -706,7 +720,8 @@ independently of the ellipsoid type. Otherwise, the
 magnetization is not necessarily parallel to
 the inducing field.
 If we additionally consider that $\chi << 1$, the magnetization
-$\mathbf{M}$ (Eq. \ref{eq:M-KH}), defined in the main coordinate system,
+$\mathbf{M}$ (Eq. \ref{eq:M-KH}), defined in the main coordinate system
+(Fig. \ref{fig:orientation-angles}a),
 can be approximated as follows:
 \begin{equation}
 \mathbf{M} \approx \chi \, \mathbf{H}_{0} +
@@ -1189,7 +1204,8 @@ are provided at \url http://www.fatiando.org.
 Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar
 function obtained by transforming $f(\mathbf{r})$ 
 (Eq. \ref{eq:f}) from the
-main coordinate system to a local coordinate system.
+main coordinate system (Fig. \ref{fig:orientation-angles}a)
+to the local coordinate system (Fig. \ref{fig:orientation-angles}b).
 For convenience, let us rewrite Eq. 
 \ref{eq:coord_transformation} as follows:
 \begin{equation}
@@ -1331,7 +1347,7 @@ and oblate ellipsoids.
 
 Let us consider an ellipsoid with semi-axes $a$, $b$, $c$ oriented along 
 the $\tilde{x}$-, $\tilde{y}$-, and $\tilde{z}$-axis, respectively, 
-of its local coordinate system, where $a > b > c > 0$. 
+of its local coordinate system (Fig. \ref{fig:orientation-angles}b), where $a > b > c > 0$. 
 This ellipsoid is defined by the following equation:
 \begin{equation}
 \frac{\tilde{x}^{2}}{a^{2}} + \frac{\tilde{y}^{2}}{b^{2}} + \frac{\tilde{z}^{2}}{c^{2}} = 1 \: .
@@ -1445,8 +1461,8 @@ R = \frac{9 \, p_{1} \, p_{2} - 27 \, p_{0} - 2 \, p_{2}^{3}}{54} \: .
 
 Let us now consider a prolate ellipsoid with semi-axes $a$, $b$, 
 $c$ oriented along the $\tilde{x}$-, $\tilde{y}$-, and 
-$\tilde{z}$-axis, respectively, of its local coordinate system, 
-where $a > b = c > 0$. 
+$\tilde{z}$-axis, respectively, of its local coordinate system
+(Fig. \ref{fig:orientation-angles}b), where $a > b = c > 0$. 
 In this case, the Eq. defining the surface of the ellipsoid
 is obtained by substituting $c = b$ in Eq. \ref{eq:reference-triaxial-ell}.
 Consequently, the equation defining the respective confocal quadric
@@ -1627,8 +1643,9 @@ TEXT
 \includegraphics[width=8.3cm]{figures/structural_orientation_angles.png}
 \caption{Schematic representation of the coordinate systems used to
 represent an ellipsoidal body. 
-(a) Main coordinate system with axes $x$, $y$, and $z$.
-The dark gray plane contains the center $(x_{c}, y_{c}, z_{c})$
+(a) Main coordinate system with axes $x$, $y$, and $z$ pointing to
+North, East, ans down, respectively.
+The dark gray plane contains the centre $(x_{c}, y_{c}, z_{c})$
 (white circle) and two unit vectors, $\mathbf{u}$ and $\mathbf{w}$, defining two
 semi-axes of the ellipsoidal body. For triaxial and prolate ellipsoids,
 $\mathbf{u}$ and $\mathbf{w}$ define, respectively, 
@@ -1636,18 +1653,21 @@ the semi-axes $a$ and $b$. For oblate ellipsoids, $\mathbf{u}$ and
 $\mathbf{w}$ define the semi-axes $b$ and $c$, respectively.
 The strike direction is defined by the intersection of the
 dark gray plane and the horizontal plane (represented in light gray),
-which contains the $x$ and $y$ axes. The angle between "minus $x$"
-and the strike direction is called \textit{strike}. The angle
-between the horizontal plane and the dark gray plane
+which contains the $x$ and $y$ axes. The angle $\varepsilon$ 
+between "minus $x$" and the strike direction is called \textit{strike}.
+The angle $\zeta$ between the horizontal plane and the dark gray plane
 is called \textit{dip}. The line containing the unit vector
-$\mathbf{u}$ defines the \textit{plunge direction}. The projection
+$\mathbf{u}$ defines the \textit{plunge direction}. 
+The angle $\eta$ between the strike direction and the plunge direction
+is called \textit{rake}. The projection
 of the plunge direction on the horizontal plane is called
 \textit{plunge azimuth direction}. (b) Local coordinate system
-with origin at the ellipsoid center $(x_{c}, y_{c}, z_{c})$
+with origin at the ellipsoid centre $(x_{c}, y_{c}, z_{c})$
 (black dot) and axes defined by unit vectors $\mathbf{v}_{1}$,
 $\mathbf{v}_{2}$, and $\mathbf{v}_{3}$. These unit vectors
 define the semi-axes $a$, $b$, and $c$ of triaxial, prolate,
-and oblate ellipsoids. Notice that, for triaxial and prolate ellipsoids,
+and oblate ellipsoids in the same way.
+For triaxial and prolate ellipsoids,
 the unit vectors $\mathbf{u}$ and $\mathbf{w}$ shown in (a) coincide
 with $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$, respectively. For 
 oblate ellipsoids, the unit vectors $\mathbf{u}$ and $\mathbf{w}$ 
