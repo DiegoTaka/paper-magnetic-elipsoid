@@ -130,15 +130,14 @@ if it has a uniform magnetization oriented along $x$
 with intensity $\rho$.
 \citet{maxwell1873} generalized this idea as a way
 of determining the magnetic scalar potential produced
-by any body uniformly magnetized in a given direction.
+by any uniformly magnetized body in a given direction.
 By presuming that this uniform magnetization is due to
 induction and that it is proportional to the resulting
 magnetic field (intensity) inside the body, he postulated 
 that the resulting field must also be uniform and 
 parallel to the magnetization. This uniformity is due to
 the fact that the resulting field is defined as the
-negative gradient of the magnetic scalar potential
-within the body.
+negative gradient of the magnetic scalar potential.
 As a consequence of this uniformity, 
 the gravitational potential $U$ at points within the 
 body must be a quadratic 
@@ -155,15 +154,16 @@ remaining non-ellipsoidal bodies cannot be
 uniformly magnetized in the presence of a uniform
 inducing field.
 
-Another particularity of ellipsoids are that they are
+Another particularity of ellipsoids is that they are
 the only bodies which enable an analytical computation 
 of its self-demagnetization.
 The self-demagnetization contributes to decrease the
 magnitude of the magnetization along the shortest 
 axes of a body.
-It is a function of the shape of the body and gives rise
+It is a function of the body shape and gives rise
 to shape anisotropy \citep{thompson1986, clark1999, tauxe2003}.
-It is well-known by that the self-demagnetization can 
+It is well-established in the literature that
+the self-demagnetization can
 be neglected if the body has a susceptibility lower 
 than 0.1 SI \citep{austin2014, clark2014, clark1986, 
 emerson1985, eskola1980, guo1998, guo2001, purss2005,
@@ -197,8 +197,9 @@ Chile, is not dominated by the induced component.
 Rather, the deposit has a relatively weak remanent 
 magnetization and is strongly affected by 
 self-demagnetization.
-These examples show the importance of the ellipsoidal
-model in producing trustworthy geological models of
+These examples show the importance of the self-demagnetization 
+and the ellipsoidal model in 
+producing trustworthy geological models of
 high-susceptibility orebodies, which may save significant 
 cost associated with drilling.
 
@@ -373,6 +374,7 @@ $\mathbf{r}$ and $\mathbf{r}_{c}$
 are defined in Eq. \ref{eq:ellipsoid_surface} and the matrix $\mathbf{V}$
 (Eq. \ref{eq:A}) is defined according to the ellipsoid type.
 
+
 \subsection{Theoretical background}
 
 
@@ -425,8 +427,12 @@ where $\mathbf{H}^{\dagger}$ is the resultant uniform magnetic field
 at any point within the body and $\mathbf{K}$ is a 
 constant and symmetrical 2nd-order tensor representing the 
 magnetic susceptibility of the body. 
-In general, the susceptibility tensor $\mathbf{K}$ is represented,
-in the main coordinate system (Fig. \ref{fig:orientation-angles}a), as follows:
+This is a good approximation for bodies at room temperature,
+subjected to an inducing field $\mathbf{H}_{0}$ with 
+strength $\leq 1$ \unit{mT} \citep{rochette1992}.
+In this case, the susceptibility tensor $\mathbf{K}$ is commonly
+represented, in the main coordinate system (Fig. \ref{fig:orientation-angles}a),
+as follows:
 \begin{equation}
 \mathbf{K} = \mathbf{U}
 \left[ \begin{array}{ccc}
@@ -440,7 +446,14 @@ where $k_{1} > k_{2} > k_{3}$ are the
 \textit{principal susceptibilities} and $\mathbf{U}$ is
 an orthogonal matrix whose columns $\mathbf{u}_{i}$,
 $i = 1, 2, 3$, are unit vectors called 
-\textit{principal directions} \citep{hrouda1982}.
+\textit{principal directions}.
+If the principal susceptibilities are different from
+each other, we say that the body has an
+anisotropy of magnetic susceptibility (AMS).
+The AMS is generally associated to the preferred orientation
+of the grains of magnetic minerals forming the rock
+\citep{fuller1963, uyeda1963, janak1972, hrouda1982, macdonald1987,
+rochette1992}.
 For the particular case in which the principal directions 
 coincide with the ellipsoid axes, the matrix $\mathbf{U}$ is
 equal to the matrix $\mathbf{V}$ (Eq. \ref{eq:A}),
