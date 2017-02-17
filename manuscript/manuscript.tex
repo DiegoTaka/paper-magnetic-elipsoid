@@ -792,7 +792,9 @@ and
 \end{array} \right] \mathbf{V}^{\top} \: .
 \label{eq:Lambda-K-isotropic}
 \end{equation}
-This equation is in perfect agreement with those presented 
+Despite the coordinate transformation represented by
+matrix $\mathbf{V}$ (Eq. \ref{eq:A}),
+this equation is in perfect agreement with those presented 
 by \citet[Eqs. ~13--15]{guo2001}.
 The first term, depending on the inducing field $\mathbf{H}_{0}$
 (Eq. \ref{eq:H0}), 
@@ -823,6 +825,17 @@ is parallel to the inducing field $\mathbf{H}_{0}$ (Eq. \ref{eq:H0}),
 whether it is parallel to an ellipsoid axis or not.
 Usually, Eq. \ref{eq:M-approx}
 is considered a good approximation for $\chi \leq 0.1$ SI.
+
+
+INCLUIR A MEDIDA THETA
+\begin{equation}
+\theta = \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{11}} +
+\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} +
+\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}} - 3 \: .
+\label{eq:theta}
+\end{equation}
+
+
 
 
 \subsection{External magnetic field and total-field anomaly}
@@ -1258,8 +1271,7 @@ Because of that, it is very modular and has a
 test suite formed by a considerable number of 
 assertions, unit tests, doc tests and integration tests.
 For readers interested in automated code testing,
-we recommend taking a look at the 
-freely reusable lessons of the Software Carpentry 
+we recommend the freely reusable lessons of the Software Carpentry 
 (\url{https://software-carpentry.org/}) and at the
 description of the doctest module available
 in the documentation for Python 2.X 
@@ -1349,11 +1361,11 @@ $\tilde{n}^{\dagger}_{11} > \tilde{n}^{\dagger}_{22}$ for all values
 of $m$.
 
 
-\subsection{Ellipsoidal models}
+\subsection{Susceptibility}
 
 TEXT
 
-\subsection{Susceptibility}
+\subsection{Simulation of a geological body}
 
 TEXT
 
