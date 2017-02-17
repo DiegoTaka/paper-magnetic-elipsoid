@@ -417,7 +417,7 @@ V(\mathbf{r}) = -\frac{1}{4\pi} \iiint_{\vartheta}
 \nabla \left(
 \frac{1}{\| \mathbf{r} - \mathbf{r}^{\prime} \|}
 \right) \, dx^{\prime}dy^{\prime}dz^{\prime} \: .
-\label{eq:phi-potential}
+\label{eq:V-potential}
 \end{equation}
 In this equation, $\mathbf{r}^{\prime} = [\begin{array}{ccc} 
 x^{\prime} & y^{\prime} & z^{\prime} \end{array} ]^{\top}$
@@ -426,7 +426,7 @@ the integral is conducted over the variables
 $x^{\prime}$, $y^{\prime}$ and, $z^{\prime}$ and 
 $\mathbf{M}(\mathbf{r}^{\prime})$ is the magnetization vector
 (in $\unit{Am^{-1}}$).
-Eq. \ref{eq:phi-potential} is valid anywhere, 
+Eq. \ref{eq:V-potential} is valid anywhere, 
 independently if the position vector $\mathbf{r}$ represents
 a point located inside or outside the magnetized body
 \citep{dubois1896, reitz1992, sttraton2007}.
@@ -480,8 +480,7 @@ thompson1986, macdonald1987, rochette1992, dunlop1997,
 tauxe2003}.
 For the particular case in which the principal directions 
 coincide with the ellipsoid axes, the matrix $\mathbf{U}$ is
-equal to the matrix $\mathbf{V}$ (Eq. \ref{eq:A}),
-depending on the ellipsoid type.
+equal to the matrix $\mathbf{V}$ (Eq. \ref{eq:A}).
 Another important particular case is that in which the
 susceptibility is isotropic and, consequently, the principal
 susceptibilities $k_{1}$, $k_{2}$, and $k_{3}$ (Eq. \ref{eq:K})
@@ -705,7 +704,6 @@ represents the transformed magnetization, as can be easily
 verified by using Eqs. \ref{eq:M-KH} and \ref{eq:H-tilde}.
 The matrix identity used for obtaining the second line of Eq. 
 \ref{eq:M-tilde} is given by \citet[p. ~151]{searle1982}.
-
 Equation \ref{eq:M-tilde} can be easily generalized for the case in 
 which the ellipsoid has also a uniform remanent magnetization
 $\tilde{\mathbf{M}}_{R}$. Let us first consider that
@@ -718,51 +716,70 @@ is in fact the sum of the uniform magnetic field $\tilde{\mathbf{H}}_{0}$
 and the hypothetical ancient field $\tilde{\mathbf{H}}_{A}$, we obtain the 
 following generalized equation
 \begin{equation}
-\tilde{\mathbf{M}} =  
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
-\left( \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0} + \tilde{\mathbf{M}}_{R} \right) \: .
-\label{eq:M-tilde-remanence}
+\mathbf{M} = \mathbf{\Lambda}
+\left(\mathbf{K} \, \mathbf{H}_{0} + \mathbf{M}_{R} \right) \: ,
+\label{eq:M-remanence}
 \end{equation}
-Equation \ref{eq:M-tilde-remanence} is consistent with that given by
+where
+\begin{equation}
+\mathbf{\Lambda} = \mathbf{V}
+\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
+\mathbf{V}^{\top} \: .
+\label{eq:Lambda}
+\end{equation}
+Despite of the coordinate system transformation represented by the
+matrix $\mathbf{V}$ (Eq. \ref{eq:A}),
+Eq. \ref{eq:M-remanence} is consistent with that given by
 \citet[Eq. ~38]{clark1986}. It shows the combined effect of the
-anisotropy of magnetic susceptibility, which is represented by the 
-susceptibility tensor $\tilde{\mathbf{K}}$ and reflects the
+anisotropy of magnetic susceptibility (AMS) and the shape anisotropy.
+The AMS is represented by the susceptibility tensor $\mathbf{K}$ 
+(Eq. \ref{eq:K}) and reflects the
 preferred orientation of the magnetic minerals forming the
-body, and the shape anisotropy, which is represented by the
+body. The susceptibility tensor appears in Eq. \ref{eq:M-remanence},
+defined in the main coordinate system (Fig. \ref{fig:orientation-angles}a),
+and Eq. \ref{eq:Lambda}, defined in the local coordinate system
+(Fig. \ref{fig:orientation-angles}b).
+The shape anisotropy is represented, in Eq.\ref{eq:M-remanence} by the
 depolarization tensor $\tilde{\mathbf{N}}^{\dagger}$ and
 reflects the self-demagnetization associated to the body shape.
-Notice that the resultant magnetization $\tilde{\mathbf{M}}$
-(Eq. \ref{eq:M-tilde-remanence}) does not necessarily have
-the same direction as the inducing field $\tilde{\mathbf{H}}_{0}$.
+Notice that the resultant magnetization $\mathbf{M}$
+(Eq. \ref{eq:M-remanence}) does not necessarily have
+the same direction as the inducing field $\mathbf{H}_{0}$
+(Eq. \ref{eq:H0}).
 The angular difference $\theta$ between the resultant magnetization
-and the inducing field is the same, whether the quantities
-are defined in the main coordinate system (Fig. \ref{fig:orientation-angles}a)
-or local coordinate system (Fig. \ref{fig:orientation-angles}b).
-For convenience, we define $\theta$ (in degrees) in the main coordinate system
-by using the scalar product definition as follows:
-\begin{equation}
-\theta = \frac{180}{\pi} \, \cos^{-1} \left( 
-\frac{\mathbf{M}^{\top}\mathbf{H}_{0}}
-{\| \mathbf{M} \| \; \| \mathbf{H}_{0} \|}\right) \: ,
-\label{eq:theta}
-\end{equation}
-where $\mathbf{M}$ is obtained by pre-multiplying the
-magnetization $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde-remanence})
-by the orthogonal matrix $\mathbf{V}$ (Eq. \ref{eq:A}),
-which is defined according to the ellipsoid type, and
-$\mathbf{H}_{0}$ is given by Eq. \ref{eq:H0}.
+and the inducing field depends on the combined effect of the
+anisotropy of magnetic susceptibility and the shape anisotropy.
 
+%The angular difference $\theta$ between the resultant magnetization
+%and the inducing field is the same, whether the quantities
+%are defined in the main coordinate system (Fig. \ref{fig:orientation-angles}a)
+%or local coordinate system (Fig. \ref{fig:orientation-angles}b).
+%For convenience, we define $\theta$ (in degrees) in the main coordinate system
+%by using the scalar product definition as follows:
+%\begin{equation}
+%\theta = \frac{180}{\pi} \, \cos^{-1} \left( 
+%\frac{\mathbf{M}^{\top}\mathbf{H}_{0}}
+%{\| \mathbf{M} \| \; \| \mathbf{H}_{0} \|}\right) \: ,
+%\label{eq:theta}
+%\end{equation}
+%where $\mathbf{M}$ is obtained by pre-multiplying the
+%magnetization $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde-remanence})
+%by the orthogonal matrix $\mathbf{V}$ (Eq. \ref{eq:A}),
+%which is defined according to the ellipsoid type, and
+%$\mathbf{H}_{0}$ is given by Eq. \ref{eq:H0}.
+%
 For the particular case in which the susceptibility is isotropic,
 the susceptibility tensor is defined according to Eq. \ref{eq:K-isotropic}.
-In this case, the magnetization $\mathbf{M}$ (Eq. \ref{eq:M-KH}),
+In this case, the magnetization $\mathbf{M}$ (Eqs. \ref{eq:M-KH} and \ref{eq:M-remanence}),
 referred to the main coordinate system (Fig. \ref{fig:orientation-angles}a),
-can be written as follows:
+and the matrix $\mathbf{\Lambda}$ (Eq. \ref{eq:Lambda})
+can be rewritten as follows:
 \begin{equation}
 \mathbf{M} = \mathbf{\Lambda} \left( \chi \, \mathbf{H}_{0} +
 \mathbf{M}_{R} \right) \: ,
 \label{eq:M-K-isotropic}
 \end{equation}
-where
+and
 \begin{equation}
 \mathbf{\Lambda} = \mathbf{V}
 \left[ \begin{array}{ccc}
@@ -770,7 +787,7 @@ where
  & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} &  \\
  &  & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
 \end{array} \right] \mathbf{V}^{\top} \: .
-\label{eq:Lambda}
+\label{eq:Lambda-K-isotropic}
 \end{equation}
 This equation is in perfect agreement with those presented 
 by \citet[Eqs. ~13--15]{guo2001}.
@@ -787,9 +804,9 @@ independently of the ellipsoid type. Otherwise, the
 magnetization is not necessarily parallel to
 the inducing field.
 If we additionally consider that $\chi << 1$, the matrix 
-$\mathbf{\Lambda}$ (Eqs. \ref{eq:M-K-isotropic} and \ref{eq:Lambda})
+$\mathbf{\Lambda}$ (Eq. \ref{eq:Lambda-K-isotropic})
 approaches to the identity and the magnetization
-$\mathbf{M}$ (Eqs. \ref{eq:M-KH} and \ref{eq:M-K-isotropic})
+$\mathbf{M}$ (Eq. \ref{eq:M-K-isotropic})
 can be approximated as follows:
 \begin{equation}
 \mathbf{M} \approx \chi \, \mathbf{H}_{0} +
