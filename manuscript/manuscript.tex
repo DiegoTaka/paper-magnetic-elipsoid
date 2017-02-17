@@ -754,31 +754,43 @@ $\mathbf{H}_{0}$ is given by Eq. \ref{eq:H0}.
 
 For the particular case in which the susceptibility is isotropic,
 the susceptibility tensor is defined according to Eq. \ref{eq:K-isotropic}.
-In this case, the magnetization $\tilde{\mathbf{M}}$ (Eq. \ref{eq:M-tilde-remanence})
-can be rewritten as follows:
+In this case, the magnetization $\mathbf{M}$ (Eq. \ref{eq:M-KH}),
+referred to the main coordinate system (Fig. \ref{fig:orientation-angles}a),
+can be written as follows:
 \begin{equation}
-\tilde{\mathbf{M}} = \left[ \begin{array}{ccc}
-\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{11}} & 0 & 0 \\
-0 & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} & 0 \\
-0 & 0 & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
-\end{array} \right] \left( \chi \, \tilde{\mathbf{H}}_{0} +
-\tilde{\mathbf{M}}_{R} \right) \: .
-\label{eq:M-tilde-K-isotropic}
+\mathbf{M} = \mathbf{\Lambda} \left( \chi \, \mathbf{H}_{0} +
+\mathbf{M}_{R} \right) \: ,
+\label{eq:M-K-isotropic}
+\end{equation}
+where
+\begin{equation}
+\mathbf{\Lambda} = \mathbf{V}
+\left[ \begin{array}{ccc}
+\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{11}} &  &  \\
+ & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} &  \\
+ &  & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
+\end{array} \right] \mathbf{V}^{\top} \: .
+\label{eq:Lambda}
 \end{equation}
 This equation is in perfect agreement with those presented 
 by \citet[Eqs. ~13--15]{guo2001}.
-The first term, depending on the inducing field $\tilde{\mathbf{H}}_{0}$, 
+The first term, depending on the inducing field $\mathbf{H}_{0}$
+(Eq. \ref{eq:H0}), 
 represents the induced magnetization whereas the term depending on
-$\tilde{\mathbf{M}}_{R}$ is the remanent magnetization.
-Equation \ref{eq:M-tilde-K-isotropic} reveals that, as pointed out by \citet{maxwell1873},
+$\mathbf{M}_{R}$ is the remanent magnetization.
+Equation \ref{eq:M-K-isotropic} reveals that, as pointed out by
+many authors
+\citep[e.g.,][]{maxwell1873, dubois1896, stoner1945, clark1986, sttraton2007},
 the induced magnetization opposes the inducing field 
 if it is parallel to an ellipsoid axis, 
 independently of the ellipsoid type. Otherwise, the
 magnetization is not necessarily parallel to
 the inducing field.
-If we additionally consider that $\chi << 1$, the magnetization
-$\mathbf{M}$ (Eq. \ref{eq:M-KH}) defined in the main coordinate system
-(Fig. \ref{fig:orientation-angles}a) can be approximated as follows:
+If we additionally consider that $\chi << 1$, the matrix 
+$\mathbf{\Lambda}$ (Eqs. \ref{eq:M-K-isotropic} and \ref{eq:Lambda})
+approaches to the identity and the magnetization
+$\mathbf{M}$ (Eqs. \ref{eq:M-KH} and \ref{eq:M-K-isotropic})
+can be approximated as follows:
 \begin{equation}
 \mathbf{M} \approx \chi \, \mathbf{H}_{0} +
 \mathbf{M}_{R} \: ,
