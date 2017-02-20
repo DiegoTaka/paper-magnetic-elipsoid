@@ -785,11 +785,8 @@ can be rewritten as follows:
 and
 \begin{equation}
 \mathbf{\Lambda} = \mathbf{V}
-\left[ \begin{array}{ccc}
-\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{11}} &  &  \\
- & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} &  \\
- &  & \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}}
-\end{array} \right] \mathbf{V}^{\top} \: .
+\left( \mathbf{I} - \chi \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
+\mathbf{V}^{\top} \: .
 \label{eq:Lambda-K-isotropic}
 \end{equation}
 Despite the coordinate transformation represented by
@@ -812,9 +809,9 @@ If we additionally consider that $\chi << 1$, the matrix
 $\mathbf{\Lambda}$ (Eq. \ref{eq:Lambda-K-isotropic})
 approaches to the identity and the magnetization
 $\mathbf{M}$ (Eq. \ref{eq:M-K-isotropic})
-can be approximated as follows:
+can be approximated by:
 \begin{equation}
-\mathbf{M} \approx \chi \, \mathbf{H}_{0} +
+\breve{\mathbf{M}} = \chi \, \mathbf{H}_{0} +
 \mathbf{M}_{R} \: ,
 \label{eq:M-approx}
 \end{equation}
@@ -825,20 +822,50 @@ is parallel to the inducing field $\mathbf{H}_{0}$ (Eq. \ref{eq:H0}),
 whether it is parallel to an ellipsoid axis or not.
 Usually, Eq. \ref{eq:M-approx}
 is considered a good approximation for $\chi \leq 0.1$ SI.
+Although this value has been largely used in the literature,
+there have been few empirical and/or theoretical investigations 
+about it.
 
 
-INCLUIR A MEDIDA THETA
+\subsubsection{Relationship between $\chi$ and the magnetization error}
+
+
+In the case of isotropic susceptibility, the resultant magnetization
+$\mathbf{M}$ (Eq. \ref{eq:M-K-isotropic}) may be determined by solving the
+following linear system:
 \begin{equation}
-\theta = \frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{11}} +
-\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{22}} +
-\frac{1}{1 - \chi \, \tilde{n}^{\dagger}_{33}} - 3 \: .
-\label{eq:theta}
+\mathbf{\Lambda}^{-1} \, \mathbf{M} = \chi \, \mathbf{H}_{0} +
+\mathbf{M}_{R} \: ,
+\label{eq:M-K-isotropic-inverse-Lambda}
 \end{equation}
+where, according to Eq. \ref{eq:Lambda-K-isotropic},
+\begin{equation}
+\mathbf{\Lambda}^{-1} = \mathbf{V}
+\left( \mathbf{I} - \chi \, \tilde{\mathbf{N}}^{\dagger} \right)
+\mathbf{V}^{\top} \: .
+\label{eq:inverse-Lambda}
+\end{equation}
+
+Consider a perturbed matrix $\delta \mathbf{\Lambda}^{-1}$ given by
+\begin{equation}
+\delta \mathbf{\Lambda}^{-1} = \mathbf{\Lambda}^{-1} - \mathbf{I}
+\label{eq:perturbed-inverse-Lambda}
+\end{equation}
+and, similarly, a perturbed magnetization vector $\delta \mathbf{M}$
+given by
+\begin{equation}
+\delta \mathbf{M} = \mathbf{M} - \breve{\mathbf{M}} \: ,
+\label{eq:perturbed-M}
+\end{equation}
+where $\mathbf{M}$ is the true magnetization obtained from Eq. 
+\ref{eq:M-K-isotropic-inverse-Lambda} and $\breve{\mathbf{M}}$
+is the approximated magnetization obtained from Eq. \ref{eq:M-approx}.
 
 
 
 
 \subsection{External magnetic field and total-field anomaly}
+
 
 The magnetic field $\Delta \mathbf{H}(\mathbf{r})$ 
 produced by an ellipsoid at external points is calculated from 
