@@ -395,7 +395,7 @@ given by
 \right] \: ,
 \label{eq:H0}
 \end{equation}
-where $\| \cdot \|$ denotes the Euclidean norm and
+where $\| \cdot \|$ denotes the Euclidean norm (or 2-norm) and
 $D$ and $I$ are respectively, the declination and inclination of the 
 local-geomagnetic field in the main coordinate system
 (Fig. \ref{fig:orientation-angles}a).
@@ -845,6 +845,17 @@ where, according to Eq. \ref{eq:Lambda-K-isotropic},
 \mathbf{V}^{\top} \: .
 \label{eq:inverse-Lambda}
 \end{equation}
+As we have already pointed out, the approximated
+magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
+represents the particular case in which the matrix 
+$\mathbf{\Lambda}$ (Eq. \ref{eq:Lambda-K-isotropic}),
+and consequently the matrix $\mathbf{\Lambda}^{-1}$
+(Eq. \ref{eq:inverse-Lambda}), are close to the identity.
+Our goal in this subsection is to bound the norm of the
+difference between the true magnetization $\mathbf{M}$
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda})
+and the approximated magnetization $\breve{\mathbf{M}}$
+(Eq. \ref{eq:M-approx}). 
 
 Consider a perturbed matrix $\delta \mathbf{\Lambda}^{-1}$ given by
 \begin{equation}
@@ -854,14 +865,49 @@ Consider a perturbed matrix $\delta \mathbf{\Lambda}^{-1}$ given by
 and, similarly, a perturbed magnetization vector $\delta \mathbf{M}$
 given by
 \begin{equation}
-\delta \mathbf{M} = \mathbf{M} - \breve{\mathbf{M}} \: ,
+\delta \mathbf{M} = \mathbf{M} - \breve{\mathbf{M}} \: .
 \label{eq:perturbed-M}
 \end{equation}
-where $\mathbf{M}$ is the true magnetization obtained from Eq. 
-\ref{eq:M-K-isotropic-inverse-Lambda} and $\breve{\mathbf{M}}$
-is the approximated magnetization obtained from Eq. \ref{eq:M-approx}.
+By using these two equations, we may rewrite that of the approximated
+magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx}) as follows:
+\begin{equation}
+\left( \mathbf{\Lambda}^{-1} - \delta \mathbf{\Lambda}^{-1} \right)
+\left( \mathbf{M} - \delta \mathbf{M} \right) = 
+\chi \, \mathbf{H}_{0} +
+\mathbf{M}_{R} \: .
+\label{eq:perturbed-system}
+\end{equation}
+Now, by subtracting the true magnetization 
+$\mathbf{M}$ (Eq. \ref{eq:M-K-isotropic-inverse-Lambda})
+from this linear system (Eq. \ref{eq:perturbed-system})
+and rearranging the terms, we obtain the following linear
+system for the perturbed magnetization $\delta \mathbf{M}$
+(Eq. \ref{eq:perturbed-M}):
+\begin{equation}
+\delta \mathbf{M} = - \delta \mathbf{\Lambda}^{-1} \mathbf{M} \: .
+\label{eq:perturbed-M-system}
+\end{equation}
 
-
+By using the concept of vector norm and its corresponding
+operator norm \citep{demmel1997, golub2013}, we may use Eq.
+\ref{eq:perturbed-M-system} to write the following inequality:
+\begin{equation}
+\frac{\| \delta \mathbf{M} \|}{\| \mathbf{M} \|} \leq
+\| \delta \mathbf{\Lambda}^{-1} \| \: .
+\label{eq:perturbed-M-inequality}
+\end{equation}
+where $\| \delta \mathbf{M} \|$ and $\| \mathbf{M} \|$
+denote Euclidean norms (or 2-norms) and the term 
+$\| \delta \mathbf{\Lambda}^{-1} \|$ denotes the matrix 2-norm
+of $\delta \mathbf{\Lambda}^{-1}$, which is given by
+\begin{equation}
+\| \delta \mathbf{\Lambda}^{-1} \| = \chi \,
+\tilde{n}^{\dagger}_{33} \: ,
+\label{eq:norm-perturbed-inverse-Lambda}
+\end{equation}
+where $\tilde{n}^{\dagger}_{33}$ is defined in the 
+following sections, depending on the ellipsoid
+type.
 
 
 \subsection{External magnetic field and total-field anomaly}
