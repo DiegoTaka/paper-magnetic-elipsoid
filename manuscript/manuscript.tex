@@ -827,7 +827,7 @@ there have been few empirical and/or theoretical investigations
 about it.
 
 
-\subsubsection{Relationship between $\chi$ and the magnetization error}
+\subsubsection{Relationship between $\chi$ and the relative error in $\breve{\mathbf{M}}$}
 
 
 In the case of isotropic susceptibility, the resultant magnetization
@@ -851,11 +851,11 @@ represents the particular case in which the matrix
 $\mathbf{\Lambda}$ (Eq. \ref{eq:Lambda-K-isotropic}),
 and consequently the matrix $\mathbf{\Lambda}^{-1}$
 (Eq. \ref{eq:inverse-Lambda}), are close to the identity.
-Our goal in this subsection is to bound the norm of the
-difference between the true magnetization $\mathbf{M}$
-(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda})
-and the approximated magnetization $\breve{\mathbf{M}}$
-(Eq. \ref{eq:M-approx}). 
+%Our goal in this subsection is to bound the norm of the
+%difference between the true magnetization $\mathbf{M}$
+%(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda})
+%and the approximated magnetization $\breve{\mathbf{M}}$
+%(Eq. \ref{eq:M-approx}).
 
 Consider a perturbed matrix $\delta \mathbf{\Lambda}^{-1}$ given by
 \begin{equation}
@@ -899,7 +899,11 @@ operator norm \citep{demmel1997, golub2013}, we may use Eq.
 where $\| \delta \mathbf{M} \|$ and $\| \mathbf{M} \|$
 denote Euclidean norms (or 2-norms) and the term 
 $\| \delta \mathbf{\Lambda}^{-1} \|$ denotes the matrix 2-norm
-of $\delta \mathbf{\Lambda}^{-1}$, which is given by
+of $\delta \mathbf{\Lambda}^{-1}$.
+By using Eqs. \ref{eq:inverse-Lambda} and \ref{eq:perturbed-inverse-Lambda}
+and the orthogonal invariance of the matrix 2-norm
+\citep{demmel1997, golub2013}, we define
+$\| \delta \mathbf{\Lambda}^{-1} \|$ as follows:
 \begin{equation}
 \| \delta \mathbf{\Lambda}^{-1} \| = \chi \,
 \tilde{n}^{\dagger}_{33} \: ,
@@ -908,6 +912,42 @@ of $\delta \mathbf{\Lambda}^{-1}$, which is given by
 where $\tilde{n}^{\dagger}_{33}$ is defined in the 
 following sections, depending on the ellipsoid
 type.
+It is worth, however, to stress that $\tilde{n}^{\dagger}_{33}$ is
+a scalar function of the ellipsoid semi-axes.
+In Eq. \ref{eq:perturbed-M-inequality}, the ratio
+$\| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1}$ represents the
+\textit{relative error} in the approximated magnetization
+$\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx}) with respect
+to the true magnetization $\mathbf{M}$ (Eqs. \ref{eq:M-K-isotropic}
+and \ref{eq:M-K-isotropic-inverse-Lambda}).
+
+Given a target relative error
+$\epsilon = \| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1}$
+and an ellipsoid
+with given semi-axes, we may use the inequality
+represented by Eq. \ref{eq:norm-perturbed-inverse-Lambda}
+to define
+\begin{equation}
+\chi_{max} = \frac{\epsilon}{\tilde{n}^{\dagger}_{33}} \: ,
+\label{eq:max-chi}
+\end{equation}
+which represents the maximum isotropic susceptibility 
+that the ellipsoidal body can assume in order o guarantee
+a relative error lower than or equal to $\epsilon$.
+For isotropic susceptibilities greater than $\chi_{max}$,
+there is no guarantee that the relative error in the
+approximated magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
+with respect to the true magnetization $\mathbf{M}$ 
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda})
+is lower than or equal to $\epsilon$. The geoscientific community
+has been using $\chi_{max} = 0.1$ SI as a limit value for
+neglecting the self-demagnetization and, consequently,
+use magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
+as a good approximation of the true magnetization $\mathbf{M}$ 
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
+Equation \ref{eq:max-chi}, on the other hand, defines $\chi_{max}$ 
+as a function of the ellipsoid semi-axes, according to a
+user-specified relative error $\epsilon$.
 
 
 \subsection{External magnetic field and total-field anomaly}
@@ -1434,7 +1474,7 @@ $\tilde{n}^{\dagger}_{11} > \tilde{n}^{\dagger}_{22}$ for all values
 of $m$.
 
 
-\subsection{Susceptibility}
+\subsection{Relative error in neglecting the self-demagnetization}
 
 TEXT
 
