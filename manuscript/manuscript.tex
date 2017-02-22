@@ -500,13 +500,13 @@ the total magnetic field $\mathbf{H}(\mathbf{r})$ (Eq. \ref{eq:H})
 can be rewritten as follows:
 \begin{equation}
 \mathbf{H}(\mathbf{r}) = \mathbf{H}_{0} 
-- \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}^{\dagger} \: ,
++ \mathbf{N}(\mathbf{r}) \, \mathbf{K} \, \mathbf{H}^{\dagger} \: ,
 \label{eq:H-M-uniform}
 \end{equation}
 where $\mathbf{N}(\mathbf{r})$ is a symmetrical matrix whose
 $ij$-element $n_{ij}(\mathbf{r})$ is given by
 \begin{equation}
-n_{ij}(\mathbf{r}) = - 
+n_{ij}(\mathbf{r}) = 
 \frac{1}{4\pi} \frac{\partial^{2} \, f(\mathbf{r})}
 {\partial r_{i} \, \partial r_{j}} 
 \: , \quad i = 1, 2, 3 \: , 
@@ -625,7 +625,7 @@ to the local coordinate system (Fig. \ref{fig:orientation-angles}b) as follows:
 \begin{equation}
 \underbrace{\mathbf{V}^{\top} \mathbf{H}(\mathbf{r})}_{\tilde{\mathbf{H}}(\tilde{\mathbf{r}})} = 
 \underbrace{\mathbf{V}^{\top} \mathbf{H}_{0}}_{\tilde{\mathbf{H}}_{0}}
-- \underbrace{\mathbf{V}^{\top} \mathbf{N}(\mathbf{r}) \mathbf{V}}
++ \underbrace{\mathbf{V}^{\top} \mathbf{N}(\mathbf{r}) \mathbf{V}}
 _{\tilde{\mathbf{N}}(\tilde{\mathbf{r}})} \;
 \underbrace{\mathbf{V}^{\top} \mathbf{K} \mathbf{V}}
 _{\tilde{\mathbf{K}}} \; 
@@ -649,7 +649,7 @@ elements $\tilde{n}_{ij}(\tilde{\mathbf{r}})$ of
 $\tilde{\mathbf{N}}(\tilde{\mathbf{r}})$ can also be calculated
 as follows:
 \begin{equation}
-\tilde{n}_{ij}(\tilde{\mathbf{r}}) = - 
+\tilde{n}_{ij}(\tilde{\mathbf{r}}) = 
 \frac{1}{4\pi} \frac{\partial^{2} \, \tilde{f}(\tilde{\mathbf{r}})}
 {\partial \tilde{r}_{i} \, \partial \tilde{r}_{j}} 
 \: , \quad i = 1, 2, 3 \: , \quad j = 1, 2, 3 \: ,
@@ -1054,7 +1054,7 @@ for defining the resultant uniform magnetic field $\tilde{\mathbf{H}}^{\dagger}$
 inside the ellipsoidal body as follows:
 \begin{equation}
 \tilde{\mathbf{H}}^{\dagger} = 
-\left( \mathbf{I} - \tilde{\mathbf{N}}^{\dagger} \, \tilde{\mathbf{K}} \right)^{-1}
+\left( \mathbf{I} + \tilde{\mathbf{N}}^{\dagger} \, \tilde{\mathbf{K}} \right)^{-1}
 \tilde{\mathbf{H}}_{0} \: ,
 \label{eq:Hi-tilde}
 \end{equation}
@@ -1070,10 +1070,10 @@ susceptibility tensor $\tilde{\mathbf{K}}$
 \begin{split}
 \tilde{\mathbf{M}} 
 &= \tilde{\mathbf{K}} 
-\left( \mathbf{I} - \tilde{\mathbf{N}}^{\dagger} \, \tilde{\mathbf{K}} \right)^{-1}
+\left( \mathbf{I} + \tilde{\mathbf{N}}^{\dagger} \, \tilde{\mathbf{K}} \right)^{-1}
 \tilde{\mathbf{H}}_{0} \\
 &=  
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
+\left( \mathbf{I} + \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
 \tilde{\mathbf{K}} \, \tilde{\mathbf{H}}_{0}
 \end{split} \: ,
 \label{eq:M-tilde}
@@ -1102,7 +1102,7 @@ following generalized equation
 where
 \begin{equation}
 \mathbf{\Lambda} = \mathbf{V}
-\left( \mathbf{I} - \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
+\left( \mathbf{I} + \tilde{\mathbf{K}} \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
 \mathbf{V}^{\top} \: .
 \label{eq:Lambda}
 \end{equation}
@@ -1161,7 +1161,7 @@ can be rewritten as follows:
 and
 \begin{equation}
 \mathbf{\Lambda} = \mathbf{V}
-\left( \mathbf{I} - \chi \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
+\left( \mathbf{I} + \chi \, \tilde{\mathbf{N}}^{\dagger} \right)^{-1}
 \mathbf{V}^{\top} \: .
 \label{eq:Lambda-K-isotropic}
 \end{equation}
@@ -1217,7 +1217,7 @@ following linear system:
 where, according to Eq. \ref{eq:Lambda-K-isotropic},
 \begin{equation}
 \mathbf{\Lambda}^{-1} = \mathbf{V}
-\left( \mathbf{I} - \chi \, \tilde{\mathbf{N}}^{\dagger} \right)
+\left( \mathbf{I} + \chi \, \tilde{\mathbf{N}}^{\dagger} \right)
 \mathbf{V}^{\top} \: .
 \label{eq:inverse-Lambda}
 \end{equation}
@@ -1313,7 +1313,7 @@ represented by Eq. \ref{eq:norm-perturbed-inverse-Lambda}
 to define
 \begin{equation}
 \chi_{max} = \frac{\epsilon}{\tilde{n}^{\dagger}_{max}} \: ,
-\label{eq:max-chi}
+\label{eq:chi-max}
 \end{equation}
 which represents the maximum isotropic susceptibility 
 that the ellipsoidal body can assume in order o guarantee
@@ -1329,7 +1329,7 @@ neglecting the self-demagnetization and, consequently,
 use magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
 as a good approximation of the true magnetization $\mathbf{M}$ 
 (Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
-Equation \ref{eq:max-chi}, on the other hand, defines $\chi_{max}$ 
+Equation \ref{eq:chi-max}, on the other hand, defines $\chi_{max}$ 
 as a function of the ellipsoid semi-axes, according to a
 user-specified relative error $\epsilon$.
 
@@ -1344,7 +1344,7 @@ between the resultant field $\mathbf{H}(\mathbf{r})$
 and the inducing field $\mathbf{H}_{0}$:
 \begin{equation}
 \Delta \mathbf{H}(\mathbf{r}) = 
-- \mathbf{V} \tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}}) \, \mathbf{V}^{\top}
+\mathbf{V} \tilde{\mathbf{N}}^{\ddagger}(\tilde{\mathbf{r}}) \, \mathbf{V}^{\top}
 \mathbf{M} \: ,
 \label{eq:delta-H}
 \end{equation}
@@ -1632,7 +1632,7 @@ Besides, the depolarization tensor $\mathbf{N}(\mathbf{r})$
 rewritten by using the matrix $\mathbf{F}(\mathbf{r})$
 as follows
 \begin{equation}
-\mathbf{N}(\mathbf{r}) = - \frac{1}{4 \pi} \mathbf{F}(\mathbf{r}) \: .
+\mathbf{N}(\mathbf{r}) = \frac{1}{4 \pi} \mathbf{F}(\mathbf{r}) \: .
 \label{eq:N-F}
 \end{equation}
 By properly using the orthogonality of the matrix
@@ -1644,7 +1644,7 @@ as follows:
 \label{eq:F-tilde-VT-F-V}
 \end{equation}
 Finally, by multiplying both sides of Eq. \ref{eq:F-tilde-VT-F-V}
-by $-\frac{1}{4 \pi}$ and using Eq. \ref{eq:N-F},
+by $\frac{1}{4 \pi}$ and using Eq. \ref{eq:N-F},
 we conclude that 
 \begin{equation}
 \tilde{\mathbf{N}}(\tilde{\mathbf{r}}) = 
@@ -1991,6 +1991,7 @@ respectively.}
 \label{fig:orientation-angles}
 \end{figure}
 
+%f
 \begin{figure}[t]
 \includegraphics[width=8.3cm]{figures/demag_factors.pdf}
 \caption{(a) Comparison between the demagnetizing factors
@@ -2026,6 +2027,40 @@ The horizontal black line represent the value $1/3$.}
 \label{fig:demag-factors}
 \end{figure}
 
+%f
+\begin{figure}[t]
+\includegraphics[width=8.3cm]{figures/total-field_anomaly.pdf}
+\caption{Total-field anomaly produced by the synthetic orebody
+defined in Tab. \ref{tab:parameters-warrego}. The synthetic data
+are calculated on a regular grid of $100 \times 100$ points
+at the constant vertical coordinate $z = 0$ \unit{m}.}
+\label{fig:tfa-warrego}
+\end{figure}
+
+%f
+\begin{figure}[t]
+\includegraphics[width=8.3cm]{figures/field_differences.pdf}
+\caption{Differences between the total-field 
+anomaly obtained by using the approximated magnetization $\breve{\mathbf{M}}$
+(Eq. \ref{eq:M-approx}) and that obtained by using the 
+true magnetization $\mathbf{M}$
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
+The total-field anomalies are calculated with Eq. \ref{eq:delta-T-approx},
+on a regular grid of $100 \times 100$ points
+at the constant vertical coordinate $z = 0$ \unit{m},
+for three synthetic bodies.
+(a) Differences produced by the synthetic orebody defined in
+Tab. \ref{tab:parameters-warrego}.
+(b) Differences produced by the synthetic orebody defined in
+Tab. \ref{tab:parameters-warrego}, but with an isotropic
+susceptibility $\chi = 0.1$ SI.
+(c) Differences produced by the synthetic orebody defined in
+Tab. \ref{tab:parameters-warrego}, but with an isotropic
+susceptibility $\chi = 0.044$ SI. This value was calculated
+with Eq. \ref{eq:chi-max}, by using $\epsilon = 2 \%$.}
+\label{fig:tfa-warrego}
+\end{figure}
+
 %%% TWO-COLUMN FIGURES
 %
 %%f
@@ -2055,6 +2090,37 @@ The horizontal black line represent the value $1/3$.}
 %\belowtable{} % Table Footnotes
 %\end{table}
 %
+
+%t
+\begin{table}[t]
+\caption{Parameters defining a synthetic orebody. This model is
+based on the that presented by \citet{farrar1979} to simulate
+the Warrego orebody, Tennant Creek field, Australia.}
+%\begin{tabular}{column = lcr}
+\begin{tabular}{lcr}
+\tophline
+Parameter & Value & Unit \\
+\middlehline
+Semi-axis $a$ & $490.7$ & \unit{m} \\
+Semi-axis $b$ & $69.7$ & \unit{m} \\
+Semi-axis $c$ & $30.0$ & \unit{m} \\
+Coordinate of the centre $x_{c}$ & 0 & \unit{m} \\
+Coordinate of the centre $y_{c}$ & 0 & \unit{m} \\
+Coordinate of the centre $z_{c}$ & 500 & \unit{m} \\
+Orientation angle $\varepsilon$ $^{\ast}$ & $-34.0$ & $^{\circ}$ \\
+Orientation angle $\zeta$ $^{\ast}$ & $66.1$ & $^{\circ}$ \\
+Orientation angle $\eta$ $^{\ast}$ & $45.0$ & $^{\circ}$ \\
+Isotropic susceptibility $\chi$ & $1.69$ & SI \\
+$x$-component of the inducing field $\mathbf{B}_{0}$ $^{\dagger}$ & 32610 & \unit{nT} \\
+$y$-component of the inducing field $\mathbf{B}_{0}$ $^{\dagger}$ & 0 & \unit{nT} \\
+$z$-component of the inducing field $\mathbf{B}_{0}$ $^{\dagger}$ & 39450 & \unit{nT} \\
+\bottomhline
+\end{tabular}
+\belowtable{$^{\ast}$ Defined in Fig. \ref{fig:orientation-angles}a \newline
+$^{\dagger}$ Defined in Eq. \ref{eq:delta-T}} % Table Footnotes
+\label{tab:parameters-warrego}
+\end{table}
+
 %%% TWO-COLUMN TABLE
 %
 %%t
