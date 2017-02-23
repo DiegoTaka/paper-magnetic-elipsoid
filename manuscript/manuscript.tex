@@ -164,15 +164,18 @@ It is a function of the body shape and gives rise
 to shape anisotropy \citep{uyeda1963, thompson1986,
 dunlop1997, clark1999, tauxe2003}.
 It is well-established in the literature that
-the self-demagnetization can
-be neglected if the body has a susceptibility lower 
-than 0.1 SI 
+the self-demagnetization can be neglected if the 
+body has a susceptibility lower than 0.1 \unit{SI} 
 \citep{emerson1985, clark1986, eskola1980, guo1998,
 guo2001, purss2005, hillan2013, austin2014, clark2014}.
-However, neglecting the self-demagnetization in
-geological bodies with high susceptibilities (> 0.1 SI) 
+On the other hand, neglecting the self-demagnetization in
+geological bodies with high susceptibilities (> 0.1 \unit{SI}) 
 may strongly mislead the interpretation obtained from
 magnetic methods.
+This limiting value, however, seems to be determined empirically
+and, so far, there has been little discussion about
+how it was determined.
+
 \citet{farrar1979} demonstrated the importance of the
 ellipsoidal model in taking into account the 
 self-demagnetization and determining reliable 
@@ -206,7 +209,7 @@ cost associated with drilling.
 
 A vast literature about the magnetic
 modelling of ellipsoidal bodies was developed in which 
-are to be found the names of many brilliant researchers.
+are to be found the names of many researchers.
 Nevertheless, interest in this subject has not yet died
 out, as is evidenced by a list of modern papers in this
 field.
@@ -215,7 +218,18 @@ tool to simulate the magnetic field produced by uniformly
 magnetized ellipsoids.
 Such a tool could prove to be useful either for teaching
 and researching geophysics.
-To fill this gap, we provide here a set of routines to 
+
+In this work, we present a review of the vast literature
+about the magnetic modelling of ellipsoidal bodies and a
+theoretical discussion about the determination of the 
+isotropic susceptibility value above which
+the self-demagnetization must be taken into consideration.
+We propose an alternative way of determining this value
+based on the body shape and the maximum relative error
+allowed in the resultant magnetization.
+This alternative approach is validated
+by the results obtained with numerical simulations.
+We also provide a set of routines to 
 model the magnetic field produced by ellipsoids.
 The routines are written in Python language as part of
 the Fatiando a Terra \citep{uieda2013}, which is an 
@@ -224,14 +238,13 @@ We attempt to use the best practices of continuous
 integration, documentation, unit-testing, and version-control
 for the purpose of providing a reliable and easy-to-use
 code.
-It is hoped that the presentation of the theoretical and
-practical aspects given here will be found useful to the
-wide community of geoscientists.
 
 
 \section{Methodology}
 
+
 \subsection{Geometrical parameters and coordinate systems}
+
 
 Let $(x, y, z)$ be a point referred to a Cartesian coordinate system with axes
 $x$, $y$ and $z$ pointing to, respectively, North, East and down.
@@ -699,7 +712,7 @@ where $R(u)$ is defined by Eq. \ref{eq:R} and
 $e_{1} = a$, $e_{2} = b$, and $e_{3} = c$. These elements 
 are commonly known as \textit{demagnetizing factors}
 and are defined according to the ellipsoid type.
-Here, we calculate the demagnetizing factors in the SI
+Here, we calculate the demagnetizing factors in the \unit{SI}
 system. Consequently, they satisfies the condition
 $\tilde{n}^{\dagger}_{11} + \tilde{n}^{\dagger}_{22} + 
 \tilde{n}^{\dagger}_{33} = 1$, independently of the
@@ -1197,7 +1210,7 @@ Notice that, in this particular case, the induced magnetization
 is parallel to the inducing field $\mathbf{H}_{0}$ (Eq. \ref{eq:H0}),
 whether it is parallel to an ellipsoid axis or not.
 Usually, Eq. \ref{eq:M-approx}
-is considered a good approximation for $\chi \leq 0.1$ SI.
+is considered a good approximation for $\chi \leq 0.1$ \unit{SI}.
 Although this value has been largely used in the literature,
 there have been few empirical and/or theoretical investigations 
 about it.
@@ -1289,10 +1302,10 @@ where $\tilde{n}^{\dagger}_{max}$ is the demagnetization
 factor associated to the shortest ellipsoid semi-axis.
 For a triaxial ellipsoid, 
 $\tilde{n}^{\dagger}_{max} \equiv \tilde{n}^{\dagger}_{33}$
-(Eq. \ref{eq:n-tilde-dagger-33-triaxial}). For a prolate ellipsoid,
+(Eq. \ref{eq:n-tilde-dagger-33-triaxial}), for a prolate ellipsoid,
 $\tilde{n}^{\dagger}_{max} \equiv \tilde{n}^{\dagger}_{22}$
-(Eq. \ref{eq:n-tilde-dagger-22-prolate}). 
-For an oblate ellipsoid,
+(Eq. \ref{eq:n-tilde-dagger-22-prolate}), and,
+for an oblate ellipsoid,
 $\tilde{n}^{\dagger}_{max} \equiv \tilde{n}^{\dagger}_{11}$
 (Eq. \ref{eq:n-tilde-dagger-11-oblate}).
 It is worth stressing that, independently of the ellipsoid
@@ -1304,10 +1317,7 @@ $\| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1}$ represents the
 $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx}) with respect
 to the true magnetization $\mathbf{M}$ (Eqs. \ref{eq:M-K-isotropic}
 and \ref{eq:M-K-isotropic-inverse-Lambda}).
-
-Given a target relative error
-$\epsilon = \| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1}$
-and an ellipsoid
+Given a target relative error $\epsilon$ and an ellipsoid
 with given semi-axes, we may use the inequality
 represented by Eq. \ref{eq:norm-perturbed-inverse-Lambda}
 to define
@@ -1324,7 +1334,7 @@ approximated magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
 with respect to the true magnetization $\mathbf{M}$ 
 (Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda})
 is lower than or equal to $\epsilon$. The geoscientific community
-has been using $\chi_{max} = 0.1$ SI as a limit value for
+has been using $\chi_{max} = 0.1$ \unit{SI} as a limit value for
 neglecting the self-demagnetization and, consequently,
 use magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
 as a good approximation of the true magnetization $\mathbf{M}$ 
@@ -1490,25 +1500,146 @@ $\tilde{n}^{\dagger}_{11} > \tilde{n}^{\dagger}_{22}$ for all values
 of $m$.
 
 
-\subsection{Relative error in neglecting the self-demagnetization}
-
-TEXT
-
 \subsection{Simulation of a geological body}
 
-TEXT
+
+\citet{farrar1979} represented the Warrego orebody as a triaxial
+ellipsoid having a high isotropic susceptibility.
+In this case, the self-demagnetization strongly impacts the
+magnetic modelling of this body.
+According to \citet{wedekind1990}, the Warrego orebody is a combination of
+two major and several small ironstone lodes, which are discrete bodies
+comprised predominantly of magnetite or hematite above the base of
+oxidation.
+The Warrego orebody was the resource on which the Warrego mine was
+developed. After nearly a decade as one of the most important 
+gold and copper mines in Australia, the Warrego mine was closed 
+in late 1989.
+
+Table \ref{tab:parameters-warrego} shows the parameters defining
+a synthetic orebody which is based on that presented by
+\citet{farrar1979} to represent the Warrego orebody.
+Figure \ref{fig:tfa-warrego} shows the total-field anomaly
+$\Delta T (\mathbf{r})$ (Eq. \ref{eq:delta-T-approx}) produced
+by the synthetic body on a regular grid of $100 \times 100$
+points at a constant vertical coordinate $z = 0$ \unit{m}.
+The total-field anomaly varies from $\approx -295.3$ \unit{nT}
+to $\approx 149.5$ \unit{nT}, resulting in a peak-to-peak amplitude
+of $\approx 444.9$ \unit{nT}, and was calculated by using the 
+true magnetization $\mathbf{M}$ defined in Eqs. 
+\ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}.
+
+We have calculated the difference between the total-field anomaly
+$\Delta T (\mathbf{r})$ (Eq. \ref{eq:delta-T-approx}) calculated with the
+true magnetization $\mathbf{M}$ (Eqs. 
+\ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda})
+and that calculated with the approximated magnetization
+$\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx}).
+The differences were calculated by using the synthetic body 
+defined in Tab. \ref{tab:parameters-warrego}, but with three
+different isotropic susceptibilities.
+Figures \ref{fig:tfa-differences-warrego}a, \ref{fig:tfa-differences-warrego}b
+and \ref{fig:tfa-differences-warrego}c show the differences calculated
+by using, respectively, isotropic susceptibilities $\chi = 1.69$ \unit{SI} 
+(Tab. \ref{tab:parameters-warrego}), $\chi_{1} = 0.1$ \unit{SI} and 
+$\chi_{2} = 0.116$ \unit{SI}.
+
+As expected, the differences calculated by using the higher isotropic
+susceptibility (Fig. \ref{fig:tfa-differences-warrego}a) are very large.
+The peak-to-peak amplitude is $\approx 212.0$ \unit{nT}
+and represents $\approx 48 \%$ of the peak-to-peak amplitude of
+the total-field anomaly shown in Fig. \ref{fig:tfa-warrego}.
+This result reinforces that the use of the approximated magnetization
+$\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx}) may negatively impact
+the magnetic modelling of bodies with high isotropic susceptibility.
+
+Figure \ref{fig:tfa-differences-warrego}b shows the differences calculated
+by using $\chi_{1} = 0.1$ \unit{SI}.
+It is commonly accepted that, for bodies having isotropic susceptibilities
+lower than or equal to $0.1$ \unit{SI}, the self-demagnetization can be neglected and,
+consequently, the magnetization $\breve{\mathbf{M}}$ (Eq. \ref{eq:M-approx})
+is a good approximation of the true magnetization $\mathbf{M}$
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
+In our test, the use of $\chi_{1} = 0.1$ \unit{SI} leads to a relative error
+$\| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1} \approx 4.2 \%$
+(Eq. \ref{eq:perturbed-M-inequality}) in the magnetization.
+The peak-to-peak amplitude of the differences in the total-field anomaly
+(Fig. \ref{fig:tfa-differences-warrego}b) is $\approx 1.5$ \unit{nT},
+which represents $\approx 4.5 \%$ of the peak-to-peak amplitude of the
+total-field anomaly calculates by using the true magnetization $\mathbf{M}$
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
+
+Finally, Fig. \ref{fig:tfa-differences-warrego}c shows the differences
+calculated by using $\chi_{2} = 0.116$ \unit{SI}.
+This value was calculated by using Eq. \ref{eq:chi-max} with a
+target relative error $\epsilon = 8 \%$ and the $\tilde{n}^{\dagger}_{max}$
+defined by Eq. \ref{eq:n-tilde-dagger-33-triaxial}.
+By using this isotropic susceptibility, it is expected that the
+calculated relative error 
+$\| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1}$
+(Eq. \ref{eq:perturbed-M-inequality}) in the magnetization be
+lower than or equal to the target relative error $\epsilon = 8 \%$.
+In this test, the use of $\chi_{2} = 0.116$ \unit{SI} leads to a relative error
+$\| \delta \mathbf{M} \| \, \| \mathbf{M} \|^{-1} \approx 4.9 \%$
+(Eq. \ref{eq:perturbed-M-inequality}) in the magnetization.
+The peak-to-peak amplitude of the differences in the total-field anomaly
+(Fig. \ref{fig:tfa-differences-warrego}c) is $\approx 2.0$ \unit{nT},
+which represents $\approx 5.1 \%$ of the peak-to-peak amplitude of the
+total-field anomaly calculates by using the true magnetization $\mathbf{M}$
+(Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
+In this case, the use an isotropic susceptibility greater than the usual
+limit $0.1$ \unit{SI} does not mislead the magnetic modelling
+dramatically. On the contrary, it shows small discrepancies in the
+magnetic modelling and validates Eq. \ref{eq:chi-max}.
 
 
 \section{Conclusions}  %% \conclusions[modified heading if necessary]
-TEXT
+
+
+
+We present an integrated review of the vast literature 
+about the magnetic modelling of triaxial, prolate and
+oblate ellipsoids.
+We also present a theoretical discussion about the
+determination of the isotropic susceptibility value above which
+the self-demagnetization must be taken into consideration.
+We propose an alternative way of determining this value
+based on the body shape and the maximum relative error
+allowed in the resultant magnetization.
+Our approach is an alternative to the constant value which
+seems to be determined empirically and
+has been used by the geoscientific community.
+Our alternative approach is validated
+by the results obtained with numerical simulations.
+In a future work,
+it would be interesting to use a similar approach to
+to bound the maximum relative error in the
+magnetic field calculated by neglecting the self-demagnetization.
+
+This work also provide a set of routines to model the magnetic 
+field produced by ellipsoids.
+The routines are written in Python language as part of
+the Fatiando a Terra \citep{uieda2013}, which is an 
+open-source library for modelling and inversion in geophysics.
+The current version of our code is freely distributed
+in a repository of GitHub. We are working to integrate our
+routines in the following stable release of Fatiando a Terra.
+We hope that these routines be useful to the wide geoscientific
+community either in researching and teaching.
 
 
 \section{Code availability}
 
-The code is freely distributed under 
-BSD 3-clause licence as part of the Fatiando a Terra 
+
+The current code is freely distributed, under 
+BSD 3-clause licence, in a repository of GitHub
+(\url{https://github.com/pinga-lab/magnetic-elipsoid}).
+The code was developed as part of the Fatiando a Terra 
 \citep{uieda2013}, which is an open-source Python 
 library for modelling and inversion in geophysics.
+Instructions for running the current version of our code
+in the Fatiando a Terra are provided at its repository
+in GitHub.
 Documentation and installation instructions for 
 the most current release version of Fatiando a Terra 
 are provided at \url http://www.fatiando.org.
@@ -1516,6 +1647,7 @@ are provided at \url http://www.fatiando.org.
 
 \appendix
 \section{Derivatives of the functions $f(\mathbf{r})$ and $\tilde{f}(\tilde{\mathbf{r}})$} %% Appendix A
+
 
 Let $\tilde{f}(\tilde{\mathbf{r}})$ be the scalar
 function obtained by transforming $f(\mathbf{r})$ 
@@ -2040,25 +2172,24 @@ at the constant vertical coordinate $z = 0$ \unit{m}.}
 %f
 \begin{figure}[t]
 \includegraphics[width=8.3cm]{figures/field_differences.pdf}
-\caption{Differences between the total-field 
-anomaly obtained by using the approximated magnetization $\breve{\mathbf{M}}$
-(Eq. \ref{eq:M-approx}) and that obtained by using the 
+\caption{Difference between the total-field 
+anomaly calculated with the approximated magnetization $\breve{\mathbf{M}}$
+(Eq. \ref{eq:M-approx}) and with the 
 true magnetization $\mathbf{M}$
 (Eqs. \ref{eq:M-K-isotropic} and \ref{eq:M-K-isotropic-inverse-Lambda}).
 The total-field anomalies are calculated with Eq. \ref{eq:delta-T-approx},
-on a regular grid of $100 \times 100$ points
-at the constant vertical coordinate $z = 0$ \unit{m},
-for three synthetic bodies.
-(a) Differences produced by the synthetic orebody defined in
-Tab. \ref{tab:parameters-warrego}.
-(b) Differences produced by the synthetic orebody defined in
-Tab. \ref{tab:parameters-warrego}, but with an isotropic
-susceptibility $\chi = 0.1$ SI.
-(c) Differences produced by the synthetic orebody defined in
-Tab. \ref{tab:parameters-warrego}, but with an isotropic
-susceptibility $\chi = 0.044$ SI. This value was calculated
+on a regular grid of $100 \times 100$ points,
+at the constant vertical coordinate $z = 0$ \unit{m}.
+The differences are produced by the synthetic orebody defined in
+Tab. \ref{tab:parameters-warrego}, but with different
+isotropic susceptibilities:
+(a) the isotropic susceptibility defined in 
+Tab. \ref{tab:parameters-warrego},
+(b) an isotropic susceptibility $\chi = 0.1$ \unit{SI}, and
+(c) an isotropic susceptibility $\chi = 0.116$ \unit{SI}.
+This last value was calculated
 with Eq. \ref{eq:chi-max}, by using $\epsilon = 2 \%$.}
-\label{fig:tfa-warrego}
+\label{fig:tfa-differences-warrego}
 \end{figure}
 
 %%% TWO-COLUMN FIGURES
@@ -2091,6 +2222,8 @@ with Eq. \ref{eq:chi-max}, by using $\epsilon = 2 \%$.}
 %\end{table}
 %
 
+\newpage
+
 %t
 \begin{table}[t]
 \caption{Parameters defining a synthetic orebody. This model is
@@ -2110,7 +2243,7 @@ Coordinate of the centre $z_{c}$ & 500 & \unit{m} \\
 Orientation angle $\varepsilon$ $^{\ast}$ & $-34.0$ & $^{\circ}$ \\
 Orientation angle $\zeta$ $^{\ast}$ & $66.1$ & $^{\circ}$ \\
 Orientation angle $\eta$ $^{\ast}$ & $45.0$ & $^{\circ}$ \\
-Isotropic susceptibility $\chi$ & $1.69$ & SI \\
+Isotropic susceptibility $\chi$ & $1.69$ & \unit{SI} \\
 $x$-component of the inducing field $\mathbf{B}_{0}$ $^{\dagger}$ & 32610 & \unit{nT} \\
 $y$-component of the inducing field $\mathbf{B}_{0}$ $^{\dagger}$ & 0 & \unit{nT} \\
 $z$-component of the inducing field $\mathbf{B}_{0}$ $^{\dagger}$ & 39450 & \unit{nT} \\
