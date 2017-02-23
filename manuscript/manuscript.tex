@@ -75,7 +75,7 @@
 % \Author[affil]{given_name}{surname}
 
 \Author[1]{Diego}{Takahashi Tomazella}
-\Author[1]{Vanderlei}{C. Oliveira Jr}
+\Author[1]{Vanderlei}{C. Oliveira Jr.}
 
 \affil[1]{Department of Geophysics, Observat\'{o}rio Nacional, Rio de Janeiro, Brazil}
 %\affil[]{}
@@ -84,9 +84,9 @@
 
 
 
-\runningtitle{TEXT}
+\runningtitle{Magnetic modelling of ellipsoids}
 
-\runningauthor{TEXT}
+\runningauthor{Tomazella and Oliveira Jr.}
 
 \correspondence{Diego Takahashi Tomazella (diego.takahashi@gmail.com)}
 
@@ -109,7 +109,11 @@
 
 \begin{abstract}
 
-TEXT
+A considerable amount of literature has been published on
+the magnetic modelling of of uniformly magnetized ellipsoids
+since the second half of the nineteenth century.
+
+
 
 \end{abstract}
 
@@ -1399,7 +1403,7 @@ and, consequently, the following approximation is valid \citep{blakely1996}:
 \end{equation}
 
 
-\section{Computational implementation and testing}
+\section{Computational implementation and reproducibility}
 
 
 The code is implemented in Python language,
@@ -1415,6 +1419,21 @@ we recommend the freely reusable lessons of the Software Carpentry
 description of the doctest module available
 in the documentation for Python 2.X 
 (\url{https://docs.python.org/2/library/doctest.html}).
+
+The numerical simulations presented here was generated with
+the Jupyter Notebook
+(\url{http://jupyter-notebook.readthedocs.io/en/latest/notebook.html}),
+which is a web application that allows creating and sharing
+documents that contain live code, equations, visualizations and
+explanatory text.
+Besides using the Fatiando a Terra \citep{uieda2013},
+the numerical simulations use the 
+NumPy library \citep{vanderwalt2011} to perform numerical
+computations, the Matplotlib library \citep{hunter2007} to plot
+the results and generate figures.
+The Jupyter Notebooks used to reproduce all the results presented here
+are available at a repository in the GitHub
+(\url{https://github.com/pinga-lab/magnetic-ellipsoid}).
 
 
 \section{Numerical simulations}
@@ -1631,9 +1650,9 @@ community either in researching and teaching.
 \section{Code availability}
 
 
-The current code is freely distributed, under 
+The current version of our code is freely distributed, under 
 BSD 3-clause licence, in a repository of GitHub
-(\url{https://github.com/pinga-lab/magnetic-elipsoid}).
+(\url{https://github.com/pinga-lab/magnetic-ellipsoid}).
 The code was developed as part of the Fatiando a Terra 
 \citep{uieda2013}, which is an open-source Python 
 library for modelling and inversion in geophysics.
@@ -2188,7 +2207,7 @@ Tab. \ref{tab:parameters-warrego},
 (b) an isotropic susceptibility $\chi = 0.1$ \unit{SI}, and
 (c) an isotropic susceptibility $\chi = 0.116$ \unit{SI}.
 This last value was calculated
-with Eq. \ref{eq:chi-max}, by using $\epsilon = 2 \%$.}
+with Eq. \ref{eq:chi-max}, by using $\epsilon = 8 \%$.}
 \label{fig:tfa-differences-warrego}
 \end{figure}
 
